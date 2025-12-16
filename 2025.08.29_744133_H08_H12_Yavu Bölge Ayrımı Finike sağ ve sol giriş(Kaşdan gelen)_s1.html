@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_078995990ab7badd4755cee52b3a329a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_078995990ab7badd4755cee52b3a329a" ></div>
+        
+
+    <script>
+    var userLocationMarker = null;
+    var userLocationCircle = null;
+    var watchId = null;
+    var map = null;
+
+    // Folium haritasını BUL (EN KRİTİK DÜZELTME)
+    document.addEventListener("DOMContentLoaded", function () {
+        for (var key in window) {
+            if (key.startsWith("map_") && window[key] instanceof L.Map) {
+                map = window[key];
+                console.log("Folium haritası bulundu:", key);
+                createLocationButton();
+                return;
+            }
+        }
+        console.error("Folium haritası bulunamadı!");
+    });
+
+    // Konum butonu
+    function createLocationButton() {
+        var LocationControl = L.Control.extend({
+            options: { position: 'topleft' },
+
+            onAdd: function () {
+                var container = L.DomUtil.create('div', 'leaflet-bar');
+                container.style.background = 'white';
+
+                var btn = L.DomUtil.create('a', '', container);
+                btn.innerHTML = '📍';
+                btn.style.width = '36px';
+                btn.style.height = '36px';
+                btn.style.lineHeight = '36px';
+                btn.style.textAlign = 'center';
+                btn.style.cursor = 'pointer';
+                btn.title = 'Konumumu Göster';
+
+                btn.onclick = function (e) {
+                    e.preventDefault();
+                    getUserLocation();
+                };
+                return container;
+            }
+        });
+
+        map.addControl(new LocationControl());
+    }
+
+    // Konumu al
+    function getUserLocation() {
+        if (!navigator.geolocation) {
+            alert("Tarayıcı konum desteklemiyor");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                showUserLocation(
+                    pos.coords.latitude,
+                    pos.coords.longitude,
+                    pos.coords.accuracy
+                );
+                startTracking();
+            },
+            function (err) {
+                alert("Konum alınamadı: " + err.message);
+            },
+            { enableHighAccuracy: true }
+        );
+    }
+
+    // Haritada göster
+    function showUserLocation(lat, lng, acc) {
+        if (userLocationMarker) map.removeLayer(userLocationMarker);
+        if (userLocationCircle) map.removeLayer(userLocationCircle);
+
+        userLocationMarker = L.circleMarker([lat, lng], {
+            radius: 8,
+            color: '#4285F4',
+            fillColor: '#4285F4',
+            fillOpacity: 1
+        }).addTo(map);
+
+        userLocationCircle = L.circle([lat, lng], {
+            radius: acc,
+            color: '#4285F4',
+            fillOpacity: 0.15
+        }).addTo(map);
+
+        map.setView([lat, lng], 16);
+    }
+
+    // Canlı takip
+    function startTracking() {
+        watchId = navigator.geolocation.watchPosition(function (pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            var acc = pos.coords.accuracy;
+
+            userLocationMarker.setLatLng([lat, lng]);
+            userLocationCircle.setLatLng([lat, lng]);
+            userLocationCircle.setRadius(acc);
+        });
+    }
+    </script>
+    </body>
+<script>
+    
+    
+            var map_078995990ab7badd4755cee52b3a329a = L.map(
+                "map_078995990ab7badd4755cee52b3a329a",
+                {
+                    center: [36.23887842405405, 29.770238024864867],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_078995990ab7badd4755cee52b3a329a);
+
+            
+
+        
+    
+            var tile_layer_6e52171958e040a01e4253e4caae66b0 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_6e52171958e040a01e4253e4caae66b0.addTo(map_078995990ab7badd4755cee52b3a329a);
+        
+    
+            var tile_layer_819e4f69dc1bbe8500b3e45d3807d07d = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 22,
+  "maxNativeZoom": 22,
+  "noWrap": false,
+  "attribution": "Google Hybrid",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_819e4f69dc1bbe8500b3e45d3807d07d.addTo(map_078995990ab7badd4755cee52b3a329a);
+        
+    
+            var feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_0dc35ee4335c13d8c0605564d893599e = L.marker(
+                [36.23652826, 29.80644536],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_4a1e55c31135bc6fb251ad008002f2aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5f3b49f270f878af13449b79eee0ceac = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_6f2b68cd65c634396bc26d04d0774811 = $(`<div id="html_6f2b68cd65c634396bc26d04d0774811" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>201790</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.236528, 29.806445                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.23652826,29.80644536' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.236528, 29.806445")'>                                 36.236528, 29.806445                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_5f3b49f270f878af13449b79eee0ceac.setContent(html_6f2b68cd65c634396bc26d04d0774811);
+            
+        
+
+        marker_0dc35ee4335c13d8c0605564d893599e.bindPopup(popup_5f3b49f270f878af13449b79eee0ceac)
+        ;
+
+        
+    
+    
+            marker_0dc35ee4335c13d8c0605564d893599e.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 201790
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0dc35ee4335c13d8c0605564d893599e.setIcon(icon_4a1e55c31135bc6fb251ad008002f2aa);
+            
+    
+            var marker_0f2ae20e1311ac3a45b1499d98778680 = L.marker(
+                [36.23662315, 29.80447484],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_e08d5dd3f976eeaab77be8f8ddee2be4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c46c5e2eef46b0c24b227914f355dcb7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_050009565d64925506c339d7b51efec8 = $(`<div id="html_050009565d64925506c339d7b51efec8" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>181533</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.236623, 29.804475                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.23662315,29.80447484' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.236623, 29.804475")'>                                 36.236623, 29.804475                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_c46c5e2eef46b0c24b227914f355dcb7.setContent(html_050009565d64925506c339d7b51efec8);
+            
+        
+
+        marker_0f2ae20e1311ac3a45b1499d98778680.bindPopup(popup_c46c5e2eef46b0c24b227914f355dcb7)
+        ;
+
+        
+    
+    
+            marker_0f2ae20e1311ac3a45b1499d98778680.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 181533
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0f2ae20e1311ac3a45b1499d98778680.setIcon(icon_e08d5dd3f976eeaab77be8f8ddee2be4);
+            
+    
+            var marker_a4ee1408c65db965569f29a00e4aee6b = L.marker(
+                [36.23691379, 29.79817438],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_f6c41be8ca1386b84c4375b83fde016b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_418dcc1e606755c66e2ae59eaa386fab = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_72d71d040ae565fd2a237f42df98a7c7 = $(`<div id="html_72d71d040ae565fd2a237f42df98a7c7" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657465</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.236914, 29.798174                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.23691379,29.79817438' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.236914, 29.798174")'>                                 36.236914, 29.798174                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_418dcc1e606755c66e2ae59eaa386fab.setContent(html_72d71d040ae565fd2a237f42df98a7c7);
+            
+        
+
+        marker_a4ee1408c65db965569f29a00e4aee6b.bindPopup(popup_418dcc1e606755c66e2ae59eaa386fab)
+        ;
+
+        
+    
+    
+            marker_a4ee1408c65db965569f29a00e4aee6b.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 1657465
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a4ee1408c65db965569f29a00e4aee6b.setIcon(icon_f6c41be8ca1386b84c4375b83fde016b);
+            
+    
+            var marker_191ca00d0e3e62ccc075e8aef229f764 = L.marker(
+                [36.2370776, 29.79538918],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_6fadcea18fcb37335677580e2618bbfc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_71e38f9fabab6cce7420bd74d65b699f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0bdbfae7a0b59fdbc1699ca969fcb6a0 = $(`<div id="html_0bdbfae7a0b59fdbc1699ca969fcb6a0" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>181534</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.237078, 29.795389                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.2370776,29.79538918' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.237078, 29.795389")'>                                 36.237078, 29.795389                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_71e38f9fabab6cce7420bd74d65b699f.setContent(html_0bdbfae7a0b59fdbc1699ca969fcb6a0);
+            
+        
+
+        marker_191ca00d0e3e62ccc075e8aef229f764.bindPopup(popup_71e38f9fabab6cce7420bd74d65b699f)
+        ;
+
+        
+    
+    
+            marker_191ca00d0e3e62ccc075e8aef229f764.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 181534
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_191ca00d0e3e62ccc075e8aef229f764.setIcon(icon_6fadcea18fcb37335677580e2618bbfc);
+            
+    
+            var marker_d6856cb3df9376ab45b0fea8afbacf69 = L.marker(
+                [36.23724688, 29.79155595],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_8487d99cf82987319136f6e326298540 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d370cdbe4ab31867c34c006d2c0655b2 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3c209c9b4d9b5d15792457417e573a10 = $(`<div id="html_3c209c9b4d9b5d15792457417e573a10" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>138302</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.237247, 29.791556                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.23724688,29.79155595' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.237247, 29.791556")'>                                 36.237247, 29.791556                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_d370cdbe4ab31867c34c006d2c0655b2.setContent(html_3c209c9b4d9b5d15792457417e573a10);
+            
+        
+
+        marker_d6856cb3df9376ab45b0fea8afbacf69.bindPopup(popup_d370cdbe4ab31867c34c006d2c0655b2)
+        ;
+
+        
+    
+    
+            marker_d6856cb3df9376ab45b0fea8afbacf69.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 138302
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d6856cb3df9376ab45b0fea8afbacf69.setIcon(icon_8487d99cf82987319136f6e326298540);
+            
+    
+            var marker_ed6053ac26613fe9e227db2b6131251b = L.marker(
+                [36.2374224, 29.79017421],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_243c8dcc32968aa07d9cb6528ec7ee78 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e4ce63fbeec5b1e99b78c3d120c40b72 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_dd922488f433a82adbbf598dd785e5c7 = $(`<div id="html_dd922488f433a82adbbf598dd785e5c7" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657503</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.237422, 29.790174                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.2374224,29.79017421' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.237422, 29.790174")'>                                 36.237422, 29.790174                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_e4ce63fbeec5b1e99b78c3d120c40b72.setContent(html_dd922488f433a82adbbf598dd785e5c7);
+            
+        
+
+        marker_ed6053ac26613fe9e227db2b6131251b.bindPopup(popup_e4ce63fbeec5b1e99b78c3d120c40b72)
+        ;
+
+        
+    
+    
+            marker_ed6053ac26613fe9e227db2b6131251b.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 1657503
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ed6053ac26613fe9e227db2b6131251b.setIcon(icon_243c8dcc32968aa07d9cb6528ec7ee78);
+            
+    
+            var marker_ff5751832c1846c7f0943f841c72db9c = L.marker(
+                [36.24050003, 29.76675543],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_1c863c9652a6d9316a3c1edf179b78fb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f9e9d9e72abfa0753074964adca55806 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_c3d088d358f1cf4925175cb3075e3acb = $(`<div id="html_c3d088d358f1cf4925175cb3075e3acb" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>224669</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.240500, 29.766755                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.24050003,29.76675543' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.240500, 29.766755")'>                                 36.240500, 29.766755                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_f9e9d9e72abfa0753074964adca55806.setContent(html_c3d088d358f1cf4925175cb3075e3acb);
+            
+        
+
+        marker_ff5751832c1846c7f0943f841c72db9c.bindPopup(popup_f9e9d9e72abfa0753074964adca55806)
+        ;
+
+        
+    
+    
+            marker_ff5751832c1846c7f0943f841c72db9c.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 224669
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ff5751832c1846c7f0943f841c72db9c.setIcon(icon_1c863c9652a6d9316a3c1edf179b78fb);
+            
+    
+            var marker_1303a72095eed8fbc09c019139c80426 = L.marker(
+                [36.24223196, 29.75352749],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_33f157df04ce4c95327a5f9c62005256 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b7a24b76e43c057f9e680cd76ae446d0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3257683c97dc283127b071a6843632ff = $(`<div id="html_3257683c97dc283127b071a6843632ff" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>210246</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.242232, 29.753527                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.24223196,29.75352749' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.242232, 29.753527")'>                                 36.242232, 29.753527                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_b7a24b76e43c057f9e680cd76ae446d0.setContent(html_3257683c97dc283127b071a6843632ff);
+            
+        
+
+        marker_1303a72095eed8fbc09c019139c80426.bindPopup(popup_b7a24b76e43c057f9e680cd76ae446d0)
+        ;
+
+        
+    
+    
+            marker_1303a72095eed8fbc09c019139c80426.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 210246
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1303a72095eed8fbc09c019139c80426.setIcon(icon_33f157df04ce4c95327a5f9c62005256);
+            
+    
+            var marker_8f4d5bb6ea8adb041024d4f3eee88e8b = L.marker(
+                [36.24155471, 29.75121309],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_1479933ee56b18a52bdcf1ef64d1968e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4349c41eac4c2988b37f2a864010dab8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_eae21404de41de17dac2e86c02051c98 = $(`<div id="html_eae21404de41de17dac2e86c02051c98" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657513</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.241555, 29.751213                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç Teması var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.24155471,29.75121309' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.241555, 29.751213")'>                                 36.241555, 29.751213                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_4349c41eac4c2988b37f2a864010dab8.setContent(html_eae21404de41de17dac2e86c02051c98);
+            
+        
+
+        marker_8f4d5bb6ea8adb041024d4f3eee88e8b.bindPopup(popup_4349c41eac4c2988b37f2a864010dab8)
+        ;
+
+        
+    
+    
+            marker_8f4d5bb6ea8adb041024d4f3eee88e8b.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 1657513
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8f4d5bb6ea8adb041024d4f3eee88e8b.setIcon(icon_1479933ee56b18a52bdcf1ef64d1968e);
+            
+    
+            var marker_dcc6b5578d1d8e98f578f1631126e00a = L.marker(
+                [36.24111161, 29.74950118],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_f25a6a91efcac4bc5cf07c2dc928f7b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0f16577bedaf8a1332fedfd6ef4b21aa = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_bb3be691612eb12f06c982ec31693965 = $(`<div id="html_bb3be691612eb12f06c982ec31693965" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>210247</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.241112, 29.749501                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.24111161,29.74950118' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.241112, 29.749501")'>                                 36.241112, 29.749501                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_0f16577bedaf8a1332fedfd6ef4b21aa.setContent(html_bb3be691612eb12f06c982ec31693965);
+            
+        
+
+        marker_dcc6b5578d1d8e98f578f1631126e00a.bindPopup(popup_0f16577bedaf8a1332fedfd6ef4b21aa)
+        ;
+
+        
+    
+    
+            marker_dcc6b5578d1d8e98f578f1631126e00a.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 210247
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dcc6b5578d1d8e98f578f1631126e00a.setIcon(icon_f25a6a91efcac4bc5cf07c2dc928f7b6);
+            
+    
+            var marker_d657e4fe228ca958a0da5ae77522e961 = L.marker(
+                [36.24048509, 29.74708682],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_c129b614bcdb47d36b957a558f19695f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68cb599de710c73f03707ecd9874d454 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8fcca99394c6d5ca30d55ab54a9e4e11 = $(`<div id="html_8fcca99394c6d5ca30d55ab54a9e4e11" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>138297</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.240485, 29.747087                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.24048509,29.74708682' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.240485, 29.747087")'>                                 36.240485, 29.747087                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_68cb599de710c73f03707ecd9874d454.setContent(html_8fcca99394c6d5ca30d55ab54a9e4e11);
+            
+        
+
+        marker_d657e4fe228ca958a0da5ae77522e961.bindPopup(popup_68cb599de710c73f03707ecd9874d454)
+        ;
+
+        
+    
+    
+            marker_d657e4fe228ca958a0da5ae77522e961.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 138297
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d657e4fe228ca958a0da5ae77522e961.setIcon(icon_c129b614bcdb47d36b957a558f19695f);
+            
+    
+            var marker_810b9e63f3e225985b2c3023a42dde18 = L.marker(
+                [36.24012396, 29.74583704],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_a41b205e3588f41e01f390576f54d433 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cbcd8461320c923f8b131f91a4cf7629 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_2c90846df503f39e8bcd1445d76ed82f = $(`<div id="html_2c90846df503f39e8bcd1445d76ed82f" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657519</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.240124, 29.745837                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.24012396,29.74583704' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.240124, 29.745837")'>                                 36.240124, 29.745837                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_cbcd8461320c923f8b131f91a4cf7629.setContent(html_2c90846df503f39e8bcd1445d76ed82f);
+            
+        
+
+        marker_810b9e63f3e225985b2c3023a42dde18.bindPopup(popup_cbcd8461320c923f8b131f91a4cf7629)
+        ;
+
+        
+    
+    
+            marker_810b9e63f3e225985b2c3023a42dde18.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 1657519
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_810b9e63f3e225985b2c3023a42dde18.setIcon(icon_a41b205e3588f41e01f390576f54d433);
+            
+    
+            var marker_734dc6097cfbe525dbb74bedcf22dbac = L.marker(
+                [36.23753437, 29.73625644],
+                {
+}
+            ).addTo(feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b);
+        
+    
+            var icon_ce0bda0d6e5e1f156dba21feea07b012 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a8ad50af8f42d8fbe186e7144f4c9809 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_65d0c86f6f18089af79545e5ca2e1e70 = $(`<div id="html_65d0c86f6f18089af79545e5ca2e1e70" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <h4 style='color: orange; margin:0 0 8px 0; padding-bottom:5px; border-bottom:1px solid #eee;'>                             Acil                         </h4>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>DEMRE</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>224671</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.237534, 29.736256                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU - KIRMIZI RENKTE BELİRGİN -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Koridor açma çalışması yapılması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.23753437,29.73625644' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.237534, 29.736256")'>                                 36.237534, 29.736256                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_a8ad50af8f42d8fbe186e7144f4c9809.setContent(html_65d0c86f6f18089af79545e5ca2e1e70);
+            
+        
+
+        marker_734dc6097cfbe525dbb74bedcf22dbac.bindPopup(popup_a8ad50af8f42d8fbe186e7144f4c9809)
+        ;
+
+        
+    
+    
+            marker_734dc6097cfbe525dbb74bedcf22dbac.bindTooltip(
+                `<div>
+                     2025.08.29_744133_H08_H12_Yavu Bölge Ayrımı Finike sağ ve sol giriş(Kaşdan gelen)_s1 - 224671
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_734dc6097cfbe525dbb74bedcf22dbac.setIcon(icon_ce0bda0d6e5e1f156dba21feea07b012);
+            
+    
+            feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b.addTo(map_078995990ab7badd4755cee52b3a329a);
+        
+    
+            var layer_control_fbcf6135d308232fcf77858190433ebb_layers = {
+                base_layers : {
+                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_6e52171958e040a01e4253e4caae66b0,
+                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_819e4f69dc1bbe8500b3e45d3807d07d,
+                },
+                overlays :  {
+                    "\ud83d\udea8 \u00d6ncelikli Direkler" : feature_group_2bc2c87a4ee9b87627db6d97f4cfcf7b,
+                },
+            };
+            let layer_control_fbcf6135d308232fcf77858190433ebb = L.control.layers(
+                layer_control_fbcf6135d308232fcf77858190433ebb_layers.base_layers,
+                layer_control_fbcf6135d308232fcf77858190433ebb_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_078995990ab7badd4755cee52b3a329a);
+
+        
+</script>
+</html>
