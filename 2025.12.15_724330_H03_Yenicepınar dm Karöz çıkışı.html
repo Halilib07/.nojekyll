@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_835df80e98b051ae8d23a5729728f493 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_835df80e98b051ae8d23a5729728f493" ></div>
+        
+
+    <script>
+    var userLocationMarker = null;
+    var userLocationCircle = null;
+    var watchId = null;
+    var map = null;
+
+    // Folium haritasını BUL (EN KRİTİK DÜZELTME)
+    document.addEventListener("DOMContentLoaded", function () {
+        for (var key in window) {
+            if (key.startsWith("map_") && window[key] instanceof L.Map) {
+                map = window[key];
+                console.log("Folium haritası bulundu:", key);
+                createLocationButton();
+                return;
+            }
+        }
+        console.error("Folium haritası bulunamadı!");
+    });
+
+    // Konum butonu
+    function createLocationButton() {
+        var LocationControl = L.Control.extend({
+            options: { position: 'topleft' },
+
+            onAdd: function () {
+                var container = L.DomUtil.create('div', 'leaflet-bar');
+                container.style.background = 'white';
+
+                var btn = L.DomUtil.create('a', '', container);
+                btn.innerHTML = '📍';
+                btn.style.width = '36px';
+                btn.style.height = '36px';
+                btn.style.lineHeight = '36px';
+                btn.style.textAlign = 'center';
+                btn.style.cursor = 'pointer';
+                btn.title = 'Konumumu Göster';
+
+                btn.onclick = function (e) {
+                    e.preventDefault();
+                    getUserLocation();
+                };
+                return container;
+            }
+        });
+
+        map.addControl(new LocationControl());
+    }
+
+    // Konumu al
+    function getUserLocation() {
+        if (!navigator.geolocation) {
+            alert("Tarayıcı konum desteklemiyor");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                showUserLocation(
+                    pos.coords.latitude,
+                    pos.coords.longitude,
+                    pos.coords.accuracy
+                );
+                startTracking();
+            },
+            function (err) {
+                alert("Konum alınamadı: " + err.message);
+            },
+            { enableHighAccuracy: true }
+        );
+    }
+
+    // Haritada göster
+    function showUserLocation(lat, lng, acc) {
+        if (userLocationMarker) map.removeLayer(userLocationMarker);
+        if (userLocationCircle) map.removeLayer(userLocationCircle);
+
+        userLocationMarker = L.circleMarker([lat, lng], {
+            radius: 8,
+            color: '#4285F4',
+            fillColor: '#4285F4',
+            fillOpacity: 1
+        }).addTo(map);
+
+        userLocationCircle = L.circle([lat, lng], {
+            radius: acc,
+            color: '#4285F4',
+            fillOpacity: 0.15
+        }).addTo(map);
+
+        map.setView([lat, lng], 16);
+    }
+
+    // Canlı takip
+    function startTracking() {
+        watchId = navigator.geolocation.watchPosition(function (pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            var acc = pos.coords.accuracy;
+
+            userLocationMarker.setLatLng([lat, lng]);
+            userLocationCircle.setLatLng([lat, lng]);
+            userLocationCircle.setRadius(acc);
+        });
+    }
+    </script>
+    </body>
+<script>
+    
+    
+            var map_835df80e98b051ae8d23a5729728f493 = L.map(
+                "map_835df80e98b051ae8d23a5729728f493",
+                {
+                    center: [36.28000167857143, 30.401251786666666],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_835df80e98b051ae8d23a5729728f493);
+
+            
+
+        
+    
+            var tile_layer_8875a8c001ca9a8f2968ae1ff22787e2 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8875a8c001ca9a8f2968ae1ff22787e2.addTo(map_835df80e98b051ae8d23a5729728f493);
+        
+    
+            var tile_layer_3ee0d38163ddde869485c7fa35491298 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 22,
+  "maxNativeZoom": 22,
+  "noWrap": false,
+  "attribution": "Google Hybrid",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3ee0d38163ddde869485c7fa35491298.addTo(map_835df80e98b051ae8d23a5729728f493);
+        
+    
+            var feature_group_2047b803d70076e543ba792f495e1a22 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_c680dfc6d9ed022b900db8ab46aa4d5f = L.marker(
+                [36.28633172, 30.38705567],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_34230d6bdf2951a69bbb2d13b0f95580 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_310b9c49066d4739c46764242d709041 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_39f0d87881f35e30b33801d2c1c50a03 = $(`<div id="html_39f0d87881f35e30b33801d2c1c50a03" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>193200</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.286332, 30.387056                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 ag kırık izolatör var. trafo direği                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28633172,30.38705567' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.286332, 30.387056")'>                                 36.286332, 30.387056                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_310b9c49066d4739c46764242d709041.setContent(html_39f0d87881f35e30b33801d2c1c50a03);
+            
+        
+
+        marker_c680dfc6d9ed022b900db8ab46aa4d5f.bindPopup(popup_310b9c49066d4739c46764242d709041)
+        ;
+
+        
+    
+    
+            marker_c680dfc6d9ed022b900db8ab46aa4d5f.bindTooltip(
+                `<div>
+                     GENEL - 193200 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c680dfc6d9ed022b900db8ab46aa4d5f.setIcon(icon_34230d6bdf2951a69bbb2d13b0f95580);
+            
+    
+            var marker_c635d253ba864bc525197313af4f9dd4 = L.marker(
+                [36.27600237, 30.41131713],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_fbab4f0359d78e4ff7353b9aa6f5717f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a1a7488433ba50876663aef9f297f9f1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_629a6c9f87b5633c38ac94b2ebda7774 = $(`<div id="html_629a6c9f87b5633c38ac94b2ebda7774" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>202830</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.276002, 30.411317                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Parafodr un bir tanesi kırık ve trafo direği ag kırık izolatör var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27600237,30.41131713' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.276002, 30.411317")'>                                 36.276002, 30.411317                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_a1a7488433ba50876663aef9f297f9f1.setContent(html_629a6c9f87b5633c38ac94b2ebda7774);
+            
+        
+
+        marker_c635d253ba864bc525197313af4f9dd4.bindPopup(popup_a1a7488433ba50876663aef9f297f9f1)
+        ;
+
+        
+    
+    
+            marker_c635d253ba864bc525197313af4f9dd4.bindTooltip(
+                `<div>
+                     GENEL - 202830 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c635d253ba864bc525197313af4f9dd4.setIcon(icon_fbab4f0359d78e4ff7353b9aa6f5717f);
+            
+    
+            var marker_e64a846b423d3d8eac58486458094ffa = L.marker(
+                [36.27870472, 30.3952238],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_5fe07427876eb5c4a2ce83d813a8d7e3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4565017717fed3cda31482b2ae7f7c56 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_ca1199b24f5e481b057a2079cf49a5a0 = $(`<div id="html_ca1199b24f5e481b057a2079cf49a5a0" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>219923</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.278705, 30.395224                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 2 Bakla izolatör kalmış.. biri kırılmış                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27870472,30.3952238' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.278705, 30.395224")'>                                 36.278705, 30.395224                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_4565017717fed3cda31482b2ae7f7c56.setContent(html_ca1199b24f5e481b057a2079cf49a5a0);
+            
+        
+
+        marker_e64a846b423d3d8eac58486458094ffa.bindPopup(popup_4565017717fed3cda31482b2ae7f7c56)
+        ;
+
+        
+    
+    
+            marker_e64a846b423d3d8eac58486458094ffa.bindTooltip(
+                `<div>
+                     GENEL - 219923 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e64a846b423d3d8eac58486458094ffa.setIcon(icon_5fe07427876eb5c4a2ce83d813a8d7e3);
+            
+    
+            var marker_2fb40e131dcb44b107261f2248f2d9ae = L.marker(
+                [36.28573667, 30.38705595],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_abaabe64e2794f17b3d347e76f77da12 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6fba5cef5cbf1d50eb7b2d44b715aae5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_b61c91290305a194959a84324c5af261 = $(`<div id="html_b61c91290305a194959a84324c5af261" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>191075</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.285737, 30.387056                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 çam ağacı og hat üzerine doğru eğimli. Kesilmesi gerekiyor. yanındaki ağacında dallrının kesilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28573667,30.38705595' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.285737, 30.387056")'>                                 36.285737, 30.387056                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_6fba5cef5cbf1d50eb7b2d44b715aae5.setContent(html_b61c91290305a194959a84324c5af261);
+            
+        
+
+        marker_2fb40e131dcb44b107261f2248f2d9ae.bindPopup(popup_6fba5cef5cbf1d50eb7b2d44b715aae5)
+        ;
+
+        
+    
+    
+            marker_2fb40e131dcb44b107261f2248f2d9ae.bindTooltip(
+                `<div>
+                     GENEL - 191075 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fb40e131dcb44b107261f2248f2d9ae.setIcon(icon_abaabe64e2794f17b3d347e76f77da12);
+            
+    
+            var marker_f0cb43bbb6d1aa56bb76eff3569b03a5 = L.marker(
+                [36.2845137, 30.38955332],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_e8b0d7848dbc2568d93fa586b35656f0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ba864f9d094b895c1c977eb2cd3b4ae7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_16d146976470b1faf0f2ec671f1b06a2 = $(`<div id="html_16d146976470b1faf0f2ec671f1b06a2" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>205501</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.284514, 30.389553                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ark izi var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.2845137,30.38955332' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.284514, 30.389553")'>                                 36.284514, 30.389553                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_ba864f9d094b895c1c977eb2cd3b4ae7.setContent(html_16d146976470b1faf0f2ec671f1b06a2);
+            
+        
+
+        marker_f0cb43bbb6d1aa56bb76eff3569b03a5.bindPopup(popup_ba864f9d094b895c1c977eb2cd3b4ae7)
+        ;
+
+        
+    
+    
+            marker_f0cb43bbb6d1aa56bb76eff3569b03a5.bindTooltip(
+                `<div>
+                     GENEL - 205501 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f0cb43bbb6d1aa56bb76eff3569b03a5.setIcon(icon_e8b0d7848dbc2568d93fa586b35656f0);
+            
+    
+            var marker_623c813c065b08b03fc00b00bf0ac1e8 = L.marker(
+                [36.27628888, 30.3986678],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_a17d1c34e22c9ea376fbba3cae7be0cc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_05dea90482df1d4cb89c13bfe4737837 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a042fb7ea99c691dc1972c885a0bee65 = $(`<div id="html_a042fb7ea99c691dc1972c885a0bee65" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>205503</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.276289, 30.398668                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 sıkıbağın yenilenmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27628888,30.3986678' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.276289, 30.398668")'>                                 36.276289, 30.398668                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_05dea90482df1d4cb89c13bfe4737837.setContent(html_a042fb7ea99c691dc1972c885a0bee65);
+            
+        
+
+        marker_623c813c065b08b03fc00b00bf0ac1e8.bindPopup(popup_05dea90482df1d4cb89c13bfe4737837)
+        ;
+
+        
+    
+    
+            marker_623c813c065b08b03fc00b00bf0ac1e8.bindTooltip(
+                `<div>
+                     GENEL - 205503 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_623c813c065b08b03fc00b00bf0ac1e8.setIcon(icon_a17d1c34e22c9ea376fbba3cae7be0cc);
+            
+    
+            var marker_aaa9aed255d8af29bb9ac98e24fdce9c = L.marker(
+                [36.29056275, 30.38088768],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_fcbc6b0063b9822bc83d3b4127dafe77 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e078dad9c85e195480fa09e06d6c3da0 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e7c28ee6fc092aa151cbfcc73799f2ef = $(`<div id="html_e7c28ee6fc092aa151cbfcc73799f2ef" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>234239</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.290563, 30.380888                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Çam ağacı hattın üzerine eğimli. ileriki zamnalarda tehlike arz etmemesi için Kesilmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.29056275,30.38088768' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.290563, 30.380888")'>                                 36.290563, 30.380888                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_e078dad9c85e195480fa09e06d6c3da0.setContent(html_e7c28ee6fc092aa151cbfcc73799f2ef);
+            
+        
+
+        marker_aaa9aed255d8af29bb9ac98e24fdce9c.bindPopup(popup_e078dad9c85e195480fa09e06d6c3da0)
+        ;
+
+        
+    
+    
+            marker_aaa9aed255d8af29bb9ac98e24fdce9c.bindTooltip(
+                `<div>
+                     GENEL - 234239 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aaa9aed255d8af29bb9ac98e24fdce9c.setIcon(icon_fcbc6b0063b9822bc83d3b4127dafe77);
+            
+    
+            var marker_2fc88aadc8824a9972d4ea65509f3f47 = L.marker(
+                [36.28254807, 30.39353103],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_0e5c277668df6c7afa7a2149ed326ddf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7977bc151de7273210ceb84208a8f25b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_049b7afe244cc6dcf5403b53ec262fcf = $(`<div id="html_049b7afe244cc6dcf5403b53ec262fcf" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>147967</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.282548, 30.393531                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Og izolatör çatlak                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28254807,30.39353103' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.282548, 30.393531")'>                                 36.282548, 30.393531                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_7977bc151de7273210ceb84208a8f25b.setContent(html_049b7afe244cc6dcf5403b53ec262fcf);
+            
+        
+
+        marker_2fc88aadc8824a9972d4ea65509f3f47.bindPopup(popup_7977bc151de7273210ceb84208a8f25b)
+        ;
+
+        
+    
+    
+            marker_2fc88aadc8824a9972d4ea65509f3f47.bindTooltip(
+                `<div>
+                     GENEL - 147967 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2fc88aadc8824a9972d4ea65509f3f47.setIcon(icon_0e5c277668df6c7afa7a2149ed326ddf);
+            
+    
+            var marker_7bc6fa42bc69f7d9fd0af497cffc1524 = L.marker(
+                [36.28088161, 30.40868881],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_607eccafa25c35cc803442a7e3cf4453 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5f0c67397a222a5409c19dcabfa2880b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_444f968d841acdd63e528540623dcd77 = $(`<div id="html_444f968d841acdd63e528540623dcd77" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: green; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Bekleyebilir                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1463868</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.280882, 30.408689                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Parafodr un bir tanesi bağlantısı yapılmamış.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28088161,30.40868881' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.280882, 30.408689")'>                                 36.280882, 30.408689                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_5f0c67397a222a5409c19dcabfa2880b.setContent(html_444f968d841acdd63e528540623dcd77);
+            
+        
+
+        marker_7bc6fa42bc69f7d9fd0af497cffc1524.bindPopup(popup_5f0c67397a222a5409c19dcabfa2880b)
+        ;
+
+        
+    
+    
+            marker_7bc6fa42bc69f7d9fd0af497cffc1524.bindTooltip(
+                `<div>
+                     GENEL - 1463868 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7bc6fa42bc69f7d9fd0af497cffc1524.setIcon(icon_607eccafa25c35cc803442a7e3cf4453);
+            
+    
+            var marker_c78e5128e04aa692a3d6e1a3422a110f = L.marker(
+                [36.27664627, 30.40749648],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_6bb9b11586c2ac98f05597a7f54a59d9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_87aa043040bbaac62158bf9df8f44020 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_58cbc50590ada0ecea5c19118e517f2d = $(`<div id="html_58cbc50590ada0ecea5c19118e517f2d" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1491106</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.276646, 30.407496                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 parafodrlar iptal edilmiş.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27664627,30.40749648' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.276646, 30.407496")'>                                 36.276646, 30.407496                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_87aa043040bbaac62158bf9df8f44020.setContent(html_58cbc50590ada0ecea5c19118e517f2d);
+            
+        
+
+        marker_c78e5128e04aa692a3d6e1a3422a110f.bindPopup(popup_87aa043040bbaac62158bf9df8f44020)
+        ;
+
+        
+    
+    
+            marker_c78e5128e04aa692a3d6e1a3422a110f.bindTooltip(
+                `<div>
+                     GENEL - 1491106 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c78e5128e04aa692a3d6e1a3422a110f.setIcon(icon_6bb9b11586c2ac98f05597a7f54a59d9);
+            
+    
+            var marker_2f12d4e0a66e5f21753e68186438e631 = L.marker(
+                [36.28670873, 30.38704653],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_467946e71e6554d11bdcd67c9a8c1cc7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c6fd00c629852621e20222c1e847735 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_86f57621abcd9750d083890e205e66e5 = $(`<div id="html_86f57621abcd9750d083890e205e66e5" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>268944</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.286709, 30.387047                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Og iletkene yaklaşan Çam ağacı dallarının kesilmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28670873,30.38704653' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.286709, 30.387047")'>                                 36.286709, 30.387047                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_5c6fd00c629852621e20222c1e847735.setContent(html_86f57621abcd9750d083890e205e66e5);
+            
+        
+
+        marker_2f12d4e0a66e5f21753e68186438e631.bindPopup(popup_5c6fd00c629852621e20222c1e847735)
+        ;
+
+        
+    
+    
+            marker_2f12d4e0a66e5f21753e68186438e631.bindTooltip(
+                `<div>
+                     GENEL - 268944 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2f12d4e0a66e5f21753e68186438e631.setIcon(icon_467946e71e6554d11bdcd67c9a8c1cc7);
+            
+    
+            var marker_9d11dbad19e8ba0746b7ffe5aac70979 = L.marker(
+                [36.27647075, 30.40517602],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_b14c0c6c625dff63775341a716da331f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_235ba276f38eab53adb2d8e7b080429e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_8cde0187bb8af9850730e5765923467d = $(`<div id="html_8cde0187bb8af9850730e5765923467d" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>295178</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.276471, 30.405176                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 demir direk ag izolatör kırık                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27647075,30.40517602' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.276471, 30.405176")'>                                 36.276471, 30.405176                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_235ba276f38eab53adb2d8e7b080429e.setContent(html_8cde0187bb8af9850730e5765923467d);
+            
+        
+
+        marker_9d11dbad19e8ba0746b7ffe5aac70979.bindPopup(popup_235ba276f38eab53adb2d8e7b080429e)
+        ;
+
+        
+    
+    
+            marker_9d11dbad19e8ba0746b7ffe5aac70979.bindTooltip(
+                `<div>
+                     GENEL - 295178 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9d11dbad19e8ba0746b7ffe5aac70979.setIcon(icon_b14c0c6c625dff63775341a716da331f);
+            
+    
+            var marker_11879c366144f80a87102183093e8cda = L.marker(
+                [36.2753843, 30.4101567],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_227a5543e2969cf52b51deceb41db991 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5ed92a7f79030120f56a0eca16cd0600 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_a7ba625e64ff12809f93815ee72acbb2 = $(`<div id="html_a7ba625e64ff12809f93815ee72acbb2" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1359277</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.275384, 30.410157                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 ag kırık izolatör var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.2753843,30.4101567' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.275384, 30.410157")'>                                 36.275384, 30.410157                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_5ed92a7f79030120f56a0eca16cd0600.setContent(html_a7ba625e64ff12809f93815ee72acbb2);
+            
+        
+
+        marker_11879c366144f80a87102183093e8cda.bindPopup(popup_5ed92a7f79030120f56a0eca16cd0600)
+        ;
+
+        
+    
+    
+            marker_11879c366144f80a87102183093e8cda.bindTooltip(
+                `<div>
+                     GENEL - 1359277 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_11879c366144f80a87102183093e8cda.setIcon(icon_227a5543e2969cf52b51deceb41db991);
+            
+    
+            var marker_8e445fa76e695eb8827de6afd7f52b28 = L.marker(
+                [36.27676095, 30.4055685],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_b96717f79d0441d16dfa40f6cd93b3ea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fbfbf096f30263af15de91961328ac57 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_64fcef6bcb515ecab81e9bdeee6dc87f = $(`<div id="html_64fcef6bcb515ecab81e9bdeee6dc87f" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>298906</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.276761, 30.405569                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 demir direk ag izolatör kırık                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27676095,30.4055685' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.276761, 30.405569")'>                                 36.276761, 30.405569                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_fbfbf096f30263af15de91961328ac57.setContent(html_64fcef6bcb515ecab81e9bdeee6dc87f);
+            
+        
+
+        marker_8e445fa76e695eb8827de6afd7f52b28.bindPopup(popup_fbfbf096f30263af15de91961328ac57)
+        ;
+
+        
+    
+    
+            marker_8e445fa76e695eb8827de6afd7f52b28.bindTooltip(
+                `<div>
+                     GENEL - 298906 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8e445fa76e695eb8827de6afd7f52b28.setIcon(icon_b96717f79d0441d16dfa40f6cd93b3ea);
+            
+    
+            var marker_38ed1d53c8ebe714e6c03eb1951a7dbc = L.marker(
+                [36.2771598, 30.40588963],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_f1d4c91e65fc33565970a89ce8782749 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a14cbdd6169693471ce47bde5a7ea30 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_73b5d2ca09857b2594cc3592106068c2 = $(`<div id="html_73b5d2ca09857b2594cc3592106068c2" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>251386</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.277160, 30.405890                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Kırık ag izolatörler var. iletken demir travers üzerinde                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.2771598,30.40588963' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.277160, 30.405890")'>                                 36.277160, 30.405890                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_2a14cbdd6169693471ce47bde5a7ea30.setContent(html_73b5d2ca09857b2594cc3592106068c2);
+            
+        
+
+        marker_38ed1d53c8ebe714e6c03eb1951a7dbc.bindPopup(popup_2a14cbdd6169693471ce47bde5a7ea30)
+        ;
+
+        
+    
+    
+            marker_38ed1d53c8ebe714e6c03eb1951a7dbc.bindTooltip(
+                `<div>
+                     GENEL - 251386 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_38ed1d53c8ebe714e6c03eb1951a7dbc.setIcon(icon_f1d4c91e65fc33565970a89ce8782749);
+            
+    
+            var marker_ed98e4b65afaf0ee5c12e87eac56e20c = L.marker(
+                [36.27755585, 30.40617988],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_26cfe8596a4a29ed4e9d614c8b52b60f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3daacc1acb14c36d48707fac58c62c4f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_f909bba5441b98ebbfecae9cf30d80d1 = $(`<div id="html_f909bba5441b98ebbfecae9cf30d80d1" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>298908</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.277556, 30.406180                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 ag izolatör kırık. iletken traversin üzerinde                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27755585,30.40617988' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.277556, 30.406180")'>                                 36.277556, 30.406180                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_3daacc1acb14c36d48707fac58c62c4f.setContent(html_f909bba5441b98ebbfecae9cf30d80d1);
+            
+        
+
+        marker_ed98e4b65afaf0ee5c12e87eac56e20c.bindPopup(popup_3daacc1acb14c36d48707fac58c62c4f)
+        ;
+
+        
+    
+    
+            marker_ed98e4b65afaf0ee5c12e87eac56e20c.bindTooltip(
+                `<div>
+                     GENEL - 298908 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ed98e4b65afaf0ee5c12e87eac56e20c.setIcon(icon_26cfe8596a4a29ed4e9d614c8b52b60f);
+            
+    
+            var marker_0f61d2789270acedf4dbeb4c2e518fd4 = L.marker(
+                [36.27831862, 30.40654793],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_014a17b7acdb90c710cd612809e14b93 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_619a9daf4a579d11d5c0b2e25fe6e2c5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_69f0c6947b254a1f407db145bbf9eaf3 = $(`<div id="html_69f0c6947b254a1f407db145bbf9eaf3" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>298909</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.278319, 30.406548                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 ag kırık izolatör var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27831862,30.40654793' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.278319, 30.406548")'>                                 36.278319, 30.406548                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_619a9daf4a579d11d5c0b2e25fe6e2c5.setContent(html_69f0c6947b254a1f407db145bbf9eaf3);
+            
+        
+
+        marker_0f61d2789270acedf4dbeb4c2e518fd4.bindPopup(popup_619a9daf4a579d11d5c0b2e25fe6e2c5)
+        ;
+
+        
+    
+    
+            marker_0f61d2789270acedf4dbeb4c2e518fd4.bindTooltip(
+                `<div>
+                     GENEL - 298909 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0f61d2789270acedf4dbeb4c2e518fd4.setIcon(icon_014a17b7acdb90c710cd612809e14b93);
+            
+    
+            var marker_f4bf266d97f82f8265af11faafaa641d = L.marker(
+                [36.28005913, 30.40898483],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_ac4b175526b6e02995203b17bd23b996 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_398b44c62e6a7c14b8a68c6af2b2a7d9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3f060690da2a17e02e88e0f39c81de20 = $(`<div id="html_3f060690da2a17e02e88e0f39c81de20" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1463867</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.280059, 30.408985                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Og iletken Okaliptüs ağacı teması var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28005913,30.40898483' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.280059, 30.408985")'>                                 36.280059, 30.408985                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_398b44c62e6a7c14b8a68c6af2b2a7d9.setContent(html_3f060690da2a17e02e88e0f39c81de20);
+            
+        
+
+        marker_f4bf266d97f82f8265af11faafaa641d.bindPopup(popup_398b44c62e6a7c14b8a68c6af2b2a7d9)
+        ;
+
+        
+    
+    
+            marker_f4bf266d97f82f8265af11faafaa641d.bindTooltip(
+                `<div>
+                     GENEL - 1463867 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f4bf266d97f82f8265af11faafaa641d.setIcon(icon_ac4b175526b6e02995203b17bd23b996);
+            
+    
+            var marker_a3162f3a9fff48e4f5156e6b029d8994 = L.marker(
+                [36.27524248, 30.41155122],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_4ae39f3326f009653846dcad2a55ee90 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47f7f20cf8b7ec815a5f44fbd2de9d04 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_7860017b5b664a1128e768e31546f702 = $(`<div id="html_7860017b5b664a1128e768e31546f702" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1471048</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.275242, 30.411551                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 kavak ağacı dallarının kesilmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27524248,30.41155122' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.275242, 30.411551")'>                                 36.275242, 30.411551                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_47f7f20cf8b7ec815a5f44fbd2de9d04.setContent(html_7860017b5b664a1128e768e31546f702);
+            
+        
+
+        marker_a3162f3a9fff48e4f5156e6b029d8994.bindPopup(popup_47f7f20cf8b7ec815a5f44fbd2de9d04)
+        ;
+
+        
+    
+    
+            marker_a3162f3a9fff48e4f5156e6b029d8994.bindTooltip(
+                `<div>
+                     GENEL - 1471048 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a3162f3a9fff48e4f5156e6b029d8994.setIcon(icon_4ae39f3326f009653846dcad2a55ee90);
+            
+    
+            var marker_39a7d6b50dbc8132f20b393d780fd5af = L.marker(
+                [36.27806726, 30.40787897],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_31cbeb737e6005acf84d76730cb2860f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b1458c8bc6fe43f496f7f7cfc3a1d298 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d69c5dbd3fda8a3ac40ea6d39a83477e = $(`<div id="html_d69c5dbd3fda8a3ac40ea6d39a83477e" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1491083</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.278067, 30.407879                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Og iletkene temas tehlikesi var. Dut ağacının kesilmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.27806726,30.40787897' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.278067, 30.407879")'>                                 36.278067, 30.407879                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_b1458c8bc6fe43f496f7f7cfc3a1d298.setContent(html_d69c5dbd3fda8a3ac40ea6d39a83477e);
+            
+        
+
+        marker_39a7d6b50dbc8132f20b393d780fd5af.bindPopup(popup_b1458c8bc6fe43f496f7f7cfc3a1d298)
+        ;
+
+        
+    
+    
+            marker_39a7d6b50dbc8132f20b393d780fd5af.bindTooltip(
+                `<div>
+                     GENEL - 1491083 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_39a7d6b50dbc8132f20b393d780fd5af.setIcon(icon_31cbeb737e6005acf84d76730cb2860f);
+            
+    
+            var marker_7a1217fbb303322bda9d5f771bb4afc6 = L.marker(
+                [36.28009062, 30.41182964],
+                {
+}
+            ).addTo(feature_group_2047b803d70076e543ba792f495e1a22);
+        
+    
+            var icon_b6b68316b46ffc12c7271ddaabb63c94 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_448d1065219687d61c6d50aa302f4de5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_27394c1deab841cbed5db45ff97c0843 = $(`<div id="html_27394c1deab841cbed5db45ff97c0843" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KUMLUCA</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'></td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1491137</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Koordinat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-family:monospace;'>                                     36.280091, 30.411830                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ag hat içindeki zeytin ağacı dallarının kesilmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.28009062,30.41182964' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.280091, 30.411830")'>                                 36.280091, 30.411830                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_448d1065219687d61c6d50aa302f4de5.setContent(html_27394c1deab841cbed5db45ff97c0843);
+            
+        
+
+        marker_7a1217fbb303322bda9d5f771bb4afc6.bindPopup(popup_448d1065219687d61c6d50aa302f4de5)
+        ;
+
+        
+    
+    
+            marker_7a1217fbb303322bda9d5f771bb4afc6.bindTooltip(
+                `<div>
+                     GENEL - 1491137 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7a1217fbb303322bda9d5f771bb4afc6.setIcon(icon_b6b68316b46ffc12c7271ddaabb63c94);
+            
+    
+            feature_group_2047b803d70076e543ba792f495e1a22.addTo(map_835df80e98b051ae8d23a5729728f493);
+        
+    
+            var layer_control_8de44f3573d7d323de4720e854727cd1_layers = {
+                base_layers : {
+                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_8875a8c001ca9a8f2968ae1ff22787e2,
+                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_3ee0d38163ddde869485c7fa35491298,
+                },
+                overlays :  {
+                    "\ud83d\udea8 \u00d6ncelikli Direkler" : feature_group_2047b803d70076e543ba792f495e1a22,
+                },
+            };
+            let layer_control_8de44f3573d7d323de4720e854727cd1 = L.control.layers(
+                layer_control_8de44f3573d7d323de4720e854727cd1_layers.base_layers,
+                layer_control_8de44f3573d7d323de4720e854727cd1_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_835df80e98b051ae8d23a5729728f493);
+
+        
+</script>
+</html>
