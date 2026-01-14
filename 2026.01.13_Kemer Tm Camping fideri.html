@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_970cc447ec0723a57ced5de977e2e50e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_970cc447ec0723a57ced5de977e2e50e" ></div>
+        
+
+    <script>
+    var userLocationMarker = null;
+    var userLocationCircle = null;
+    var watchId = null;
+    var map = null;
+
+    // Folium haritasını BUL (EN KRİTİK DÜZELTME)
+    document.addEventListener("DOMContentLoaded", function () {
+        for (var key in window) {
+            if (key.startsWith("map_") && window[key] instanceof L.Map) {
+                map = window[key];
+                console.log("Folium haritası bulundu:", key);
+                createLocationButton();
+                return;
+            }
+        }
+        console.error("Folium haritası bulunamadı!");
+    });
+
+    // Konum butonu
+    function createLocationButton() {
+        var LocationControl = L.Control.extend({
+            options: { position: 'topleft' },
+
+            onAdd: function () {
+                var container = L.DomUtil.create('div', 'leaflet-bar');
+                container.style.background = 'white';
+
+                var btn = L.DomUtil.create('a', '', container);
+                btn.innerHTML = '📍';
+                btn.style.width = '36px';
+                btn.style.height = '36px';
+                btn.style.lineHeight = '36px';
+                btn.style.textAlign = 'center';
+                btn.style.cursor = 'pointer';
+                btn.title = 'Konumumu Göster';
+
+                btn.onclick = function (e) {
+                    e.preventDefault();
+                    getUserLocation();
+                };
+                return container;
+            }
+        });
+
+        map.addControl(new LocationControl());
+    }
+
+    // Konumu al
+    function getUserLocation() {
+        if (!navigator.geolocation) {
+            alert("Tarayıcı konum desteklemiyor");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                showUserLocation(
+                    pos.coords.latitude,
+                    pos.coords.longitude,
+                    pos.coords.accuracy
+                );
+                startTracking();
+            },
+            function (err) {
+                alert("Konum alınamadı: " + err.message);
+            },
+            { enableHighAccuracy: true }
+        );
+    }
+
+    // Haritada göster
+    function showUserLocation(lat, lng, acc) {
+        if (userLocationMarker) map.removeLayer(userLocationMarker);
+        if (userLocationCircle) map.removeLayer(userLocationCircle);
+
+        userLocationMarker = L.circleMarker([lat, lng], {
+            radius: 8,
+            color: '#4285F4',
+            fillColor: '#4285F4',
+            fillOpacity: 1
+        }).addTo(map);
+
+        userLocationCircle = L.circle([lat, lng], {
+            radius: acc,
+            color: '#4285F4',
+            fillOpacity: 0.15
+        }).addTo(map);
+
+        map.setView([lat, lng], 16);
+    }
+
+    // Canlı takip
+    function startTracking() {
+        watchId = navigator.geolocation.watchPosition(function (pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            var acc = pos.coords.accuracy;
+
+            userLocationMarker.setLatLng([lat, lng]);
+            userLocationCircle.setLatLng([lat, lng]);
+            userLocationCircle.setRadius(acc);
+        });
+    }
+    </script>
+    </body>
+<script>
+    
+    
+            var map_970cc447ec0723a57ced5de977e2e50e = L.map(
+                "map_970cc447ec0723a57ced5de977e2e50e",
+                {
+                    center: [36.579818324166666, 30.569929711666664],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_970cc447ec0723a57ced5de977e2e50e);
+
+            
+
+        
+    
+            var tile_layer_5788f0778a4dc4c0c54f8bef461614e6 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5788f0778a4dc4c0c54f8bef461614e6.addTo(map_970cc447ec0723a57ced5de977e2e50e);
+        
+    
+            var tile_layer_437cba967b4fdbfdd9212a53098c3f2e = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 22,
+  "maxNativeZoom": 22,
+  "noWrap": false,
+  "attribution": "Google Hybrid",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_437cba967b4fdbfdd9212a53098c3f2e.addTo(map_970cc447ec0723a57ced5de977e2e50e);
+        
+    
+            var feature_group_b17801385b7b60656d542bafc5f6cfa3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_332bd31f7e9e03946508365019e7d1e3 = L.marker(
+                [36.58037685, 30.55234827],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_34831dae305ac0d2527d5ddf7759d0e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1b87f0a7628f07cd08c7445515d35f3b = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e87be37e7a96f76fbafcc68fb1976316 = $(`<div id="html_e87be37e7a96f76fbafcc68fb1976316" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>180931</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 10:31:59                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 İzolatör temizliği ve Sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.58037685,30.55234827' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.580377, 30.552348")'>                                 36.580377, 30.552348                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_1b87f0a7628f07cd08c7445515d35f3b.setContent(html_e87be37e7a96f76fbafcc68fb1976316);
+            
+        
+
+        marker_332bd31f7e9e03946508365019e7d1e3.bindPopup(popup_1b87f0a7628f07cd08c7445515d35f3b)
+        ;
+
+        
+    
+    
+            marker_332bd31f7e9e03946508365019e7d1e3.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 180931 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_332bd31f7e9e03946508365019e7d1e3.setIcon(icon_34831dae305ac0d2527d5ddf7759d0e7);
+            
+    
+            var marker_b69f2511576899774e452401db676bd8 = L.marker(
+                [36.58037685, 30.55234827],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_8ec6d914259e65e6316397f1ef236550 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d16bd7e59233ea963f51ad0ea5a287c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_88619fb394a6cc5254e946f1a5b91a11 = $(`<div id="html_88619fb394a6cc5254e946f1a5b91a11" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>180931</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 10:31:59                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağacın kesilmesi gerekli. Uclarında kurumalar var.mesafe uzun olduğundan rüzgar ile risk oluşturuyor                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.58037685,30.55234827' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.580377, 30.552348")'>                                 36.580377, 30.552348                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_9d16bd7e59233ea963f51ad0ea5a287c.setContent(html_88619fb394a6cc5254e946f1a5b91a11);
+            
+        
+
+        marker_b69f2511576899774e452401db676bd8.bindPopup(popup_9d16bd7e59233ea963f51ad0ea5a287c)
+        ;
+
+        
+    
+    
+            marker_b69f2511576899774e452401db676bd8.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 180931 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b69f2511576899774e452401db676bd8.setIcon(icon_8ec6d914259e65e6316397f1ef236550);
+            
+    
+            var marker_43789186cd6f02630fad853873a382f4 = L.marker(
+                [36.5791341, 30.55636702],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_f93bc91726857826f2f1e4bb687309f7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fc22573d08cfb0c2d08f1d112f24f0e1 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1db0cf0e28f7745b6772f0a95050a129 = $(`<div id="html_1db0cf0e28f7745b6772f0a95050a129" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>151900</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 10:39:16                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Camperlerin uygun konuma ve uzunluğa alınması                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.5791341,30.55636702' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.579134, 30.556367")'>                                 36.579134, 30.556367                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_fc22573d08cfb0c2d08f1d112f24f0e1.setContent(html_1db0cf0e28f7745b6772f0a95050a129);
+            
+        
+
+        marker_43789186cd6f02630fad853873a382f4.bindPopup(popup_fc22573d08cfb0c2d08f1d112f24f0e1)
+        ;
+
+        
+    
+    
+            marker_43789186cd6f02630fad853873a382f4.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 151900 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_43789186cd6f02630fad853873a382f4.setIcon(icon_f93bc91726857826f2f1e4bb687309f7);
+            
+    
+            var marker_73ba99f3715377fdabd0a4afac1b5711 = L.marker(
+                [36.57979877, 30.5709466],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_d3a41fcbd699eed788101e1371b388fa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_140c0c16d54592f36e6a0883c7f8dbd7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_03b3b78cbad3488c5dd511296c16ac40 = $(`<div id="html_03b3b78cbad3488c5dd511296c16ac40" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>180926</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 11:33:37                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Çam ağacının hattın üzerine devrilme riski var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.57979877,30.5709466' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.579799, 30.570947")'>                                 36.579799, 30.570947                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_140c0c16d54592f36e6a0883c7f8dbd7.setContent(html_03b3b78cbad3488c5dd511296c16ac40);
+            
+        
+
+        marker_73ba99f3715377fdabd0a4afac1b5711.bindPopup(popup_140c0c16d54592f36e6a0883c7f8dbd7)
+        ;
+
+        
+    
+    
+            marker_73ba99f3715377fdabd0a4afac1b5711.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 180926 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_73ba99f3715377fdabd0a4afac1b5711.setIcon(icon_d3a41fcbd699eed788101e1371b388fa);
+            
+    
+            var marker_ee800289ce28c919005b5d802c7a87d6 = L.marker(
+                [36.57988713, 30.5728444],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_ddaffe01b866a5b0a466c68ced62d9e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1c8092c4b72de06db7733d56c7bcd25a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_61dcaba9d7747a5540fdd91961c2482a = $(`<div id="html_61dcaba9d7747a5540fdd91961c2482a" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>137671</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 11:34:36                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Demir direk ana taşıyıcılarında eğrilmeler var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.57988713,30.5728444' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.579887, 30.572844")'>                                 36.579887, 30.572844                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_1c8092c4b72de06db7733d56c7bcd25a.setContent(html_61dcaba9d7747a5540fdd91961c2482a);
+            
+        
+
+        marker_ee800289ce28c919005b5d802c7a87d6.bindPopup(popup_1c8092c4b72de06db7733d56c7bcd25a)
+        ;
+
+        
+    
+    
+            marker_ee800289ce28c919005b5d802c7a87d6.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 137671 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ee800289ce28c919005b5d802c7a87d6.setIcon(icon_ddaffe01b866a5b0a466c68ced62d9e7);
+            
+    
+            var marker_d9ec535a6238a31464cbd7627af6618b = L.marker(
+                [36.57996895, 30.57454772],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_889c0e7ed08d7aa7d289880003c401fb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d570b7d8c29dbc7824d9584524208c89 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_0fbd9acf9c41111f0ca936a13f9b81a7 = $(`<div id="html_0fbd9acf9c41111f0ca936a13f9b81a7" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: green; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Bekleyebilir                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>195076</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:03:44                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 üst faz izolatördekırık var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.57996895,30.57454772' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.579969, 30.574548")'>                                 36.579969, 30.574548                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_d570b7d8c29dbc7824d9584524208c89.setContent(html_0fbd9acf9c41111f0ca936a13f9b81a7);
+            
+        
+
+        marker_d9ec535a6238a31464cbd7627af6618b.bindPopup(popup_d570b7d8c29dbc7824d9584524208c89)
+        ;
+
+        
+    
+    
+            marker_d9ec535a6238a31464cbd7627af6618b.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 195076 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d9ec535a6238a31464cbd7627af6618b.setIcon(icon_889c0e7ed08d7aa7d289880003c401fb);
+            
+    
+            var marker_ca875fc07771d6a454165d2d5fbeac35 = L.marker(
+                [36.57996895, 30.57454772],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_30a3181b15393abd74a379d4c50bedd1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3837762736cccbb68431077dbb0a6f4f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d48fed401aa941f17f991a69f2b4f708 = $(`<div id="html_d48fed401aa941f17f991a69f2b4f708" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>195076</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:03:44                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Çam ağacının hattın üzerine devrilme riski var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.57996895,30.57454772' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.579969, 30.574548")'>                                 36.579969, 30.574548                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_3837762736cccbb68431077dbb0a6f4f.setContent(html_d48fed401aa941f17f991a69f2b4f708);
+            
+        
+
+        marker_ca875fc07771d6a454165d2d5fbeac35.bindPopup(popup_3837762736cccbb68431077dbb0a6f4f)
+        ;
+
+        
+    
+    
+            marker_ca875fc07771d6a454165d2d5fbeac35.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 195076 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ca875fc07771d6a454165d2d5fbeac35.setIcon(icon_30a3181b15393abd74a379d4c50bedd1);
+            
+    
+            var marker_f5fd19add3b3e96e2e40357711748c7b = L.marker(
+                [36.58011678, 30.57470427],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_c96698090e71ce6285f2e0c0d84bf900 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cf3e05e444819803d62a8eb317ded336 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_afe00987e391fd515b4a722c6bbad9b1 = $(`<div id="html_afe00987e391fd515b4a722c6bbad9b1" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1387078</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:04:46                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Vhd izolatörlerin değiştirilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.58011678,30.57470427' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.580117, 30.574704")'>                                 36.580117, 30.574704                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_cf3e05e444819803d62a8eb317ded336.setContent(html_afe00987e391fd515b4a722c6bbad9b1);
+            
+        
+
+        marker_f5fd19add3b3e96e2e40357711748c7b.bindPopup(popup_cf3e05e444819803d62a8eb317ded336)
+        ;
+
+        
+    
+    
+            marker_f5fd19add3b3e96e2e40357711748c7b.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 1387078 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f5fd19add3b3e96e2e40357711748c7b.setIcon(icon_c96698090e71ce6285f2e0c0d84bf900);
+            
+    
+            var marker_537cb1f47af70283ab912cdbfbd7524d = L.marker(
+                [36.58011678, 30.57470427],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_671cb755e661907e10a9bfad5e7686dc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bc9329bc16ff99b52107051dff80f601 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1c896b8570e110c4221bd48b6ac0d9c7 = $(`<div id="html_1c896b8570e110c4221bd48b6ac0d9c7" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1387078</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:04:46                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 mesnetlerde kırıklar var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.58011678,30.57470427' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.580117, 30.574704")'>                                 36.580117, 30.574704                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_bc9329bc16ff99b52107051dff80f601.setContent(html_1c896b8570e110c4221bd48b6ac0d9c7);
+            
+        
+
+        marker_537cb1f47af70283ab912cdbfbd7524d.bindPopup(popup_bc9329bc16ff99b52107051dff80f601)
+        ;
+
+        
+    
+    
+            marker_537cb1f47af70283ab912cdbfbd7524d.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 1387078 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_537cb1f47af70283ab912cdbfbd7524d.setIcon(icon_671cb755e661907e10a9bfad5e7686dc);
+            
+    
+            var marker_70702bc0f46dd906fa890e3bec8e857a = L.marker(
+                [36.5800951, 30.5770478],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_8f6abaced7c7c08458c8369df75e5d13 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b67dddf3fa7a3a9f7ac132d4e1c1f3f8 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1b8dbc3a61ff9f665ff5f3ec7e17c636 = $(`<div id="html_1b8dbc3a61ff9f665ff5f3ec7e17c636" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>209601</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:06:32                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 demir direk taşıyıcı demirlerde eğrilmeler var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.5800951,30.5770478' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.580095, 30.577048")'>                                 36.580095, 30.577048                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_b67dddf3fa7a3a9f7ac132d4e1c1f3f8.setContent(html_1b8dbc3a61ff9f665ff5f3ec7e17c636);
+            
+        
+
+        marker_70702bc0f46dd906fa890e3bec8e857a.bindPopup(popup_b67dddf3fa7a3a9f7ac132d4e1c1f3f8)
+        ;
+
+        
+    
+    
+            marker_70702bc0f46dd906fa890e3bec8e857a.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 209601 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_70702bc0f46dd906fa890e3bec8e857a.setIcon(icon_8f6abaced7c7c08458c8369df75e5d13);
+            
+    
+            var marker_74f512c42c00b25150eed02e9ce7df16 = L.marker(
+                [36.57954133, 30.57821907],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_a3a3d3594fa840636911d04772e37aa2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9bd20b0b60304c17ac770531bc4bfa58 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_484baaf08fe1e3b31062c70d7c6871ed = $(`<div id="html_484baaf08fe1e3b31062c70d7c6871ed" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>123165</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:08:03                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Çam ağacının hattın üzerine devrilme riski var.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.57954133,30.57821907' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.579541, 30.578219")'>                                 36.579541, 30.578219                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_9bd20b0b60304c17ac770531bc4bfa58.setContent(html_484baaf08fe1e3b31062c70d7c6871ed);
+            
+        
+
+        marker_74f512c42c00b25150eed02e9ce7df16.bindPopup(popup_9bd20b0b60304c17ac770531bc4bfa58)
+        ;
+
+        
+    
+    
+            marker_74f512c42c00b25150eed02e9ce7df16.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 123165 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_74f512c42c00b25150eed02e9ce7df16.setIcon(icon_a3a3d3594fa840636911d04772e37aa2);
+            
+    
+            var marker_14a6dcab0cfcd8d19b7a91baffd0d497 = L.marker(
+                [36.5784383, 30.58053113],
+                {
+}
+            ).addTo(feature_group_b17801385b7b60656d542bafc5f6cfa3);
+        
+    
+            var icon_64d8fb680a8564877d476bdacaca9a3c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9275ccd76a2ee681a60aba3e1d979bea = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4390999fa9f0c4785550667cc25ee6c4 = $(`<div id="html_4390999fa9f0c4785550667cc25ee6c4" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KEMER</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.13_Kemer Tm Camping fideri</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>180930</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     13/01/2026 12:09:37                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 camper uzunluğunun uygun uzunluğa getirilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.5784383,30.58053113' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.578438, 30.580531")'>                                 36.578438, 30.580531                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_9275ccd76a2ee681a60aba3e1d979bea.setContent(html_4390999fa9f0c4785550667cc25ee6c4);
+            
+        
+
+        marker_14a6dcab0cfcd8d19b7a91baffd0d497.bindPopup(popup_9275ccd76a2ee681a60aba3e1d979bea)
+        ;
+
+        
+    
+    
+            marker_14a6dcab0cfcd8d19b7a91baffd0d497.bindTooltip(
+                `<div>
+                     2026.01.13_Kemer Tm Camping fideri - 180930 (❌ YAPILMADI)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_14a6dcab0cfcd8d19b7a91baffd0d497.setIcon(icon_64d8fb680a8564877d476bdacaca9a3c);
+            
+    
+            feature_group_b17801385b7b60656d542bafc5f6cfa3.addTo(map_970cc447ec0723a57ced5de977e2e50e);
+        
+    
+            var layer_control_e0a9e50e7e84d5d436deca2b56fd4818_layers = {
+                base_layers : {
+                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_5788f0778a4dc4c0c54f8bef461614e6,
+                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_437cba967b4fdbfdd9212a53098c3f2e,
+                },
+                overlays :  {
+                    "\ud83d\udea8 \u00d6ncelikli Direkler" : feature_group_b17801385b7b60656d542bafc5f6cfa3,
+                },
+            };
+            let layer_control_e0a9e50e7e84d5d436deca2b56fd4818 = L.control.layers(
+                layer_control_e0a9e50e7e84d5d436deca2b56fd4818_layers.base_layers,
+                layer_control_e0a9e50e7e84d5d436deca2b56fd4818_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_970cc447ec0723a57ced5de977e2e50e);
+
+        
+</script>
+</html>
