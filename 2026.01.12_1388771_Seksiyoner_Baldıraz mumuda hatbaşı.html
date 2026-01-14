@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_768d088d7092fc38ddfb116bc84c13ce {
+                #map_35b3d065195eba4ac123081653dbfbbd {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -50,11 +50,14 @@
             </script>
 
         
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_768d088d7092fc38ddfb116bc84c13ce" ></div>
+            <div class="folium-map" id="map_35b3d065195eba4ac123081653dbfbbd" ></div>
         
 
     <script>
@@ -166,10 +169,10 @@
 <script>
     
     
-            var map_768d088d7092fc38ddfb116bc84c13ce = L.map(
-                "map_768d088d7092fc38ddfb116bc84c13ce",
+            var map_35b3d065195eba4ac123081653dbfbbd = L.map(
+                "map_35b3d065195eba4ac123081653dbfbbd",
                 {
-                    center: [36.221615416249996, 29.551822621875],
+                    center: [36.22181036533333, 29.552750448666664],
                     crs: L.CRS.EPSG3857,
                     ...{
   "zoom": 12,
@@ -179,13 +182,13 @@
 
                 }
             );
-            L.control.scale().addTo(map_768d088d7092fc38ddfb116bc84c13ce);
+            L.control.scale().addTo(map_35b3d065195eba4ac123081653dbfbbd);
 
             
 
         
     
-            var tile_layer_9f10a30085fd972a2b004f8afdf8993c = L.tileLayer(
+            var tile_layer_2a44c0b4aa53b790b60061cadf496a27 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -202,10 +205,10 @@
             );
         
     
-            tile_layer_9f10a30085fd972a2b004f8afdf8993c.addTo(map_768d088d7092fc38ddfb116bc84c13ce);
+            tile_layer_2a44c0b4aa53b790b60061cadf496a27.addTo(map_35b3d065195eba4ac123081653dbfbbd);
         
     
-            var tile_layer_9d2ac464bab9e56d50c4a74517e4f084 = L.tileLayer(
+            var tile_layer_31e421841cbe7eefb42bf83c667bbb30 = L.tileLayer(
                 "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
                 {
   "minZoom": 0,
@@ -222,23 +225,23 @@
             );
         
     
-            tile_layer_9d2ac464bab9e56d50c4a74517e4f084.addTo(map_768d088d7092fc38ddfb116bc84c13ce);
+            tile_layer_31e421841cbe7eefb42bf83c667bbb30.addTo(map_35b3d065195eba4ac123081653dbfbbd);
         
     
-            var feature_group_358e9e7578e9ce2f14821fe65ab098a1 = L.featureGroup(
+            var marker_cluster_b6078426ab7846bd97da765fcaf4861e = L.markerClusterGroup(
                 {
 }
             );
         
     
-            var marker_750ba6942e1dfe6fab6f6b2ac0289577 = L.marker(
+            var marker_477838dbb1eaa025b6ccca0069bbbf9b = L.marker(
                 [36.22697072, 29.56508352],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_ab21db9ce36d93352c83ab64eb08ef0b = L.AwesomeMarkers.icon(
+            var icon_4b42a5abbbbba534a0028ee7fa064bf4 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -249,24 +252,24 @@
             );
         
     
-        var popup_8fc019f3600a3609ad724bb694a1b9ae = L.popup({
+        var popup_1124296db5e0e04961a1da6aaaf248f0 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_ed77191113a85277ddcfba59974a4303 = $(`<div id="html_ed77191113a85277ddcfba59974a4303" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388771</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:02:26                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ayırıcı direk dibindeki ağacın dallarının kesilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22697072,29.56508352' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.226971, 29.565084")'>                                 36.226971, 29.565084                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_8fc019f3600a3609ad724bb694a1b9ae.setContent(html_ed77191113a85277ddcfba59974a4303);
+                var html_7e3b2b10704ccacb14ff837c7722493a = $(`<div id="html_7e3b2b10704ccacb14ff837c7722493a" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388771</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:02:26                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ayırıcı direk dibindeki ağacın dallarının kesilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22697072,29.56508352' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.226971, 29.565084")'>                                 36.226971, 29.565084                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_1124296db5e0e04961a1da6aaaf248f0.setContent(html_7e3b2b10704ccacb14ff837c7722493a);
             
         
 
-        marker_750ba6942e1dfe6fab6f6b2ac0289577.bindPopup(popup_8fc019f3600a3609ad724bb694a1b9ae)
+        marker_477838dbb1eaa025b6ccca0069bbbf9b.bindPopup(popup_1124296db5e0e04961a1da6aaaf248f0)
         ;
 
         
     
     
-            marker_750ba6942e1dfe6fab6f6b2ac0289577.bindTooltip(
+            marker_477838dbb1eaa025b6ccca0069bbbf9b.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388771 (❌ YAPILMADI)
                  </div>`,
@@ -276,17 +279,17 @@
             );
         
     
-                marker_750ba6942e1dfe6fab6f6b2ac0289577.setIcon(icon_ab21db9ce36d93352c83ab64eb08ef0b);
+                marker_477838dbb1eaa025b6ccca0069bbbf9b.setIcon(icon_4b42a5abbbbba534a0028ee7fa064bf4);
             
     
-            var marker_4aa43611fc332072973d0a7f25cf640e = L.marker(
+            var marker_86b532fb7231788049e166e61e969796 = L.marker(
                 [36.22697072, 29.56508352],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_041d8d7772afa6114a9b3287aa678e77 = L.AwesomeMarkers.icon(
+            var icon_8c37a364fff625d2e0d8509c454fc08f = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -297,24 +300,24 @@
             );
         
     
-        var popup_58953844c2dac2b1b99176f1a16ab553 = L.popup({
+        var popup_2b028631076d7f44ffa74c734ed00eb8 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_05e6243226e1fcb97774d3a0a7776b36 = $(`<div id="html_05e6243226e1fcb97774d3a0a7776b36" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388771</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:02:26                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Sağ faz sigorta üst ayağı ısı var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22697072,29.56508352' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.226971, 29.565084")'>                                 36.226971, 29.565084                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_58953844c2dac2b1b99176f1a16ab553.setContent(html_05e6243226e1fcb97774d3a0a7776b36);
+                var html_cc08bc2c515d24a3ef67b3468e941497 = $(`<div id="html_cc08bc2c515d24a3ef67b3468e941497" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388771</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:02:26                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Sağ faz sigorta üst ayağı ısı var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22697072,29.56508352' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.226971, 29.565084")'>                                 36.226971, 29.565084                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_2b028631076d7f44ffa74c734ed00eb8.setContent(html_cc08bc2c515d24a3ef67b3468e941497);
             
         
 
-        marker_4aa43611fc332072973d0a7f25cf640e.bindPopup(popup_58953844c2dac2b1b99176f1a16ab553)
+        marker_86b532fb7231788049e166e61e969796.bindPopup(popup_2b028631076d7f44ffa74c734ed00eb8)
         ;
 
         
     
     
-            marker_4aa43611fc332072973d0a7f25cf640e.bindTooltip(
+            marker_86b532fb7231788049e166e61e969796.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388771 (❌ YAPILMADI)
                  </div>`,
@@ -324,17 +327,17 @@
             );
         
     
-                marker_4aa43611fc332072973d0a7f25cf640e.setIcon(icon_041d8d7772afa6114a9b3287aa678e77);
+                marker_86b532fb7231788049e166e61e969796.setIcon(icon_8c37a364fff625d2e0d8509c454fc08f);
             
     
-            var marker_7938fb9b566a03075e4dae2eaf74d6bf = L.marker(
+            var marker_a4f6de2ab6f0c1fecb37e33b0f2b1853 = L.marker(
                 [36.225955, 29.5637206],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_f052e52c80cdfab579b28dd3d7bd5493 = L.AwesomeMarkers.icon(
+            var icon_99f7805b0636998e9bae4a287869ef91 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -345,24 +348,24 @@
             );
         
     
-        var popup_cfe7b6fdce5cd16a988277b6da384714 = L.popup({
+        var popup_0a9830779a469e59df4ebe388e2565d4 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_053f8f7b68ff16b2827bd36fe6a826ae = $(`<div id="html_053f8f7b68ff16b2827bd36fe6a826ae" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388773</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 12:23:27                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Hattın altındaki ağacın dallarının kesilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.225955,29.5637206' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.225955, 29.563721")'>                                 36.225955, 29.563721                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_cfe7b6fdce5cd16a988277b6da384714.setContent(html_053f8f7b68ff16b2827bd36fe6a826ae);
+                var html_5f6e88a3f6d849b1a9ab931e60113bb6 = $(`<div id="html_5f6e88a3f6d849b1a9ab931e60113bb6" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: orange; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388773</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 12:23:27                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Hattın altındaki ağacın dallarının kesilmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.225955,29.5637206' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.225955, 29.563721")'>                                 36.225955, 29.563721                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_0a9830779a469e59df4ebe388e2565d4.setContent(html_5f6e88a3f6d849b1a9ab931e60113bb6);
             
         
 
-        marker_7938fb9b566a03075e4dae2eaf74d6bf.bindPopup(popup_cfe7b6fdce5cd16a988277b6da384714)
+        marker_a4f6de2ab6f0c1fecb37e33b0f2b1853.bindPopup(popup_0a9830779a469e59df4ebe388e2565d4)
         ;
 
         
     
     
-            marker_7938fb9b566a03075e4dae2eaf74d6bf.bindTooltip(
+            marker_a4f6de2ab6f0c1fecb37e33b0f2b1853.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388773 (❌ YAPILMADI)
                  </div>`,
@@ -372,17 +375,17 @@
             );
         
     
-                marker_7938fb9b566a03075e4dae2eaf74d6bf.setIcon(icon_f052e52c80cdfab579b28dd3d7bd5493);
+                marker_a4f6de2ab6f0c1fecb37e33b0f2b1853.setIcon(icon_99f7805b0636998e9bae4a287869ef91);
             
     
-            var marker_c01361ac515d18623136e2ee4c567ddd = L.marker(
+            var marker_ab09cad75c0006a2390dc153603bf7b5 = L.marker(
                 [36.22349467, 29.55998213],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_ddeb9b4e3bca12b0ed83c70aca92557f = L.AwesomeMarkers.icon(
+            var icon_c5c93c19ace2fb0286fbee331646a3a4 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -393,24 +396,24 @@
             );
         
     
-        var popup_df7841250dda5b9c353aefe8d06785b3 = L.popup({
+        var popup_9a622a01cc58eeda0caea7361999a548 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_bb678b28bf47dc440c91f189415c1f3b = $(`<div id="html_bb678b28bf47dc440c91f189415c1f3b" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388779</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:29:49                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Sağ faz iletken hasarı var ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22349467,29.55998213' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.223495, 29.559982")'>                                 36.223495, 29.559982                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_df7841250dda5b9c353aefe8d06785b3.setContent(html_bb678b28bf47dc440c91f189415c1f3b);
+                var html_803c03e273cc7f63c95e81438297aa1d = $(`<div id="html_803c03e273cc7f63c95e81438297aa1d" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388779</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:29:49                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Sağ faz iletken hasarı var ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22349467,29.55998213' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.223495, 29.559982")'>                                 36.223495, 29.559982                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_9a622a01cc58eeda0caea7361999a548.setContent(html_803c03e273cc7f63c95e81438297aa1d);
             
         
 
-        marker_c01361ac515d18623136e2ee4c567ddd.bindPopup(popup_df7841250dda5b9c353aefe8d06785b3)
+        marker_ab09cad75c0006a2390dc153603bf7b5.bindPopup(popup_9a622a01cc58eeda0caea7361999a548)
         ;
 
         
     
     
-            marker_c01361ac515d18623136e2ee4c567ddd.bindTooltip(
+            marker_ab09cad75c0006a2390dc153603bf7b5.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388779 (❌ YAPILMADI)
                  </div>`,
@@ -420,17 +423,17 @@
             );
         
     
-                marker_c01361ac515d18623136e2ee4c567ddd.setIcon(icon_ddeb9b4e3bca12b0ed83c70aca92557f);
+                marker_ab09cad75c0006a2390dc153603bf7b5.setIcon(icon_c5c93c19ace2fb0286fbee331646a3a4);
             
     
-            var marker_f43385a90f0a8d3d634ad4c41ec6480d = L.marker(
+            var marker_691c09863d782f202ce8514bb7f97f79 = L.marker(
                 [36.222887, 29.558729],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_405fecd762d71de854f8150be5d9e35b = L.AwesomeMarkers.icon(
+            var icon_de84312cb5f06dd76565e75d453ac5d2 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -441,24 +444,24 @@
             );
         
     
-        var popup_7cebfc377add0f09cea89d378af851c4 = L.popup({
+        var popup_5f9c791f3a910ef198fe4763f482862c = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_97e099633c27c0120fbde6c3cebeb7cb = $(`<div id="html_97e099633c27c0120fbde6c3cebeb7cb" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388782</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:31:53                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç direkte Lente var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.222887,29.558729' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.222887, 29.558729")'>                                 36.222887, 29.558729                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_7cebfc377add0f09cea89d378af851c4.setContent(html_97e099633c27c0120fbde6c3cebeb7cb);
+                var html_c56cd74a68531829ca5b1a0281710703 = $(`<div id="html_c56cd74a68531829ca5b1a0281710703" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388782</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:31:53                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç direkte Lente var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.222887,29.558729' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.222887, 29.558729")'>                                 36.222887, 29.558729                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_5f9c791f3a910ef198fe4763f482862c.setContent(html_c56cd74a68531829ca5b1a0281710703);
             
         
 
-        marker_f43385a90f0a8d3d634ad4c41ec6480d.bindPopup(popup_7cebfc377add0f09cea89d378af851c4)
+        marker_691c09863d782f202ce8514bb7f97f79.bindPopup(popup_5f9c791f3a910ef198fe4763f482862c)
         ;
 
         
     
     
-            marker_f43385a90f0a8d3d634ad4c41ec6480d.bindTooltip(
+            marker_691c09863d782f202ce8514bb7f97f79.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388782 (❌ YAPILMADI)
                  </div>`,
@@ -468,17 +471,17 @@
             );
         
     
-                marker_f43385a90f0a8d3d634ad4c41ec6480d.setIcon(icon_405fecd762d71de854f8150be5d9e35b);
+                marker_691c09863d782f202ce8514bb7f97f79.setIcon(icon_de84312cb5f06dd76565e75d453ac5d2);
             
     
-            var marker_c9f8725c84299c5c3f0ee5e7426bbe97 = L.marker(
+            var marker_65097a31256e8c4773047f9872d1b28c = L.marker(
                 [36.222887, 29.558729],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_98c291e47ed166190bd81dc3902d77cc = L.AwesomeMarkers.icon(
+            var icon_e644a6b7546ccc70d1f836bca6a72c2c = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -489,24 +492,24 @@
             );
         
     
-        var popup_b429e18c3f1e8e980f90d19df792bf02 = L.popup({
+        var popup_8c60718909c48676acdc3bb6336174bc = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_1c3b0ea20b4a25f315dcefb9d2f7dbd8 = $(`<div id="html_1c3b0ea20b4a25f315dcefb9d2f7dbd8" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388782</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:31:53                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 İletken hasarı var ve sıkıbağda kopuk var. Sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.222887,29.558729' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.222887, 29.558729")'>                                 36.222887, 29.558729                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_b429e18c3f1e8e980f90d19df792bf02.setContent(html_1c3b0ea20b4a25f315dcefb9d2f7dbd8);
+                var html_541efcef87ad375bbbb5112f8305aa35 = $(`<div id="html_541efcef87ad375bbbb5112f8305aa35" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388782</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:31:53                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 İletken hasarı var ve sıkıbağda kopuk var. Sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.222887,29.558729' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.222887, 29.558729")'>                                 36.222887, 29.558729                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_8c60718909c48676acdc3bb6336174bc.setContent(html_541efcef87ad375bbbb5112f8305aa35);
             
         
 
-        marker_c9f8725c84299c5c3f0ee5e7426bbe97.bindPopup(popup_b429e18c3f1e8e980f90d19df792bf02)
+        marker_65097a31256e8c4773047f9872d1b28c.bindPopup(popup_8c60718909c48676acdc3bb6336174bc)
         ;
 
         
     
     
-            marker_c9f8725c84299c5c3f0ee5e7426bbe97.bindTooltip(
+            marker_65097a31256e8c4773047f9872d1b28c.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388782 (❌ YAPILMADI)
                  </div>`,
@@ -516,17 +519,17 @@
             );
         
     
-                marker_c9f8725c84299c5c3f0ee5e7426bbe97.setIcon(icon_98c291e47ed166190bd81dc3902d77cc);
+                marker_65097a31256e8c4773047f9872d1b28c.setIcon(icon_e644a6b7546ccc70d1f836bca6a72c2c);
             
     
-            var marker_7ac5f2596534fa3b6477a154da6d0235 = L.marker(
+            var marker_1c476621407e2e187cbd5653d63dc753 = L.marker(
                 [36.22245141, 29.55803162],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_7e377e4c1f514b232bc78a3b0a4eefd5 = L.AwesomeMarkers.icon(
+            var icon_969c55dbf4aeefdf95fce6acb613d308 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -537,24 +540,24 @@
             );
         
     
-        var popup_e7a801151a3248c7f48fbe3ea208fb26 = L.popup({
+        var popup_5af96aef2f8042b203a7447267385979 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_e4b09831ed11b5901cb7549114919816 = $(`<div id="html_e4b09831ed11b5901cb7549114919816" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388781</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:37:21                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağacın kesilmesi. mesafe uzun rüzgarda etlike arz edebilir.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22245141,29.55803162' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.222451, 29.558032")'>                                 36.222451, 29.558032                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_e7a801151a3248c7f48fbe3ea208fb26.setContent(html_e4b09831ed11b5901cb7549114919816);
+                var html_874b621ce349912dc8bf3df5cf0edd80 = $(`<div id="html_874b621ce349912dc8bf3df5cf0edd80" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388781</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:37:21                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağacın kesilmesi. mesafe uzun rüzgarda etlike arz edebilir.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22245141,29.55803162' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.222451, 29.558032")'>                                 36.222451, 29.558032                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_5af96aef2f8042b203a7447267385979.setContent(html_874b621ce349912dc8bf3df5cf0edd80);
             
         
 
-        marker_7ac5f2596534fa3b6477a154da6d0235.bindPopup(popup_e7a801151a3248c7f48fbe3ea208fb26)
+        marker_1c476621407e2e187cbd5653d63dc753.bindPopup(popup_5af96aef2f8042b203a7447267385979)
         ;
 
         
     
     
-            marker_7ac5f2596534fa3b6477a154da6d0235.bindTooltip(
+            marker_1c476621407e2e187cbd5653d63dc753.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388781 (❌ YAPILMADI)
                  </div>`,
@@ -564,17 +567,17 @@
             );
         
     
-                marker_7ac5f2596534fa3b6477a154da6d0235.setIcon(icon_7e377e4c1f514b232bc78a3b0a4eefd5);
+                marker_1c476621407e2e187cbd5653d63dc753.setIcon(icon_969c55dbf4aeefdf95fce6acb613d308);
             
     
-            var marker_da6491ab6a7077cbad697191472a9ccb = L.marker(
+            var marker_6ea2667c6a7637b72a942669a2a00839 = L.marker(
                 [36.22195438, 29.55679485],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_e63d13674266025ca892f06d1506b96a = L.AwesomeMarkers.icon(
+            var icon_4440dbde5396d94125996cceea75f99e = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -585,24 +588,24 @@
             );
         
     
-        var popup_a673801fecbf40d61a1cf56ff515e1c7 = L.popup({
+        var popup_2672e420dcf2d8b4289515aeb2dcf5d8 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_77cbeae8a9d168adbabffc70af77d82d = $(`<div id="html_77cbeae8a9d168adbabffc70af77d82d" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388780</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:37:52                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iletken hasarı var ve Sıkıbağlarında yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22195438,29.55679485' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.221954, 29.556795")'>                                 36.221954, 29.556795                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_a673801fecbf40d61a1cf56ff515e1c7.setContent(html_77cbeae8a9d168adbabffc70af77d82d);
+                var html_1c8e16482eb2fe5eba16f577bd2bcc76 = $(`<div id="html_1c8e16482eb2fe5eba16f577bd2bcc76" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388780</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 10:37:52                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iletken hasarı var ve Sıkıbağlarında yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22195438,29.55679485' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.221954, 29.556795")'>                                 36.221954, 29.556795                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_2672e420dcf2d8b4289515aeb2dcf5d8.setContent(html_1c8e16482eb2fe5eba16f577bd2bcc76);
             
         
 
-        marker_da6491ab6a7077cbad697191472a9ccb.bindPopup(popup_a673801fecbf40d61a1cf56ff515e1c7)
+        marker_6ea2667c6a7637b72a942669a2a00839.bindPopup(popup_2672e420dcf2d8b4289515aeb2dcf5d8)
         ;
 
         
     
     
-            marker_da6491ab6a7077cbad697191472a9ccb.bindTooltip(
+            marker_6ea2667c6a7637b72a942669a2a00839.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388780 (❌ YAPILMADI)
                  </div>`,
@@ -612,17 +615,17 @@
             );
         
     
-                marker_da6491ab6a7077cbad697191472a9ccb.setIcon(icon_e63d13674266025ca892f06d1506b96a);
+                marker_6ea2667c6a7637b72a942669a2a00839.setIcon(icon_4440dbde5396d94125996cceea75f99e);
             
     
-            var marker_1a62e27c71b39694813b601c9d53656b = L.marker(
+            var marker_40d3bb6c66c131d8a776862830add6c8 = L.marker(
                 [36.22126573, 29.55541668],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_e69d7ca9f56945f38f9a66b5272a433e = L.AwesomeMarkers.icon(
+            var icon_5ced1a518d2b7d280d3d2df83a796079 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -633,24 +636,24 @@
             );
         
     
-        var popup_04b5d947f351dd5e0b90e63195757a2e = L.popup({
+        var popup_68f48250d26c6aeb27aafb42962613b2 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_be2e7fd3637ceb83d0c16a745a67a9ec = $(`<div id="html_be2e7fd3637ceb83d0c16a745a67a9ec" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388009</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 12:46:36                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 sağ faz iletken hasarı ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22126573,29.55541668' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.221266, 29.555417")'>                                 36.221266, 29.555417                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_04b5d947f351dd5e0b90e63195757a2e.setContent(html_be2e7fd3637ceb83d0c16a745a67a9ec);
+                var html_b872d0bdeeab3e5e9898a06a5db9a00a = $(`<div id="html_b872d0bdeeab3e5e9898a06a5db9a00a" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388009</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 12:46:36                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 sağ faz iletken hasarı ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.22126573,29.55541668' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.221266, 29.555417")'>                                 36.221266, 29.555417                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_68f48250d26c6aeb27aafb42962613b2.setContent(html_b872d0bdeeab3e5e9898a06a5db9a00a);
             
         
 
-        marker_1a62e27c71b39694813b601c9d53656b.bindPopup(popup_04b5d947f351dd5e0b90e63195757a2e)
+        marker_40d3bb6c66c131d8a776862830add6c8.bindPopup(popup_68f48250d26c6aeb27aafb42962613b2)
         ;
 
         
     
     
-            marker_1a62e27c71b39694813b601c9d53656b.bindTooltip(
+            marker_40d3bb6c66c131d8a776862830add6c8.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388009 (❌ YAPILMADI)
                  </div>`,
@@ -660,17 +663,17 @@
             );
         
     
-                marker_1a62e27c71b39694813b601c9d53656b.setIcon(icon_e69d7ca9f56945f38f9a66b5272a433e);
+                marker_40d3bb6c66c131d8a776862830add6c8.setIcon(icon_5ced1a518d2b7d280d3d2df83a796079);
             
     
-            var marker_4fc66b765f459d08b61cde29c6fa75f5 = L.marker(
+            var marker_07f38f69d9b907280fbbdc8cd124b4e1 = L.marker(
                 [36.21901757, 29.54936848],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_5bf7c618edd45da91dc35f6463154c58 = L.AwesomeMarkers.icon(
+            var icon_07f69288219a0adb22d4ae651b14c8e5 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -681,24 +684,24 @@
             );
         
     
-        var popup_7673e7ae788d6becc4006d1cbc27734f = L.popup({
+        var popup_f4d580ea8c4002c79a169af3bd615637 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_b41c2fbfb20d289290685fe1dccc836f = $(`<div id="html_b41c2fbfb20d289290685fe1dccc836f" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388068</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 12:50:51                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 İletken hasarı ve sıkıbağ kopması.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21901757,29.54936848' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.219018, 29.549368")'>                                 36.219018, 29.549368                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_7673e7ae788d6becc4006d1cbc27734f.setContent(html_b41c2fbfb20d289290685fe1dccc836f);
+                var html_37a3fa9e38bbe5b08caacbecae836877 = $(`<div id="html_37a3fa9e38bbe5b08caacbecae836877" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388068</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 12:50:51                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 İletken hasarı ve sıkıbağ kopması.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21901757,29.54936848' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.219018, 29.549368")'>                                 36.219018, 29.549368                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_f4d580ea8c4002c79a169af3bd615637.setContent(html_37a3fa9e38bbe5b08caacbecae836877);
             
         
 
-        marker_4fc66b765f459d08b61cde29c6fa75f5.bindPopup(popup_7673e7ae788d6becc4006d1cbc27734f)
+        marker_07f38f69d9b907280fbbdc8cd124b4e1.bindPopup(popup_f4d580ea8c4002c79a169af3bd615637)
         ;
 
         
     
     
-            marker_4fc66b765f459d08b61cde29c6fa75f5.bindTooltip(
+            marker_07f38f69d9b907280fbbdc8cd124b4e1.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388068 (❌ YAPILMADI)
                  </div>`,
@@ -708,17 +711,17 @@
             );
         
     
-                marker_4fc66b765f459d08b61cde29c6fa75f5.setIcon(icon_5bf7c618edd45da91dc35f6463154c58);
+                marker_07f38f69d9b907280fbbdc8cd124b4e1.setIcon(icon_07f69288219a0adb22d4ae651b14c8e5);
             
     
-            var marker_1b9b710c947bfbfa54294044e1da8bbf = L.marker(
+            var marker_a7800a024e452beff6d014e98c192fdd = L.marker(
                 [36.21867938, 29.54576775],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_98c9e8eb74e512464a5885773180fb15 = L.AwesomeMarkers.icon(
+            var icon_457b9672bbd1a226068189572cf4469a = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -729,24 +732,24 @@
             );
         
     
-        var popup_871aa87b0df8afdf0a02bb868b30fa08 = L.popup({
+        var popup_818f02d5e074cccf118b7e927a5bc1b5 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_dc364c85ead847a13b6e7a6b639f0a48 = $(`<div id="html_dc364c85ead847a13b6e7a6b639f0a48" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388066</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:01:51                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iletken hasarı ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21867938,29.54576775' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218679, 29.545768")'>                                 36.218679, 29.545768                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_871aa87b0df8afdf0a02bb868b30fa08.setContent(html_dc364c85ead847a13b6e7a6b639f0a48);
+                var html_7f05823fe623ebb9a1f5cfd6bb64ecc4 = $(`<div id="html_7f05823fe623ebb9a1f5cfd6bb64ecc4" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388066</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:01:51                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iletken hasarı ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21867938,29.54576775' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218679, 29.545768")'>                                 36.218679, 29.545768                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_818f02d5e074cccf118b7e927a5bc1b5.setContent(html_7f05823fe623ebb9a1f5cfd6bb64ecc4);
             
         
 
-        marker_1b9b710c947bfbfa54294044e1da8bbf.bindPopup(popup_871aa87b0df8afdf0a02bb868b30fa08)
+        marker_a7800a024e452beff6d014e98c192fdd.bindPopup(popup_818f02d5e074cccf118b7e927a5bc1b5)
         ;
 
         
     
     
-            marker_1b9b710c947bfbfa54294044e1da8bbf.bindTooltip(
+            marker_a7800a024e452beff6d014e98c192fdd.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388066 (❌ YAPILMADI)
                  </div>`,
@@ -756,17 +759,17 @@
             );
         
     
-                marker_1b9b710c947bfbfa54294044e1da8bbf.setIcon(icon_98c9e8eb74e512464a5885773180fb15);
+                marker_a7800a024e452beff6d014e98c192fdd.setIcon(icon_457b9672bbd1a226068189572cf4469a);
             
     
-            var marker_f6b038f00ad676e001f836475d11f7be = L.marker(
+            var marker_329147ad3f775a8659ceb7dc23f2b512 = L.marker(
                 [36.21874138, 29.54459302],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_cd4fa4aa5aca254a88fe06e0277d0158 = L.AwesomeMarkers.icon(
+            var icon_dce3f76bf1ee727709f476b39b5224fb = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -777,24 +780,24 @@
             );
         
     
-        var popup_d09af7c1b47e2e9154b2b60c812fb809 = L.popup({
+        var popup_0b3fa607f2b54046fefb35b1531c96e7 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_3e5986f6a20bba0d9ee3fd5c4b5b526a = $(`<div id="html_3e5986f6a20bba0d9ee3fd5c4b5b526a" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388065</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:01:00                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iletken hasarı ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21874138,29.54459302' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218741, 29.544593")'>                                 36.218741, 29.544593                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_d09af7c1b47e2e9154b2b60c812fb809.setContent(html_3e5986f6a20bba0d9ee3fd5c4b5b526a);
+                var html_7ca5d40b1bd68b4d8781f814b61242d6 = $(`<div id="html_7ca5d40b1bd68b4d8781f814b61242d6" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388065</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:01:00                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iletken hasarı ve sıkıbağların yenilenmesi.                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21874138,29.54459302' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218741, 29.544593")'>                                 36.218741, 29.544593                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_0b3fa607f2b54046fefb35b1531c96e7.setContent(html_7ca5d40b1bd68b4d8781f814b61242d6);
             
         
 
-        marker_f6b038f00ad676e001f836475d11f7be.bindPopup(popup_d09af7c1b47e2e9154b2b60c812fb809)
+        marker_329147ad3f775a8659ceb7dc23f2b512.bindPopup(popup_0b3fa607f2b54046fefb35b1531c96e7)
         ;
 
         
     
     
-            marker_f6b038f00ad676e001f836475d11f7be.bindTooltip(
+            marker_329147ad3f775a8659ceb7dc23f2b512.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388065 (❌ YAPILMADI)
                  </div>`,
@@ -804,17 +807,17 @@
             );
         
     
-                marker_f6b038f00ad676e001f836475d11f7be.setIcon(icon_cd4fa4aa5aca254a88fe06e0277d0158);
+                marker_329147ad3f775a8659ceb7dc23f2b512.setIcon(icon_dce3f76bf1ee727709f476b39b5224fb);
             
     
-            var marker_37229d69e39f820f0fac91479a5c9845 = L.marker(
+            var marker_491c80ef4be20cfa827ce650cff4e3aa = L.marker(
                 [36.21896523, 29.54213314],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_7af220150d9227386dd7bbde9ac0c461 = L.AwesomeMarkers.icon(
+            var icon_7d4eb1a9001fdb4cd040dd6d2d484f18 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -825,24 +828,24 @@
             );
         
     
-        var popup_cc7e97d7bbfe437a7dc7e29912884acc = L.popup({
+        var popup_1686b13fa2351c900ee1338e777f96b3 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_288c3f8a4cd935d3e7b153147d59e289 = $(`<div id="html_288c3f8a4cd935d3e7b153147d59e289" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657586</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:03:20                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç direkte Lente var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21896523,29.54213314' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218965, 29.542133")'>                                 36.218965, 29.542133                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_cc7e97d7bbfe437a7dc7e29912884acc.setContent(html_288c3f8a4cd935d3e7b153147d59e289);
+                var html_0abd42135d8d925176a2e80bc72c16d1 = $(`<div id="html_0abd42135d8d925176a2e80bc72c16d1" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657586</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:03:20                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç direkte Lente var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21896523,29.54213314' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218965, 29.542133")'>                                 36.218965, 29.542133                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_1686b13fa2351c900ee1338e777f96b3.setContent(html_0abd42135d8d925176a2e80bc72c16d1);
             
         
 
-        marker_37229d69e39f820f0fac91479a5c9845.bindPopup(popup_cc7e97d7bbfe437a7dc7e29912884acc)
+        marker_491c80ef4be20cfa827ce650cff4e3aa.bindPopup(popup_1686b13fa2351c900ee1338e777f96b3)
         ;
 
         
     
     
-            marker_37229d69e39f820f0fac91479a5c9845.bindTooltip(
+            marker_491c80ef4be20cfa827ce650cff4e3aa.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1657586 (❌ YAPILMADI)
                  </div>`,
@@ -852,65 +855,17 @@
             );
         
     
-                marker_37229d69e39f820f0fac91479a5c9845.setIcon(icon_7af220150d9227386dd7bbde9ac0c461);
+                marker_491c80ef4be20cfa827ce650cff4e3aa.setIcon(icon_7d4eb1a9001fdb4cd040dd6d2d484f18);
             
     
-            var marker_ea3636f90fce6c489a6a335f9e46e106 = L.marker(
-                [36.21869118, 29.53790522],
-                {
-}
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
-        
-    
-            var icon_205207b8719dbf7748d84b779e5e6566 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "red",
-  "iconColor": "white",
-  "icon": "check",
-  "prefix": "fa",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_e3340cb0c43331086b899fe0091a1b92 = L.popup({
-  "maxWidth": 350,
-});
-
-        
-            
-                var html_679781546f2b35faab9f650f329cce28 = $(`<div id="html_679781546f2b35faab9f650f329cce28" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: red; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Çok Acil                             </h4>                             <div style='font-size:20px;'>                                 ✅                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1657592</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ✅ YAPILDI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:29:46                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 izolatörde ısı var. değiştirilmesi gerekiyor                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21869118,29.53790522' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218691, 29.537905")'>                                 36.218691, 29.537905                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_e3340cb0c43331086b899fe0091a1b92.setContent(html_679781546f2b35faab9f650f329cce28);
-            
-        
-
-        marker_ea3636f90fce6c489a6a335f9e46e106.bindPopup(popup_e3340cb0c43331086b899fe0091a1b92)
-        ;
-
-        
-    
-    
-            marker_ea3636f90fce6c489a6a335f9e46e106.bindTooltip(
-                `<div>
-                     2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1657592 (✅ YAPILDI)
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_ea3636f90fce6c489a6a335f9e46e106.setIcon(icon_205207b8719dbf7748d84b779e5e6566);
-            
-    
-            var marker_8e9174faf2f829594f49b9975a7eaed4 = L.marker(
+            var marker_901aa4630f34780329f7c27d0ce16061 = L.marker(
                 [36.21851932, 29.53505407],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_6ab2ac72d8a9914faca805abc290eb07 = L.AwesomeMarkers.icon(
+            var icon_e1af8793aa7d78cda7747eb44b52b989 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -921,24 +876,24 @@
             );
         
     
-        var popup_f606287fa94bd18f1307b23eeb28f90e = L.popup({
+        var popup_340888845f0fd0556029b50c589bd785 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_d02d050dcff861c758e34fd19261959a = $(`<div id="html_d02d050dcff861c758e34fd19261959a" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388059</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:13:37                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç direkte Lente var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21851932,29.53505407' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218519, 29.535054")'>                                 36.218519, 29.535054                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_f606287fa94bd18f1307b23eeb28f90e.setContent(html_d02d050dcff861c758e34fd19261959a);
+                var html_b79042d812dc4d6587e5bb85af98c3dc = $(`<div id="html_b79042d812dc4d6587e5bb85af98c3dc" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388059</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:13:37                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 Ağaç direkte Lente var                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21851932,29.53505407' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218519, 29.535054")'>                                 36.218519, 29.535054                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_340888845f0fd0556029b50c589bd785.setContent(html_b79042d812dc4d6587e5bb85af98c3dc);
             
         
 
-        marker_8e9174faf2f829594f49b9975a7eaed4.bindPopup(popup_f606287fa94bd18f1307b23eeb28f90e)
+        marker_901aa4630f34780329f7c27d0ce16061.bindPopup(popup_340888845f0fd0556029b50c589bd785)
         ;
 
         
     
     
-            marker_8e9174faf2f829594f49b9975a7eaed4.bindTooltip(
+            marker_901aa4630f34780329f7c27d0ce16061.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388059 (❌ YAPILMADI)
                  </div>`,
@@ -948,17 +903,17 @@
             );
         
     
-                marker_8e9174faf2f829594f49b9975a7eaed4.setIcon(icon_6ab2ac72d8a9914faca805abc290eb07);
+                marker_901aa4630f34780329f7c27d0ce16061.setIcon(icon_e1af8793aa7d78cda7747eb44b52b989);
             
     
-            var marker_a86eeb0ed5a6bb1c037f1bcbaa1eb1a2 = L.marker(
+            var marker_ac2742438ec471da3fc0a04dd75197b4 = L.marker(
                 [36.21839597, 29.53276935],
                 {
 }
-            ).addTo(feature_group_358e9e7578e9ce2f14821fe65ab098a1);
+            ).addTo(marker_cluster_b6078426ab7846bd97da765fcaf4861e);
         
     
-            var icon_10d258d19d6dc599bbcb1deb02bbf113 = L.AwesomeMarkers.icon(
+            var icon_6ecea4e8671090ef03a7213741a43009 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -969,24 +924,24 @@
             );
         
     
-        var popup_83135b476bbe41c7c447617cdb75447b = L.popup({
+        var popup_a1c79450209f5639eb9f49fa6c2ab3c2 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_2e585987eab4b7490d917e0640ba901f = $(`<div id="html_2e585987eab4b7490d917e0640ba901f" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388058</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:16:33                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iolatörde kırık var. sıkıbağın yenilenmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21839597,29.53276935' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218396, 29.532769")'>                                 36.218396, 29.532769                             </span>                         </div>                     </div>                     </div>`)[0];
-                popup_83135b476bbe41c7c447617cdb75447b.setContent(html_2e585987eab4b7490d917e0640ba901f);
+                var html_88a59a4cd0e5e3b34a9fd8ca3ff1813c = $(`<div id="html_88a59a4cd0e5e3b34a9fd8ca3ff1813c" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px;'>                         <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;'>                             <h4 style='color: blue; margin:0; padding-bottom:5px; border-bottom:1px solid #eee;'>                                 Normal                             </h4>                             <div style='font-size:20px;'>                                 ❌                             </div>                         </div>                                                  <table style='width:100%; border-collapse:collapse; margin-bottom:10px;'>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee; width:80px;'><b>İlçe:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>KAŞ</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Hat:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Direk No:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>1388058</td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Durum:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee; font-weight:bold;'>                                     ❌ YAPILMADI                                 </td>                             </tr>                             <tr>                                 <td style='padding:4px; border-bottom:1px solid #eee;'><b>Tespit Tarihi:</b></td>                                 <td style='padding:4px; border-bottom:1px solid #eee;'>                                     12/01/2026 13:16:33                                 </td>                             </tr>                         </table>                                                  <!-- TESPİT NOTU -->                         <div style='margin-top:15px; padding:10px; background:#ffeaea; border-left:4px solid #ff4444;                                      border-radius:4px; font-size:12px;'>                             <div style='font-weight:bold; color:#ff0000; margin-bottom:5px;'>                                 🔍 TESPİT:                             </div>                             <div style='color:#cc0000; max-height:100px; overflow-y:auto;'>                                 iolatörde kırık var. sıkıbağın yenilenmesi                             </div>                         </div>                                                  <!-- BUTONLAR -->                         <div style='margin-top:15px; display:flex; flex-direction:column; gap:8px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.21839597,29.53276935' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#34A853; color:white; text-decoration:none;                                        padding:10px 16px; border-radius:6px; font-weight:bold;                                       transition:all 0.2s;'>                                 <span style='margin-right:8px; font-size:16px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                                                  <!-- KOORDİNAT KOPYALAMA -->                         <div style='margin-top:10px; font-size:11px; color:#777; text-align:center;'>                             Koordinat: <span style='font-family:monospace; background:#f5f5f5; padding:2px 5px;                                                   border-radius:3px; cursor:pointer;'                                               onclick='navigator.clipboard.writeText("36.218396, 29.532769")'>                                 36.218396, 29.532769                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_a1c79450209f5639eb9f49fa6c2ab3c2.setContent(html_88a59a4cd0e5e3b34a9fd8ca3ff1813c);
             
         
 
-        marker_a86eeb0ed5a6bb1c037f1bcbaa1eb1a2.bindPopup(popup_83135b476bbe41c7c447617cdb75447b)
+        marker_ac2742438ec471da3fc0a04dd75197b4.bindPopup(popup_a1c79450209f5639eb9f49fa6c2ab3c2)
         ;
 
         
     
     
-            marker_a86eeb0ed5a6bb1c037f1bcbaa1eb1a2.bindTooltip(
+            marker_ac2742438ec471da3fc0a04dd75197b4.bindTooltip(
                 `<div>
                      2026.01.12_1388771_Seksiyoner_Baldıraz mumuda hatbaşı - 1388058 (❌ YAPILMADI)
                  </div>`,
@@ -996,32 +951,31 @@
             );
         
     
-                marker_a86eeb0ed5a6bb1c037f1bcbaa1eb1a2.setIcon(icon_10d258d19d6dc599bbcb1deb02bbf113);
+                marker_ac2742438ec471da3fc0a04dd75197b4.setIcon(icon_6ecea4e8671090ef03a7213741a43009);
             
     
-            feature_group_358e9e7578e9ce2f14821fe65ab098a1.addTo(map_768d088d7092fc38ddfb116bc84c13ce);
+            marker_cluster_b6078426ab7846bd97da765fcaf4861e.addTo(map_35b3d065195eba4ac123081653dbfbbd);
         
     
-            var layer_control_212f01ae26b10d57d9082f045da219c8_layers = {
+            var layer_control_386bff4a8a2b903d6d51a334365f257c_layers = {
                 base_layers : {
-                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_9f10a30085fd972a2b004f8afdf8993c,
-                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_9d2ac464bab9e56d50c4a74517e4f084,
+                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_2a44c0b4aa53b790b60061cadf496a27,
+                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_31e421841cbe7eefb42bf83c667bbb30,
                 },
                 overlays :  {
-                    "\ud83d\udea8 \u00d6ncelikli Direkler" : feature_group_358e9e7578e9ce2f14821fe65ab098a1,
+                    "\ud83d\udea8 \u00d6ncelikli Direkler" : marker_cluster_b6078426ab7846bd97da765fcaf4861e,
                 },
             };
-            let layer_control_212f01ae26b10d57d9082f045da219c8 = L.control.layers(
-                layer_control_212f01ae26b10d57d9082f045da219c8_layers.base_layers,
-                layer_control_212f01ae26b10d57d9082f045da219c8_layers.overlays,
+            let layer_control_386bff4a8a2b903d6d51a334365f257c = L.control.layers(
+                layer_control_386bff4a8a2b903d6d51a334365f257c_layers.base_layers,
+                layer_control_386bff4a8a2b903d6d51a334365f257c_layers.overlays,
                 {
   "position": "topright",
   "collapsed": false,
   "autoZIndex": true,
 }
-            ).addTo(map_768d088d7092fc38ddfb116bc84c13ce);
+            ).addTo(map_35b3d065195eba4ac123081653dbfbbd);
 
         
 </script>
-
 </html>
