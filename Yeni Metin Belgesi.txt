@@ -1,4 +1,5 @@
 import os
+import math
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -12,7 +13,6 @@ import subprocess
 import sys
 from PIL import Image
 import shutil
-import math
 import concurrent.futures
 from threading import Lock
 import matplotlib.pyplot as plt
@@ -7807,9 +7807,11 @@ class AnaUygulama:
             self.log_mesaj_ekle("🔍 Tespit bilgileri birleştiriliyor...")
             tespit_verileri = self.tespit_bilgilerini_birlestir(foto_klasorleri)
             
-            # 4. AŞAMA: Mesafe bilgilerini hesapla
+            # 4. AŞAMA: Mesafe bilgilerini hesapla (YENİ: hat uzunluklarını da al)
             self.log_mesaj_ekle("📏 Mesafe hesaplamaları yapılıyor...")
-            mesafe_sonuclari = self.mesafe_hesapla(foto_klasorleri, koordinat_bilgileri)
+            mesafe_sonuclari_dict = self.mesafe_hesapla(foto_klasorleri, koordinat_bilgileri)
+            mesafe_sonuclari = mesafe_sonuclari_dict.get('mesafe_sonuclari', {})
+            hat_uzunluklari = mesafe_sonuclari_dict.get('hat_uzunluklari', {})  # YENİ: Hat uzunluklarını al
             
             # 5. AŞAMA: Diğer bilgileri al (TESPİT VERİLERİNİ PARAMETRE OLARAK GÖNDER)
             self.log_mesaj_ekle("🏷️ Direk tipi ve tespit bilgileri alınıyor...")
@@ -7965,15 +7967,16 @@ class AnaUygulama:
                 self.auto_adjust_column_widths(ws_veri)
                 ws_veri.auto_filter.ref = ws_veri.dimensions
                 
-                # 9. AŞAMA: Hat Özeti sayfası
+                # 9. AŞAMA: Hat Özeti sayfası (YENİ: Hat Uzunluğu sütunu eklendi)
                 if hat_sureleri:
                     self.log_mesaj_ekle("📈 Hat Özeti sayfası oluşturuluyor...")
                     ws_hat_ozet = workbook.create_sheet('Hat Özeti')
                     
+                    # YENİ: 'Hat Uzunluğu (km)' sütunu eklendi (Toplam Gün'den sonra)
                     hat_basliklar = [
                         'İlçe', 'Hat Adı', 'Müşterek Direk', 'OG Direk', 
                         'Direk Sayısı', 'Fotoğraf Sayısı', 'İlk Çekim Tarihi', 
-                        'Son Çekim Tarihi', 'Toplam Gün'
+                        'Son Çekim Tarihi', 'Toplam Gün', 'Hat Uzunluğu (km)'  # YENİ SÜTUN
                     ]
                     
                     for col_num, column_title in enumerate(hat_basliklar, 1):
@@ -8020,6 +8023,13 @@ class AnaUygulama:
                             detay['ilk_tarih'] = hat_sureleri[hat_anahtari]['ilk_tarih']
                             detay['son_tarih'] = hat_sureleri[hat_anahtari]['son_tarih']
                             detay['toplam_gun'] = hat_sureleri[hat_anahtari]['toplam_gun']
+                        
+                        # YENİ: Hat uzunluğunu ekle (km cinsinden)
+                        if hat_anahtari in hat_uzunluklari:
+                            hat_uzunluk_km = hat_uzunluklari[hat_anahtari] / 1000.0
+                            detay['hat_uzunlugu'] = round(hat_uzunluk_km, 3)  # 3 ondalık basamak
+                        else:
+                            detay['hat_uzunlugu'] = 0.0
                     
                     # Hatları sırala ve ekle
                     sirali_hatlar = sorted(hat_detaylari.values(), 
@@ -8036,12 +8046,18 @@ class AnaUygulama:
                             hat_detay['foto_sayisi'],
                             hat_detay['ilk_tarih'],
                             hat_detay['son_tarih'],
-                            hat_detay['toplam_gun']
+                            hat_detay['toplam_gun'],
+                            hat_detay['hat_uzunlugu']  # YENİ: Hat uzunluğu
                         ]
                         
                         for col_num, cell_value in enumerate(cell_values, 1):
                             cell = ws_hat_ozet.cell(row=row_num, column=col_num)
                             cell.value = cell_value
+                            
+                            # YENİ: Hat uzunluğu sütunu için özel format (km cinsinden, 3 ondalık)
+                            if col_num == 10 and isinstance(cell_value, (int, float)):
+                                cell.number_format = '#,##0.000'
+                            
                             cell.border = Border(left=Side(style='thin'), right=Side(style='thin'),
                                                top=Side(style='thin'), bottom=Side(style='thin'))
                             cell.alignment = Alignment(horizontal='left', vertical='center')
@@ -8479,11 +8495,13 @@ class AnaUygulama:
             
 
     def mesafe_hesapla(self, foto_klasorleri, koordinat_bilgileri):
-        """Her direk için bir önceki direkle arasındaki mesafeyi METRE cinsinden hesaplar - TRAFO DİREĞİ özel durumu ve 750m limiti ile"""
+        """Her direk için bir önceki direkle arasındaki mesafeyi METRE cinsinden hesaplar ve toplam hat uzunluklarını hesaplar"""
         mesafe_sonuclari = {}
+        hat_uzunluklari = {}  # YENİ: Hat bazında toplam uzunluklar
         
         try:
             mesafe_sonuclari.clear()
+            hat_uzunluklari.clear()  # YENİ: Hat uzunluklarını temizle
             self.log_mesaj_ekle("🔄 Mesafe hesaplamaları yapılıyor (TRAFO DİREĞİ özel durumu ve 750m limiti ile)...")
             
             # Trafo direklerini al
@@ -8496,6 +8514,7 @@ class AnaUygulama:
                 hat_anahtari = (klasor['Aob'], klasor['Hat adı'])
                 if hat_anahtari not in hat_gruplari:
                     hat_gruplari[hat_anahtari] = []
+                    hat_uzunluklari[hat_anahtari] = 0.0  # YENİ: Her hat için uzunluk sıfırla
                 hat_gruplari[hat_anahtari].append(klasor)
             
             for hat_anahtari, klasor_listesi in hat_gruplari.items():
@@ -8508,12 +8527,34 @@ class AnaUygulama:
                 onceki_direk_no = None
                 onceki_sira_no = None
                 
+                # Geriye doğru arama için tüm direkleri kaydedelim
+                hat_direkleri = []
+                
                 for i, klasor in enumerate(sirali_klasorler):
                     klasor_adi = str(klasor.get('Direk No', ''))
                     temiz_direk_no = self.direk_no_temizle(klasor_adi)
                     sira_no = self.sira_no_ayikla(klasor.get('Orijinal Klasör Adı', ''))
                     
-                    # ÜÇLÜ ANAHTAR: (Hat-Adı, SıraNo, DirekNo)
+                    # ÜÇLÜ ANAHTAR: (Aob, Hat-Adı, SıraNo, DirekNo)
+                    uc_anahtar = (aob, hat_adi, sira_no, temiz_direk_no)
+                    
+                    # Hat direklerini kaydet (geriye doğru arama için)
+                    hat_direkleri.append({
+                        'index': i,
+                        'anahtar': uc_anahtar,
+                        'direk_no': temiz_direk_no,
+                        'sira_no': sira_no,
+                        'lat': koordinat_bilgileri.get(temiz_direk_no, {}).get('lat'),
+                        'lon': koordinat_bilgileri.get(temiz_direk_no, {}).get('lon'),
+                        'trafo_mu': temiz_direk_no in trafo_direkleri
+                    })
+                
+                for i, klasor in enumerate(sirali_klasorler):
+                    klasor_adi = str(klasor.get('Direk No', ''))
+                    temiz_direk_no = self.direk_no_temizle(klasor_adi)
+                    sira_no = self.sira_no_ayikla(klasor.get('Orijinal Klasör Adı', ''))
+                    
+                    # ÜÇLÜ ANAHTAR: (Aob, Hat-Adı, SıraNo, DirekNo)
                     uc_anahtar = (aob, hat_adi, sira_no, temiz_direk_no)
                     
                     # Bu direk trafo mu?
@@ -8540,6 +8581,9 @@ class AnaUygulama:
                                     self.log_mesaj_ekle(f"🏭 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: TRAFO DİREĞİ - {mesafe_metre:.2f} m (750m üzeri - boş)")
                                 else:
                                     mesafe_deger = float(mesafe_metre)
+                                    # YENİ: Trafo direği mesafesini hat uzunluğuna ekle
+                                    if mesafe_deger > 0:
+                                        hat_uzunluklari[hat_anahtari] += mesafe_deger
                                     self.log_mesaj_ekle(f"🏭 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: TRAFO DİREĞİ - {mesafe_deger:.2f} m (önceki direkten)")
                             except Exception as e:
                                 mesafe_deger = "Hesaplanamadı"
@@ -8549,9 +8593,69 @@ class AnaUygulama:
                             self.log_mesaj_ekle(f"⚠️ {uc_anahtar} (TRAFO): Koordinat eksik")
                     
                     elif onceki_direk_no and onceki_direk_no in trafo_direkleri:
-                        # ÖNCEKİ DİREK TRAFO İSE: Bu direğe mesafe yazma
-                        mesafe_deger = ""
-                        self.log_mesaj_ekle(f"⏭️ {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: Önceki direk trafo - mesafe atlandı")
+                        # ÖNCEKİ DİREK TRAFO İSE: Yeni kriterlere göre işlem yap
+                        if (onceki_lat is not None and onceki_lon is not None and 
+                            simdiki_lat is not None and simdiki_lon is not None):
+                            try:
+                                # A- Önceki trafo ile mevcut direk arasındaki mesafeyi hesapla
+                                mesafe_trafo_ile = self.koordinat_mesafe_hesapla(onceki_lat, onceki_lon, simdiki_lat, simdiki_lon)
+                                
+                                if mesafe_trafo_ile <= 100:
+                                    # A-1: Mesafe 100m altında ise, trafo ile arasındaki mesafeyi yaz
+                                    # 750m KONTROLÜ
+                                    if mesafe_trafo_ile > 750:
+                                        mesafe_deger = ""
+                                        self.log_mesaj_ekle(f"📏 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: Trafo ile {mesafe_trafo_ile:.2f} m (100m altı ama 750m üzeri - boş)")
+                                    else:
+                                        mesafe_deger = float(mesafe_trafo_ile)
+                                        # YENİ: Mesafeyi hat uzunluğuna ekle
+                                        if mesafe_deger > 0:
+                                            hat_uzunluklari[hat_anahtari] += mesafe_deger
+                                        self.log_mesaj_ekle(f"📏 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: Trafo ile {mesafe_deger:.2f} m (100m altı)")
+                                else:
+                                    # B- Mesafe 100m üzeri ise, geriye doğru en yakın direği bul
+                                    en_yakin_direk = None
+                                    en_yakin_mesafe = float('inf')
+                                    
+                                    # Geriye doğru ara (i-2, i-3, ...)
+                                    for j in range(i-2, -1, -1):
+                                        geri_direk = hat_direkleri[j]
+                                        geri_lat = geri_direk['lat']
+                                        geri_lon = geri_direk['lon']
+                                        geri_trafo_mu = geri_direk['trafo_mu']
+                                        
+                                        # Trafo olmayan direk ara
+                                        if not geri_trafo_mu and geri_lat is not None and geri_lon is not None:
+                                            # Gerideki direk ile mevcut direk arasındaki mesafeyi hesapla
+                                            mesafe_geri = self.koordinat_mesafe_hesapla(geri_lat, geri_lon, simdiki_lat, simdiki_lon)
+                                            
+                                            if mesafe_geri < en_yakin_mesafe:
+                                                en_yakin_mesafe = mesafe_geri
+                                                en_yakin_direk = geri_direk
+                                    
+                                    if en_yakin_direk is not None:
+                                        # En yakın direk bulundu, o direk ile mesafeyi yaz
+                                        # 750m KONTROLÜ
+                                        if en_yakin_mesafe > 750:
+                                            mesafe_deger = ""
+                                            self.log_mesaj_ekle(f"🔍 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: {en_yakin_direk['direk_no']} ile {en_yakin_mesafe:.2f} m (100m üzeri, 750m üzeri - boş)")
+                                        else:
+                                            mesafe_deger = float(en_yakin_mesafe)
+                                            # YENİ: Mesafeyi hat uzunluğuna ekle
+                                            if mesafe_deger > 0:
+                                                hat_uzunluklari[hat_anahtari] += mesafe_deger
+                                            self.log_mesaj_ekle(f"🔍 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: {en_yakin_direk['direk_no']} ile {mesafe_deger:.2f} m (100m üzeri, geriye arama)")
+                                    else:
+                                        # Geriye doğtrafo olmayan direk bulunamadı
+                                        mesafe_deger = ""
+                                        self.log_mesaj_ekle(f"⏭️ {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: Trafo ile 100m üzeri ({mesafe_trafo_ile:.2f}m) ve geriye doğru direk bulunamadı")
+                            
+                            except Exception as e:
+                                mesafe_deger = "Hesaplanamadı"
+                                self.log_mesaj_ekle(f"⚠️ Mesafe hesaplama hatası {uc_anahtar}: {str(e)}")
+                        else:
+                            mesafe_deger = "Koordinat yok"
+                            self.log_mesaj_ekle(f"⚠️ {uc_anahtar}: Koordinat eksik")
                     
                     elif (onceki_lat is not None and onceki_lon is not None and 
                           simdiki_lat is not None and simdiki_lon is not None):
@@ -8564,6 +8668,9 @@ class AnaUygulama:
                                 self.log_mesaj_ekle(f"📏 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: {mesafe_metre:.2f} m (750m üzeri - boş)")
                             else:
                                 mesafe_deger = float(mesafe_metre)
+                                # YENİ: Mesafeyi hat uzunluğuna ekle
+                                if mesafe_deger > 0:
+                                    hat_uzunluklari[hat_anahtari] += mesafe_deger
                                 self.log_mesaj_ekle(f"📏 {aob}-{hat_adi}-{sira_no}-{temiz_direk_no}: {mesafe_deger:.2f} m")
                         except Exception as e:
                             mesafe_deger = "Hesaplanamadı"
@@ -8581,6 +8688,9 @@ class AnaUygulama:
                     onceki_direk_no = temiz_direk_no
                     onceki_sira_no = sira_no
                 
+                # YENİ: Hat uzunluğunu km'ye çevir ve logla
+                hat_uzunluk_km = hat_uzunluklari[hat_anahtari] / 1000.0
+                self.log_mesaj_ekle(f"📏 {hat_anahtari} toplam uzunluk: {hat_uzunluk_km:.3f} km")
                 self.log_mesaj_ekle(f"✅ {hat_anahtari} için {len([v for v in mesafe_sonuclari.values() if v and v != 'Koordinat yok' and v != 'Hesaplanamadı'])} mesafe hesaplandı")
                 
             # İstatistikler
@@ -8588,18 +8698,24 @@ class AnaUygulama:
             trafo_mesafe_sayisi = sum(1 for k, v in mesafe_sonuclari.items() 
                                     if v and v != "Koordinat yok" and v != "Hesaplanamadı" and 
                                     k[3] in trafo_direkleri)
-            atlanan_mesafe_sayisi = sum(1 for v in mesafe_sonuclari.values() if v == "")
-            buyuk_mesafe_sayisi = sum(1 for v in mesafe_sonuclari.values() if isinstance(v, (int, float)) and v > 750)
             
-            self.log_mesaj_ekle(f"🏭 Toplam {toplam_trafo} trafo direği tespit edildi")
-            self.log_mesaj_ekle(f"📏 {trafo_mesafe_sayisi} trafo direğine mesafe yazıldı")
-            self.log_mesaj_ekle(f"⏭️ {atlanan_mesafe_sayisi} mesafe trafo nedeniyle atlandı")
-            self.log_mesaj_ekle(f"🚫 {buyuk_mesafe_sayisi} mesafe 750m üzeri olduğu için boş bırakıldı")
-                    
+            # YENİ: Toplam hat uzunlukları istatistiği
+            toplam_hat_uzunluk_km = sum(hat_uzunluklari.values()) / 1000.0
+            self.log_mesaj_ekle(f"📊 Toplam {len(hat_uzunluklari)} hat için uzunluk hesaplandı")
+            self.log_mesaj_ekle(f"📏 Toplam hat uzunluğu: {toplam_hat_uzunluk_km:.2f} km")
+            
+            # YENİ: Hat uzunluklarını döndür
+            sonuc = {
+                'mesafe_sonuclari': mesafe_sonuclari,
+                'hat_uzunluklari': hat_uzunluklari  # YENİ: Hat uzunluklarını da döndür
+            }
+            
+            return sonuc
+            
         except Exception as e:
             self.log_mesaj_ekle(f"❌ Mesafe hesaplama hatası: {str(e)}")
         
-        return mesafe_sonuclari
+        return {'mesafe_sonuclari': {}, 'hat_uzunluklari': {}}
     
 
 
