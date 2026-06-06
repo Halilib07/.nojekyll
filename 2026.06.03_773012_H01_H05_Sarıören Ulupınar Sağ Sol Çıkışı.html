@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_668c22fbc848905a54c0fc2c928ec226 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_668c22fbc848905a54c0fc2c928ec226" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_668c22fbc848905a54c0fc2c928ec226 = L.map(
+                "map_668c22fbc848905a54c0fc2c928ec226",
+                {
+                    center: [36.493089811278075, 30.488359826323606],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_80a2f3adee3388faf9971874217a32b1 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_80a2f3adee3388faf9971874217a32b1.addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var marker_d1fe81fe0ce6e349e3dffff93c35d0f1 = L.marker(
+                [36.5003897, 30.49285595],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_c4cecf1b3b0267eb4c4010010b5c6288 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_53c8ba3038ac0766fd667c12a625b9e0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ddea8f71a4f9f63628a86163829392e8 = $(`<div id="html_ddea8f71a4f9f63628a86163829392e8" style="width: 100.0%; height: 100.0%;">KEMER - 123100<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_53c8ba3038ac0766fd667c12a625b9e0.setContent(html_ddea8f71a4f9f63628a86163829392e8);
+            
+        
+
+        marker_d1fe81fe0ce6e349e3dffff93c35d0f1.bindPopup(popup_53c8ba3038ac0766fd667c12a625b9e0)
+        ;
+
+        
+    
+    
+                marker_d1fe81fe0ce6e349e3dffff93c35d0f1.setIcon(icon_c4cecf1b3b0267eb4c4010010b5c6288);
+            
+    
+            var marker_c4e19e7075d499fddeedf9cc5bd4ca9c = L.marker(
+                [36.5003897, 30.49285595],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_9b40d8b83bc706679592aa57be224cdd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b012f1c36a7236104ea0facdf6ee77a4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2becdabadc638c1ca2d584d23c896a27 = $(`<div id="html_2becdabadc638c1ca2d584d23c896a27" style="width: 100.0%; height: 100.0%;">KEMER - 123100<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_b012f1c36a7236104ea0facdf6ee77a4.setContent(html_2becdabadc638c1ca2d584d23c896a27);
+            
+        
+
+        marker_c4e19e7075d499fddeedf9cc5bd4ca9c.bindPopup(popup_b012f1c36a7236104ea0facdf6ee77a4)
+        ;
+
+        
+    
+    
+                marker_c4e19e7075d499fddeedf9cc5bd4ca9c.setIcon(icon_9b40d8b83bc706679592aa57be224cdd);
+            
+    
+            var marker_357c6823c2f04832650f38e59b63169c = L.marker(
+                [36.52944743, 30.54286577],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_f038643cbe88f3b65c0489113d118e15 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_746964c2660de3c05bb96b3a7d837ae2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_da5ed4c7d619015c4643d8b932aac778 = $(`<div id="html_da5ed4c7d619015c4643d8b932aac778" style="width: 100.0%; height: 100.0%;">KEMER - 180865<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_746964c2660de3c05bb96b3a7d837ae2.setContent(html_da5ed4c7d619015c4643d8b932aac778);
+            
+        
+
+        marker_357c6823c2f04832650f38e59b63169c.bindPopup(popup_746964c2660de3c05bb96b3a7d837ae2)
+        ;
+
+        
+    
+    
+                marker_357c6823c2f04832650f38e59b63169c.setIcon(icon_f038643cbe88f3b65c0489113d118e15);
+            
+    
+            var marker_eba76b259c3af9ae779a41f16dde30dd = L.marker(
+                [36.45257537, 30.43557535],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_c6c8480b87052f1f7f6544c60ea661b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_65b40012010cc2682a413a5e4b5b4a76 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e9bda8512e3372e3bb9413cdaf1a1da2 = $(`<div id="html_e9bda8512e3372e3bb9413cdaf1a1da2" style="width: 100.0%; height: 100.0%;">KEMER - 180872<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_65b40012010cc2682a413a5e4b5b4a76.setContent(html_e9bda8512e3372e3bb9413cdaf1a1da2);
+            
+        
+
+        marker_eba76b259c3af9ae779a41f16dde30dd.bindPopup(popup_65b40012010cc2682a413a5e4b5b4a76)
+        ;
+
+        
+    
+    
+                marker_eba76b259c3af9ae779a41f16dde30dd.setIcon(icon_c6c8480b87052f1f7f6544c60ea661b1);
+            
+    
+            var marker_2ebc8dbd68da217e12b1536c5e3422c2 = L.marker(
+                [36.45257537, 30.43557535],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_086c58350611a48cb1038b1def893616 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a0d6a19efb3b83a5b0d5295173c9eab0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_415c54d60a7c2d170d2e9d2111cbc88c = $(`<div id="html_415c54d60a7c2d170d2e9d2111cbc88c" style="width: 100.0%; height: 100.0%;">KEMER - 180872<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_a0d6a19efb3b83a5b0d5295173c9eab0.setContent(html_415c54d60a7c2d170d2e9d2111cbc88c);
+            
+        
+
+        marker_2ebc8dbd68da217e12b1536c5e3422c2.bindPopup(popup_a0d6a19efb3b83a5b0d5295173c9eab0)
+        ;
+
+        
+    
+    
+                marker_2ebc8dbd68da217e12b1536c5e3422c2.setIcon(icon_086c58350611a48cb1038b1def893616);
+            
+    
+            var marker_c0ec4161accf90432fe95e572903c2dc = L.marker(
+                [36.44997015, 30.4352737],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_3b438c0b8a9dbe5cc3c5a96f96efdfdc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_18fca005f8d14326f0e25eee10384086 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7a195f91eb3a6508ebae276ba94e98df = $(`<div id="html_7a195f91eb3a6508ebae276ba94e98df" style="width: 100.0%; height: 100.0%;">KEMER - 195015<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_18fca005f8d14326f0e25eee10384086.setContent(html_7a195f91eb3a6508ebae276ba94e98df);
+            
+        
+
+        marker_c0ec4161accf90432fe95e572903c2dc.bindPopup(popup_18fca005f8d14326f0e25eee10384086)
+        ;
+
+        
+    
+    
+                marker_c0ec4161accf90432fe95e572903c2dc.setIcon(icon_3b438c0b8a9dbe5cc3c5a96f96efdfdc);
+            
+    
+            var marker_e842df48d953ee5b7f6564bf6484610f = L.marker(
+                [36.4582896, 30.43623687],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_390542cc9e8c8e9a97be4b7c646b5d32 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_704888ac81877de1cb8c53439dc4ee34 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4be8e6d3ecfc939168849a17d0bdee6d = $(`<div id="html_4be8e6d3ecfc939168849a17d0bdee6d" style="width: 100.0%; height: 100.0%;">KEMER - 144070<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_704888ac81877de1cb8c53439dc4ee34.setContent(html_4be8e6d3ecfc939168849a17d0bdee6d);
+            
+        
+
+        marker_e842df48d953ee5b7f6564bf6484610f.bindPopup(popup_704888ac81877de1cb8c53439dc4ee34)
+        ;
+
+        
+    
+    
+                marker_e842df48d953ee5b7f6564bf6484610f.setIcon(icon_390542cc9e8c8e9a97be4b7c646b5d32);
+            
+    
+            var marker_276ebff19d540149ae3eff342147893a = L.marker(
+                [36.45447148, 30.43578972],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_0a6a726a47dcc0f9c47b2295ec0ec45c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1fcc8dfa5709433c1c603b8c9f93224d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe39ea85f2dc116411acf9ceef04abc2 = $(`<div id="html_fe39ea85f2dc116411acf9ceef04abc2" style="width: 100.0%; height: 100.0%;">KEMER - 201484<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_1fcc8dfa5709433c1c603b8c9f93224d.setContent(html_fe39ea85f2dc116411acf9ceef04abc2);
+            
+        
+
+        marker_276ebff19d540149ae3eff342147893a.bindPopup(popup_1fcc8dfa5709433c1c603b8c9f93224d)
+        ;
+
+        
+    
+    
+                marker_276ebff19d540149ae3eff342147893a.setIcon(icon_0a6a726a47dcc0f9c47b2295ec0ec45c);
+            
+    
+            var marker_00c9190a765a84cccd5b4846953a12b0 = L.marker(
+                [36.51093827601041, 30.52323281764984],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_548988f7ce1db14b909ceab380ec6e82 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d958a53ee206ab27205587b00bd4a6cf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4bf8f79324f4652386f2c4ae49be76ad = $(`<div id="html_4bf8f79324f4652386f2c4ae49be76ad" style="width: 100.0%; height: 100.0%;">KEMER - 230428<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_d958a53ee206ab27205587b00bd4a6cf.setContent(html_4bf8f79324f4652386f2c4ae49be76ad);
+            
+        
+
+        marker_00c9190a765a84cccd5b4846953a12b0.bindPopup(popup_d958a53ee206ab27205587b00bd4a6cf)
+        ;
+
+        
+    
+    
+                marker_00c9190a765a84cccd5b4846953a12b0.setIcon(icon_548988f7ce1db14b909ceab380ec6e82);
+            
+    
+            var marker_504171e04f5bd91d68c870719956e336 = L.marker(
+                [36.50847647, 30.52034162],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_198edde90a33ede50902ea931174e5a6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2b3f7abe90a0aee39a97f2b5ba6e8c3b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5c2ac24eddaa369168172f8f79497697 = $(`<div id="html_5c2ac24eddaa369168172f8f79497697" style="width: 100.0%; height: 100.0%;">KEMER - 158446<br>xlpe kabloların tava içine alınması</div>`)[0];
+                popup_2b3f7abe90a0aee39a97f2b5ba6e8c3b.setContent(html_5c2ac24eddaa369168172f8f79497697);
+            
+        
+
+        marker_504171e04f5bd91d68c870719956e336.bindPopup(popup_2b3f7abe90a0aee39a97f2b5ba6e8c3b)
+        ;
+
+        
+    
+    
+                marker_504171e04f5bd91d68c870719956e336.setIcon(icon_198edde90a33ede50902ea931174e5a6);
+            
+    
+            var marker_e786dd1992c49bacf0e4c27209339b11 = L.marker(
+                [36.50847647, 30.52034162],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_1fc35b30b877ad49a722fe05a6cd3427 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_247501f24d6d99ffeb9becf89bf936ea = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_987e32d204bad15b14e93ac2e1fb16cc = $(`<div id="html_987e32d204bad15b14e93ac2e1fb16cc" style="width: 100.0%; height: 100.0%;">KEMER - 158446<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_247501f24d6d99ffeb9becf89bf936ea.setContent(html_987e32d204bad15b14e93ac2e1fb16cc);
+            
+        
+
+        marker_e786dd1992c49bacf0e4c27209339b11.bindPopup(popup_247501f24d6d99ffeb9becf89bf936ea)
+        ;
+
+        
+    
+    
+                marker_e786dd1992c49bacf0e4c27209339b11.setIcon(icon_1fc35b30b877ad49a722fe05a6cd3427);
+            
+    
+            var marker_b613359f4c96d3b5169985229df41d3e = L.marker(
+                [36.50847647, 30.52034162],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_161e8cb2c71c8d8c9e497d6856d1ef28 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8d95b21d047c4615c6ee497a0cbde0d0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c35acc01a7044febd8b4abaa1d078baa = $(`<div id="html_c35acc01a7044febd8b4abaa1d078baa" style="width: 100.0%; height: 100.0%;">KEMER - 158446<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_8d95b21d047c4615c6ee497a0cbde0d0.setContent(html_c35acc01a7044febd8b4abaa1d078baa);
+            
+        
+
+        marker_b613359f4c96d3b5169985229df41d3e.bindPopup(popup_8d95b21d047c4615c6ee497a0cbde0d0)
+        ;
+
+        
+    
+    
+                marker_b613359f4c96d3b5169985229df41d3e.setIcon(icon_161e8cb2c71c8d8c9e497d6856d1ef28);
+            
+    
+            var marker_2fcbc6e3a51e205c5b022fc80b7bfc54 = L.marker(
+                [36.48763817, 30.46113557],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_ffc93a41d3233f472763a7d7a5193f39 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_38032a77c373047c733011a6549bab34 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_98df26dba0376b684e4d65b5f67e324a = $(`<div id="html_98df26dba0376b684e4d65b5f67e324a" style="width: 100.0%; height: 100.0%;">KEMER - 158447<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi. Direk dibi bitki temizliği</div>`)[0];
+                popup_38032a77c373047c733011a6549bab34.setContent(html_98df26dba0376b684e4d65b5f67e324a);
+            
+        
+
+        marker_2fcbc6e3a51e205c5b022fc80b7bfc54.bindPopup(popup_38032a77c373047c733011a6549bab34)
+        ;
+
+        
+    
+    
+                marker_2fcbc6e3a51e205c5b022fc80b7bfc54.setIcon(icon_ffc93a41d3233f472763a7d7a5193f39);
+            
+    
+            var marker_5140df987ddc2cd382d238806365ef6d = L.marker(
+                [36.50721008, 30.51461548],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_9afc0501612f246fb9e33a3b26b8d09a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02bd3b0e6283a540339d2f7f3e781ce8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0002ff338c467cf54fa4fa6294c0a42c = $(`<div id="html_0002ff338c467cf54fa4fa6294c0a42c" style="width: 100.0%; height: 100.0%;">KEMER - 201492<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_02bd3b0e6283a540339d2f7f3e781ce8.setContent(html_0002ff338c467cf54fa4fa6294c0a42c);
+            
+        
+
+        marker_5140df987ddc2cd382d238806365ef6d.bindPopup(popup_02bd3b0e6283a540339d2f7f3e781ce8)
+        ;
+
+        
+    
+    
+                marker_5140df987ddc2cd382d238806365ef6d.setIcon(icon_9afc0501612f246fb9e33a3b26b8d09a);
+            
+    
+            var marker_5c49db22ed5e4355c5463fa802f17a91 = L.marker(
+                [36.5017082, 30.49674187],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_86dd57c3035a8d2596da5add23259c51 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_84257d2d3c9026ef60993803cc3d8494 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e3dc4816a55b03b89b6be87357bb519 = $(`<div id="html_7e3dc4816a55b03b89b6be87357bb519" style="width: 100.0%; height: 100.0%;">KEMER - 201493<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_84257d2d3c9026ef60993803cc3d8494.setContent(html_7e3dc4816a55b03b89b6be87357bb519);
+            
+        
+
+        marker_5c49db22ed5e4355c5463fa802f17a91.bindPopup(popup_84257d2d3c9026ef60993803cc3d8494)
+        ;
+
+        
+    
+    
+                marker_5c49db22ed5e4355c5463fa802f17a91.setIcon(icon_86dd57c3035a8d2596da5add23259c51);
+            
+    
+            var marker_8c88bf79d42a82350256103610957de0 = L.marker(
+                [36.48869123, 30.46364628],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_50c8c33fc8b2c7bb972e8cfe87992dad = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e0f3638d55c0924978e1f8cd933077b9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3375bbf0d5db84f1352ba4d1a2ca6801 = $(`<div id="html_3375bbf0d5db84f1352ba4d1a2ca6801" style="width: 100.0%; height: 100.0%;">KEMER - 216076<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_e0f3638d55c0924978e1f8cd933077b9.setContent(html_3375bbf0d5db84f1352ba4d1a2ca6801);
+            
+        
+
+        marker_8c88bf79d42a82350256103610957de0.bindPopup(popup_e0f3638d55c0924978e1f8cd933077b9)
+        ;
+
+        
+    
+    
+                marker_8c88bf79d42a82350256103610957de0.setIcon(icon_50c8c33fc8b2c7bb972e8cfe87992dad);
+            
+    
+            var marker_56cbb0efcd96dc6248bf2c242cb4d239 = L.marker(
+                [36.48869123, 30.46364628],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_7a71b9453dde7f7a7ac5e9916b4b7d09 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_758c8bd04416309b637383bf9f764100 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7257459d211acf4571b64be161548721 = $(`<div id="html_7257459d211acf4571b64be161548721" style="width: 100.0%; height: 100.0%;">KEMER - 216076<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_758c8bd04416309b637383bf9f764100.setContent(html_7257459d211acf4571b64be161548721);
+            
+        
+
+        marker_56cbb0efcd96dc6248bf2c242cb4d239.bindPopup(popup_758c8bd04416309b637383bf9f764100)
+        ;
+
+        
+    
+    
+                marker_56cbb0efcd96dc6248bf2c242cb4d239.setIcon(icon_7a71b9453dde7f7a7ac5e9916b4b7d09);
+            
+    
+            var marker_641ddc458b29efdd00eebd4f8f467478 = L.marker(
+                [36.48944417, 30.46546787],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_47383311603c76789ab6fe33be2c58ea = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_49610566e5380166570e653626c59b6b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_de6380054c520d54938b6b7239976efa = $(`<div id="html_de6380054c520d54938b6b7239976efa" style="width: 100.0%; height: 100.0%;">KEMER - 216077<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_49610566e5380166570e653626c59b6b.setContent(html_de6380054c520d54938b6b7239976efa);
+            
+        
+
+        marker_641ddc458b29efdd00eebd4f8f467478.bindPopup(popup_49610566e5380166570e653626c59b6b)
+        ;
+
+        
+    
+    
+                marker_641ddc458b29efdd00eebd4f8f467478.setIcon(icon_47383311603c76789ab6fe33be2c58ea);
+            
+    
+            var marker_5d8091a0b2ac9ee387a9caf2f6c1f065 = L.marker(
+                [36.4901833, 30.46723012],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_5a6b19bb2b0619c33b439c229b5f3dcc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a544172609020ff3cd9d99441d7232f1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8a442804844a989cee101d809ca0a53d = $(`<div id="html_8a442804844a989cee101d809ca0a53d" style="width: 100.0%; height: 100.0%;">KEMER - 230434<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_a544172609020ff3cd9d99441d7232f1.setContent(html_8a442804844a989cee101d809ca0a53d);
+            
+        
+
+        marker_5d8091a0b2ac9ee387a9caf2f6c1f065.bindPopup(popup_a544172609020ff3cd9d99441d7232f1)
+        ;
+
+        
+    
+    
+                marker_5d8091a0b2ac9ee387a9caf2f6c1f065.setIcon(icon_5a6b19bb2b0619c33b439c229b5f3dcc);
+            
+    
+            var marker_29fbf401b679d0f8b42a70de7b8d12aa = L.marker(
+                [36.49149387, 30.47028998],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_af291ba8e64e495826bb9f7fa22a95b8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ccc4cf1f972aab77d40772d656ee3445 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3dff3bdf9ce8c1b0edc391e4594b0ec7 = $(`<div id="html_3dff3bdf9ce8c1b0edc391e4594b0ec7" style="width: 100.0%; height: 100.0%;">KEMER - 158453<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_ccc4cf1f972aab77d40772d656ee3445.setContent(html_3dff3bdf9ce8c1b0edc391e4594b0ec7);
+            
+        
+
+        marker_29fbf401b679d0f8b42a70de7b8d12aa.bindPopup(popup_ccc4cf1f972aab77d40772d656ee3445)
+        ;
+
+        
+    
+    
+                marker_29fbf401b679d0f8b42a70de7b8d12aa.setIcon(icon_af291ba8e64e495826bb9f7fa22a95b8);
+            
+    
+            var marker_fa32f75d6d5b977dab67ff09ae577e25 = L.marker(
+                [36.4919253, 30.47137515],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_1a999f62779c0f68c07df263e7a83f4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_249ca2d14d8ac60783bae8e6216147f1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_956f3041bcd561145789d574fd1b55c8 = $(`<div id="html_956f3041bcd561145789d574fd1b55c8" style="width: 100.0%; height: 100.0%;">KEMER - 172781<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_249ca2d14d8ac60783bae8e6216147f1.setContent(html_956f3041bcd561145789d574fd1b55c8);
+            
+        
+
+        marker_fa32f75d6d5b977dab67ff09ae577e25.bindPopup(popup_249ca2d14d8ac60783bae8e6216147f1)
+        ;
+
+        
+    
+    
+                marker_fa32f75d6d5b977dab67ff09ae577e25.setIcon(icon_1a999f62779c0f68c07df263e7a83f4c);
+            
+    
+            var marker_74363fc720da851cfd02b2eca5e74d5c = L.marker(
+                [36.5486857, 30.54943658],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_2185432c1b87a863060a1611f78ce56f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3ee678dd49144c56308ffe33cb92d397 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_67788586b22858d89330ba46afbc71e9 = $(`<div id="html_67788586b22858d89330ba46afbc71e9" style="width: 100.0%; height: 100.0%;">KEMER - 144085<br>kırık olan ayırıcının değiştirilmesi. orta üst bıcaç ilebağlantı klemensi ve sağ alt yaylı pimin olduğu bağlantı noktası de ısı var.</div>`)[0];
+                popup_3ee678dd49144c56308ffe33cb92d397.setContent(html_67788586b22858d89330ba46afbc71e9);
+            
+        
+
+        marker_74363fc720da851cfd02b2eca5e74d5c.bindPopup(popup_3ee678dd49144c56308ffe33cb92d397)
+        ;
+
+        
+    
+    
+                marker_74363fc720da851cfd02b2eca5e74d5c.setIcon(icon_2185432c1b87a863060a1611f78ce56f);
+            
+    
+            var marker_f812b707d864fa986631fc8af6ae091a = L.marker(
+                [36.52169235, 30.53467662],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_4335ec0a1d72ff070715c9eebf99bcc6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_20b1eb69952e74a9523f3ceaaaa89915 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e8675b17cfc25ea702fe987f1ca2ab78 = $(`<div id="html_e8675b17cfc25ea702fe987f1ca2ab78" style="width: 100.0%; height: 100.0%;">KEMER - 216081<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_20b1eb69952e74a9523f3ceaaaa89915.setContent(html_e8675b17cfc25ea702fe987f1ca2ab78);
+            
+        
+
+        marker_f812b707d864fa986631fc8af6ae091a.bindPopup(popup_20b1eb69952e74a9523f3ceaaaa89915)
+        ;
+
+        
+    
+    
+                marker_f812b707d864fa986631fc8af6ae091a.setIcon(icon_4335ec0a1d72ff070715c9eebf99bcc6);
+            
+    
+            var marker_ff1b00d01457fc0ff92142ae9445285e = L.marker(
+                [36.53483872, 30.5459095],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_495a7b449832af8ef6647a8087d44cab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_765ab45f87c0989c1644fcff9cedc5bf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9418df82b974d7d5c48b9e8d112af3a2 = $(`<div id="html_9418df82b974d7d5c48b9e8d112af3a2" style="width: 100.0%; height: 100.0%;">KEMER - 172792<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_765ab45f87c0989c1644fcff9cedc5bf.setContent(html_9418df82b974d7d5c48b9e8d112af3a2);
+            
+        
+
+        marker_ff1b00d01457fc0ff92142ae9445285e.bindPopup(popup_765ab45f87c0989c1644fcff9cedc5bf)
+        ;
+
+        
+    
+    
+                marker_ff1b00d01457fc0ff92142ae9445285e.setIcon(icon_495a7b449832af8ef6647a8087d44cab);
+            
+    
+            var marker_6e975071b1d0a697933f1721ebf186d2 = L.marker(
+                [36.5361492, 30.546225],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_579a6c31d12be589848c1776917aab6d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1fefb078ff2b26a8bf5ab2fd204322e3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b237fb4ef5e31b4a63a646e75e924046 = $(`<div id="html_b237fb4ef5e31b4a63a646e75e924046" style="width: 100.0%; height: 100.0%;">KEMER - 216087<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_1fefb078ff2b26a8bf5ab2fd204322e3.setContent(html_b237fb4ef5e31b4a63a646e75e924046);
+            
+        
+
+        marker_6e975071b1d0a697933f1721ebf186d2.bindPopup(popup_1fefb078ff2b26a8bf5ab2fd204322e3)
+        ;
+
+        
+    
+    
+                marker_6e975071b1d0a697933f1721ebf186d2.setIcon(icon_579a6c31d12be589848c1776917aab6d);
+            
+    
+            var marker_28fabc29c9ba9cec1d28c023a508e77e = L.marker(
+                [36.52743225, 30.54070947],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_9061276a8dbd493359107d86cfe5227a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5ffab295354de0b113566facbf2e3a6e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4d95efaed584139a080422c3cfb31879 = $(`<div id="html_4d95efaed584139a080422c3cfb31879" style="width: 100.0%; height: 100.0%;">KEMER - 158464<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_5ffab295354de0b113566facbf2e3a6e.setContent(html_4d95efaed584139a080422c3cfb31879);
+            
+        
+
+        marker_28fabc29c9ba9cec1d28c023a508e77e.bindPopup(popup_5ffab295354de0b113566facbf2e3a6e)
+        ;
+
+        
+    
+    
+                marker_28fabc29c9ba9cec1d28c023a508e77e.setIcon(icon_9061276a8dbd493359107d86cfe5227a);
+            
+    
+            var marker_d8b0a8a4e8f5535036209b276f39e9a5 = L.marker(
+                [36.49944367, 30.4900258],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_c8f8bea7871a6562f89a22acd52350bc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e0ed55cb2247c2c6e53f3c5bf367a67a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c1327dfb738170bc53c21825ebbdaf33 = $(`<div id="html_c1327dfb738170bc53c21825ebbdaf33" style="width: 100.0%; height: 100.0%;">KEMER - 216089<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_e0ed55cb2247c2c6e53f3c5bf367a67a.setContent(html_c1327dfb738170bc53c21825ebbdaf33);
+            
+        
+
+        marker_d8b0a8a4e8f5535036209b276f39e9a5.bindPopup(popup_e0ed55cb2247c2c6e53f3c5bf367a67a)
+        ;
+
+        
+    
+    
+                marker_d8b0a8a4e8f5535036209b276f39e9a5.setIcon(icon_c8f8bea7871a6562f89a22acd52350bc);
+            
+    
+            var marker_799188b5c69dca7ba92445e02cf88fc9 = L.marker(
+                [36.49944367, 30.4900258],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_751267103a899ca49c548a3401a350f8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1a6cd6b59c28c4b536989a40876553f5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c3fb3d0c33e9e202a6f1642097608c93 = $(`<div id="html_c3fb3d0c33e9e202a6f1642097608c93" style="width: 100.0%; height: 100.0%;">KEMER - 216089<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_1a6cd6b59c28c4b536989a40876553f5.setContent(html_c3fb3d0c33e9e202a6f1642097608c93);
+            
+        
+
+        marker_799188b5c69dca7ba92445e02cf88fc9.bindPopup(popup_1a6cd6b59c28c4b536989a40876553f5)
+        ;
+
+        
+    
+    
+                marker_799188b5c69dca7ba92445e02cf88fc9.setIcon(icon_751267103a899ca49c548a3401a350f8);
+            
+    
+            var marker_9db135db0d2345bb88769f462820e0e6 = L.marker(
+                [36.50852885, 30.5201892],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_886af3c4214fe36a4f07327774d69c2d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_da5c3d0a8bc150652663cc04fd7fc1fa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_973ee45f18b0cd282a268a24a00775c1 = $(`<div id="html_973ee45f18b0cd282a268a24a00775c1" style="width: 100.0%; height: 100.0%;">KEMER - 180875<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_da5c3d0a8bc150652663cc04fd7fc1fa.setContent(html_973ee45f18b0cd282a268a24a00775c1);
+            
+        
+
+        marker_9db135db0d2345bb88769f462820e0e6.bindPopup(popup_da5c3d0a8bc150652663cc04fd7fc1fa)
+        ;
+
+        
+    
+    
+                marker_9db135db0d2345bb88769f462820e0e6.setIcon(icon_886af3c4214fe36a4f07327774d69c2d);
+            
+    
+            var marker_5b611698bdfe85a687d9a1774b15b814 = L.marker(
+                [36.50852885, 30.5201892],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_213d1e6c8acbfd98f75ad8bec2fc3a88 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4976f8e734692649f7f8586c5100f9c0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7ffd1f549cbede65dee76e0d84b01f0e = $(`<div id="html_7ffd1f549cbede65dee76e0d84b01f0e" style="width: 100.0%; height: 100.0%;">KEMER - 180875<br>orta üst ayırıcı bıcağı ısı ve sağ alt ayırıcı alt bağlantı noktası ısı var var.</div>`)[0];
+                popup_4976f8e734692649f7f8586c5100f9c0.setContent(html_7ffd1f549cbede65dee76e0d84b01f0e);
+            
+        
+
+        marker_5b611698bdfe85a687d9a1774b15b814.bindPopup(popup_4976f8e734692649f7f8586c5100f9c0)
+        ;
+
+        
+    
+    
+                marker_5b611698bdfe85a687d9a1774b15b814.setIcon(icon_213d1e6c8acbfd98f75ad8bec2fc3a88);
+            
+    
+            var marker_24f70ffab3fea194f57546fcdd413b70 = L.marker(
+                [36.50826033, 30.52001772],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_aa8fe56d7a328f7de1ba1155c30ca0b1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_150f915cc25616926f60812f641140ac = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_287dd8d63211f1f74b4fd878be145f04 = $(`<div id="html_287dd8d63211f1f74b4fd878be145f04" style="width: 100.0%; height: 100.0%;">KEMER - 195021<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_150f915cc25616926f60812f641140ac.setContent(html_287dd8d63211f1f74b4fd878be145f04);
+            
+        
+
+        marker_24f70ffab3fea194f57546fcdd413b70.bindPopup(popup_150f915cc25616926f60812f641140ac)
+        ;
+
+        
+    
+    
+                marker_24f70ffab3fea194f57546fcdd413b70.setIcon(icon_aa8fe56d7a328f7de1ba1155c30ca0b1);
+            
+    
+            var marker_f2bfee4126b11a2a0885c0a2979d062d = L.marker(
+                [36.50765998, 30.51968275],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_22fe4cb6d67436995cdab1483b5220db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_11c5828a648f8c240c435f251d76f06a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d6facbb6094fe29f6f349149631e38a6 = $(`<div id="html_d6facbb6094fe29f6f349149631e38a6" style="width: 100.0%; height: 100.0%;">KEMER - 123112<br>Enerji nakil hattının çevresinde emniyet mesafesini ihlal eden, teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_11c5828a648f8c240c435f251d76f06a.setContent(html_d6facbb6094fe29f6f349149631e38a6);
+            
+        
+
+        marker_f2bfee4126b11a2a0885c0a2979d062d.bindPopup(popup_11c5828a648f8c240c435f251d76f06a)
+        ;
+
+        
+    
+    
+                marker_f2bfee4126b11a2a0885c0a2979d062d.setIcon(icon_22fe4cb6d67436995cdab1483b5220db);
+            
+    
+            var marker_693a2cdb75b7abb8b51abfe448d7a621 = L.marker(
+                [36.44100625, 30.43422752],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_c3ea267a275b37b686e899f0e22fdbce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_86cc6a51cab857fb0d39c33478e297fc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a78c593c88bf40d712f122a416af8a20 = $(`<div id="html_a78c593c88bf40d712f122a416af8a20" style="width: 100.0%; height: 100.0%;">KEMER - 180922<br>Xlpe kablo başlıklarında hasarlar mevcut</div>`)[0];
+                popup_86cc6a51cab857fb0d39c33478e297fc.setContent(html_a78c593c88bf40d712f122a416af8a20);
+            
+        
+
+        marker_693a2cdb75b7abb8b51abfe448d7a621.bindPopup(popup_86cc6a51cab857fb0d39c33478e297fc)
+        ;
+
+        
+    
+    
+                marker_693a2cdb75b7abb8b51abfe448d7a621.setIcon(icon_c3ea267a275b37b686e899f0e22fdbce);
+            
+    
+            var marker_54f93e67013821aa4d8ae98063b0d8f4 = L.marker(
+                [36.44100625, 30.43422752],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_f74324cf1f5746988032a1fa8dd7145d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c779c795a5aa8f538e017f0b9d910327 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_590c4f51ed8857d261bad101e962bbe9 = $(`<div id="html_590c4f51ed8857d261bad101e962bbe9" style="width: 100.0%; height: 100.0%;">KEMER - 180922<br>Ortak pakete giriş sağ , iletken ile ayırıcı üstbağlantı noktası arasındaki klemens ısı var.</div>`)[0];
+                popup_c779c795a5aa8f538e017f0b9d910327.setContent(html_590c4f51ed8857d261bad101e962bbe9);
+            
+        
+
+        marker_54f93e67013821aa4d8ae98063b0d8f4.bindPopup(popup_c779c795a5aa8f538e017f0b9d910327)
+        ;
+
+        
+    
+    
+                marker_54f93e67013821aa4d8ae98063b0d8f4.setIcon(icon_f74324cf1f5746988032a1fa8dd7145d);
+            
+    
+            var marker_ae5d957bb49ef7741eca4adec9484cff = L.marker(
+                [36.44727383, 30.4349342],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_15e797cd4f477f66e63d77727165c319 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9661ec22254afdf120a20a86ae02d823 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3c51ade0e0f9155cf92fb3b6dc5977a0 = $(`<div id="html_3c51ade0e0f9155cf92fb3b6dc5977a0" style="width: 100.0%; height: 100.0%;">KEMER - 151895<br>Ağaç teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_9661ec22254afdf120a20a86ae02d823.setContent(html_3c51ade0e0f9155cf92fb3b6dc5977a0);
+            
+        
+
+        marker_ae5d957bb49ef7741eca4adec9484cff.bindPopup(popup_9661ec22254afdf120a20a86ae02d823)
+        ;
+
+        
+    
+    
+                marker_ae5d957bb49ef7741eca4adec9484cff.setIcon(icon_15e797cd4f477f66e63d77727165c319);
+            
+    
+            var marker_b7c23af327843c92a477bede9cf977b3 = L.marker(
+                [36.44982127, 30.43504193],
+                {
+}
+            ).addTo(map_668c22fbc848905a54c0fc2c928ec226);
+        
+    
+            var icon_32d8ed78eccf89ed345b37e4a6af0f86 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_012e3e8b3b81921e341663dd9b666b53 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_47e9437f7181574bca8ff2bbeffea5ac = $(`<div id="html_47e9437f7181574bca8ff2bbeffea5ac" style="width: 100.0%; height: 100.0%;">KEMER - 224053<br>Ağaç teması veya tehlikesi olan ağaç ve bitkilerin kesilmesi.</div>`)[0];
+                popup_012e3e8b3b81921e341663dd9b666b53.setContent(html_47e9437f7181574bca8ff2bbeffea5ac);
+            
+        
+
+        marker_b7c23af327843c92a477bede9cf977b3.bindPopup(popup_012e3e8b3b81921e341663dd9b666b53)
+        ;
+
+        
+    
+    
+                marker_b7c23af327843c92a477bede9cf977b3.setIcon(icon_32d8ed78eccf89ed345b37e4a6af0f86);
+            
+</script>
+</html>
