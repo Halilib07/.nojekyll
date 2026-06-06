@@ -17,7 +17,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_e8c717a0866aaf2f8e2a78c26161e065 {
+                #map_50cd4996fe6f68e58e9e93d274e03890 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -50,14 +50,11 @@
             </script>
 
         
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_e8c717a0866aaf2f8e2a78c26161e065" ></div>
+            <div class="folium-map" id="map_50cd4996fe6f68e58e9e93d274e03890" ></div>
         
 
     <script>
@@ -77,7 +74,6 @@
             }
         }
         console.error("Folium haritası bulunamadı!");
-        // Biraz bekleyip tekrar dene
         setTimeout(function() {
             for (var key in window) {
                 if (key.startsWith("map_") && window[key] instanceof L.Map) {
@@ -129,7 +125,6 @@
             return;
         }
 
-        // Buton stilini değiştir (yükleniyor)
         var btns = document.querySelectorAll('.leaflet-bar a');
         for (var i = 0; i < btns.length; i++) {
             if (btns[i].innerHTML === '📍') {
@@ -148,7 +143,6 @@
                 );
                 startTracking();
 
-                // Butonu eski haline getir
                 var btns = document.querySelectorAll('.leaflet-bar a');
                 for (var i = 0; i < btns.length; i++) {
                     if (btns[i].innerHTML === '⏳') {
@@ -178,7 +172,6 @@
         if (userLocationMarker) map.removeLayer(userLocationMarker);
         if (userLocationCircle) map.removeLayer(userLocationCircle);
 
-        // Mavi daire marker
         userLocationMarker = L.circleMarker([lat, lng], {
             radius: 10,
             color: '#4285F4',
@@ -187,7 +180,6 @@
             weight: 2
         }).addTo(map);
 
-        // Doğruluk yarıçapı (şeffaf daire)
         userLocationCircle = L.circle([lat, lng], {
             radius: acc,
             color: '#4285F4',
@@ -226,8 +218,8 @@
 <script>
     
     
-            var map_e8c717a0866aaf2f8e2a78c26161e065 = L.map(
-                "map_e8c717a0866aaf2f8e2a78c26161e065",
+            var map_50cd4996fe6f68e58e9e93d274e03890 = L.map(
+                "map_50cd4996fe6f68e58e9e93d274e03890",
                 {
                     center: [36.425709673571426, 30.443587738214287],
                     crs: L.CRS.EPSG3857,
@@ -239,13 +231,13 @@
 
                 }
             );
-            L.control.scale().addTo(map_e8c717a0866aaf2f8e2a78c26161e065);
+            L.control.scale().addTo(map_50cd4996fe6f68e58e9e93d274e03890);
 
             
 
         
     
-            var tile_layer_758ee0f044d8f8c9ee9bf30db651ec69 = L.tileLayer(
+            var tile_layer_436261105b7d7e5f6725d63722e2a6f7 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
   "minZoom": 0,
@@ -262,10 +254,10 @@
             );
         
     
-            tile_layer_758ee0f044d8f8c9ee9bf30db651ec69.addTo(map_e8c717a0866aaf2f8e2a78c26161e065);
+            tile_layer_436261105b7d7e5f6725d63722e2a6f7.addTo(map_50cd4996fe6f68e58e9e93d274e03890);
         
     
-            var tile_layer_7328e692e7023941c0d2aa7ee23d4426 = L.tileLayer(
+            var tile_layer_b756d9240e886abe944411f9ec2bdb23 = L.tileLayer(
                 "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
                 {
   "minZoom": 0,
@@ -282,23 +274,23 @@
             );
         
     
-            tile_layer_7328e692e7023941c0d2aa7ee23d4426.addTo(map_e8c717a0866aaf2f8e2a78c26161e065);
+            tile_layer_b756d9240e886abe944411f9ec2bdb23.addTo(map_50cd4996fe6f68e58e9e93d274e03890);
         
     
-            var marker_cluster_f86d393d897df9aed4c3aa81d5548c4e = L.markerClusterGroup(
+            var feature_group_ab3024ef72df85edcdd9d1554401d0c6 = L.featureGroup(
                 {
 }
             );
         
     
-            var marker_0cd15b3af46c5a7bb6d95783fab869d4 = L.marker(
+            var marker_c036f7f7c4065c4a7c47ca04214dd916 = L.marker(
                 [36.41950704, 30.45614201],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_5374675b25401bb478c01f3839ef055e = L.AwesomeMarkers.icon(
+            var icon_218b3c5328fdc02c4116ec7bbd9317e4 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -309,34 +301,34 @@
             );
         
     
-        var popup_c222093ace2b9cd867407b66a565a4a5 = L.popup({
+        var popup_adaa9ee411d14794564e1195f041bdb6 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_7cc495fde1921b3e32e599131ee915f1 = $(`<div id="html_7cc495fde1921b3e32e599131ee915f1" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1390851</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 15:04:26                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor. Hattın üzerine uzanan çamdalları</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41950704,30.45614201" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.419507, 30.456142</span>                         </div>                     </div>                     </div>`)[0];
-                popup_c222093ace2b9cd867407b66a565a4a5.setContent(html_7cc495fde1921b3e32e599131ee915f1);
+                var html_17258518512e9eed55f43efc7b2b877a = $(`<div id="html_17258518512e9eed55f43efc7b2b877a" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1390851</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 15:04:26                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor. Hattın üzerine uzanan çamdalları</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41950704,30.45614201" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.419507, 30.456142</span>                         </div>                     </div>                     </div>`)[0];
+                popup_adaa9ee411d14794564e1195f041bdb6.setContent(html_17258518512e9eed55f43efc7b2b877a);
             
         
 
-        marker_0cd15b3af46c5a7bb6d95783fab869d4.bindPopup(popup_c222093ace2b9cd867407b66a565a4a5)
+        marker_c036f7f7c4065c4a7c47ca04214dd916.bindPopup(popup_adaa9ee411d14794564e1195f041bdb6)
         ;
 
         
     
     
-                marker_0cd15b3af46c5a7bb6d95783fab869d4.setIcon(icon_5374675b25401bb478c01f3839ef055e);
+                marker_c036f7f7c4065c4a7c47ca04214dd916.setIcon(icon_218b3c5328fdc02c4116ec7bbd9317e4);
             
     
-            var marker_f4b1cbb77e73c4471858c7cd2db3235c = L.marker(
+            var marker_170e87b70be6fc08d73cff1d7be32c88 = L.marker(
                 [36.41896444, 30.45664059],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_d3f1695a89a39b0dfa26789aa160cd26 = L.AwesomeMarkers.icon(
+            var icon_5874fa690b9206a601b94037a885dd66 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -347,34 +339,34 @@
             );
         
     
-        var popup_adee919836ddfea9972d4a2a44248507 = L.popup({
+        var popup_bc192fbd18a00e88dd9c744167f91916 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_45130ecfb31847c4bba279d581f718bc = $(`<div id="html_45130ecfb31847c4bba279d581f718bc" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1390852</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(2 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 15:03:07                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">yolun karşısında ki ve yola yatık olan çam ağacı Enh için tehlike arz ediyor. kesilmesi.</div>                             </div>                                                          <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 2:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor. hattın üzerine uzanan çam dalı</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41896444,30.45664059" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.418964, 30.456641</span>                         </div>                     </div>                     </div>`)[0];
-                popup_adee919836ddfea9972d4a2a44248507.setContent(html_45130ecfb31847c4bba279d581f718bc);
+                var html_39d0e14120d919ee05f5925e770789a2 = $(`<div id="html_39d0e14120d919ee05f5925e770789a2" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1390852</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(2 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 15:03:07                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">yolun karşısında ki ve yola yatık olan çam ağacı Enh için tehlike arz ediyor. kesilmesi.</div>                             </div>                                                          <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 2:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor. hattın üzerine uzanan çam dalı</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41896444,30.45664059" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.418964, 30.456641</span>                         </div>                     </div>                     </div>`)[0];
+                popup_bc192fbd18a00e88dd9c744167f91916.setContent(html_39d0e14120d919ee05f5925e770789a2);
             
         
 
-        marker_f4b1cbb77e73c4471858c7cd2db3235c.bindPopup(popup_adee919836ddfea9972d4a2a44248507)
+        marker_170e87b70be6fc08d73cff1d7be32c88.bindPopup(popup_bc192fbd18a00e88dd9c744167f91916)
         ;
 
         
     
     
-                marker_f4b1cbb77e73c4471858c7cd2db3235c.setIcon(icon_d3f1695a89a39b0dfa26789aa160cd26);
+                marker_170e87b70be6fc08d73cff1d7be32c88.setIcon(icon_5874fa690b9206a601b94037a885dd66);
             
     
-            var marker_226232d8d2cc56a02e0ba274a1bef8d4 = L.marker(
+            var marker_5b25617648c6055c031cb8ec0eb562e1 = L.marker(
                 [36.41922663, 30.45641913],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_747b8367cf618b77feae7ae396102db6 = L.AwesomeMarkers.icon(
+            var icon_b28bcbb074acc7fb85db6271a9053f2a = L.AwesomeMarkers.icon(
                 {
   "markerColor": "green",
   "iconColor": "white",
@@ -385,34 +377,34 @@
             );
         
     
-        var popup_43da7a7b1ca739ccde0b839143584b2f = L.popup({
+        var popup_8b62cf66dafd805c229006409efed800 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_990f6e3908df4b4737fcb45775e6fcf6 = $(`<div id="html_990f6e3908df4b4737fcb45775e6fcf6" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1390853</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 15:03:42                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#27ae60;">🟢 Bekleyebilir</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ag iletken de Ağaç dalı var.alınması</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41922663,30.45641913" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.419227, 30.456419</span>                         </div>                     </div>                     </div>`)[0];
-                popup_43da7a7b1ca739ccde0b839143584b2f.setContent(html_990f6e3908df4b4737fcb45775e6fcf6);
+                var html_db59cf6dcf09490b5fa1f8d450c6081c = $(`<div id="html_db59cf6dcf09490b5fa1f8d450c6081c" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1390853</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 15:03:42                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#27ae60;">🟢 Bekleyebilir</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ag iletken de Ağaç dalı var.alınması</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41922663,30.45641913" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.419227, 30.456419</span>                         </div>                     </div>                     </div>`)[0];
+                popup_8b62cf66dafd805c229006409efed800.setContent(html_db59cf6dcf09490b5fa1f8d450c6081c);
             
         
 
-        marker_226232d8d2cc56a02e0ba274a1bef8d4.bindPopup(popup_43da7a7b1ca739ccde0b839143584b2f)
+        marker_5b25617648c6055c031cb8ec0eb562e1.bindPopup(popup_8b62cf66dafd805c229006409efed800)
         ;
 
         
     
     
-                marker_226232d8d2cc56a02e0ba274a1bef8d4.setIcon(icon_747b8367cf618b77feae7ae396102db6);
+                marker_5b25617648c6055c031cb8ec0eb562e1.setIcon(icon_b28bcbb074acc7fb85db6271a9053f2a);
             
     
-            var marker_7ae0f484f6c89dc00e6fb717d18146b4 = L.marker(
+            var marker_6a1e882d526e92b3f2d989d1aae06048 = L.marker(
                 [36.42512147, 30.4450687],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_b988648114d8fddc8e93a34dc542032a = L.AwesomeMarkers.icon(
+            var icon_491304d73c35859c9751ffed5f198250 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -423,34 +415,34 @@
             );
         
     
-        var popup_3819d38cf36d7a33345067f37b3759e5 = L.popup({
+        var popup_d8822bf40864498388c47701cb8a381d = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_d82cb3169517437e70f913d4b739f088 = $(`<div id="html_d82cb3169517437e70f913d4b739f088" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1640293</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:15:46                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42512147,30.4450687" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.425121, 30.445069</span>                         </div>                     </div>                     </div>`)[0];
-                popup_3819d38cf36d7a33345067f37b3759e5.setContent(html_d82cb3169517437e70f913d4b739f088);
+                var html_d4bd4eb33b7df27254b5432a7af0c714 = $(`<div id="html_d4bd4eb33b7df27254b5432a7af0c714" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">1640293</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:15:46                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42512147,30.4450687" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.425121, 30.445069</span>                         </div>                     </div>                     </div>`)[0];
+                popup_d8822bf40864498388c47701cb8a381d.setContent(html_d4bd4eb33b7df27254b5432a7af0c714);
             
         
 
-        marker_7ae0f484f6c89dc00e6fb717d18146b4.bindPopup(popup_3819d38cf36d7a33345067f37b3759e5)
+        marker_6a1e882d526e92b3f2d989d1aae06048.bindPopup(popup_d8822bf40864498388c47701cb8a381d)
         ;
 
         
     
     
-                marker_7ae0f484f6c89dc00e6fb717d18146b4.setIcon(icon_b988648114d8fddc8e93a34dc542032a);
+                marker_6a1e882d526e92b3f2d989d1aae06048.setIcon(icon_491304d73c35859c9751ffed5f198250);
             
     
-            var marker_39edb4c0c3b62dbd5d506cff737e6291 = L.marker(
+            var marker_1ef5e79b1f017b9a3c51bc81c4f9864e = L.marker(
                 [36.43680192, 30.43197545],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_14cfb4f24a098e1b9ad16fca0b8fc4ed = L.AwesomeMarkers.icon(
+            var icon_9d04c1a0daa340fbd043d6c47e009611 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -461,34 +453,34 @@
             );
         
     
-        var popup_06b38a70316482dc0fd23d674c7282c4 = L.popup({
+        var popup_7198e6802f3560ea8495a86288183533 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_5aa30186498ea81be3edfeba65c5ca23 = $(`<div id="html_5aa30186498ea81be3edfeba65c5ca23" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">166360</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:14:07                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sağ alt ayıcı ile iltkenin bağlantı yerinde ısınma... Ayırıcının değiştirilmesi gerekiyor. Fazın biri ayırıcıyı görmeden geçiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43680192,30.43197545" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.436802, 30.431975</span>                         </div>                     </div>                     </div>`)[0];
-                popup_06b38a70316482dc0fd23d674c7282c4.setContent(html_5aa30186498ea81be3edfeba65c5ca23);
+                var html_dff66b18ab611c77ef37cd03b677f117 = $(`<div id="html_dff66b18ab611c77ef37cd03b677f117" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">166360</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:14:07                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sağ alt ayıcı ile iltkenin bağlantı yerinde ısınma... Ayırıcının değiştirilmesi gerekiyor. Fazın biri ayırıcıyı görmeden geçiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43680192,30.43197545" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.436802, 30.431975</span>                         </div>                     </div>                     </div>`)[0];
+                popup_7198e6802f3560ea8495a86288183533.setContent(html_dff66b18ab611c77ef37cd03b677f117);
             
         
 
-        marker_39edb4c0c3b62dbd5d506cff737e6291.bindPopup(popup_06b38a70316482dc0fd23d674c7282c4)
+        marker_1ef5e79b1f017b9a3c51bc81c4f9864e.bindPopup(popup_7198e6802f3560ea8495a86288183533)
         ;
 
         
     
     
-                marker_39edb4c0c3b62dbd5d506cff737e6291.setIcon(icon_14cfb4f24a098e1b9ad16fca0b8fc4ed);
+                marker_1ef5e79b1f017b9a3c51bc81c4f9864e.setIcon(icon_9d04c1a0daa340fbd043d6c47e009611);
             
     
-            var marker_198750abefafd27e3421415f45260856 = L.marker(
+            var marker_475775f424040913efbc7d7f7c799232 = L.marker(
                 [36.42107268, 30.4540062],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_fa3e6eac14623083f850cc693c347667 = L.AwesomeMarkers.icon(
+            var icon_b0b5076a24573dc45f6c609a55f7c60a = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -499,34 +491,34 @@
             );
         
     
-        var popup_e1e324e3f626ba9d8d8aae9ff49e76bc = L.popup({
+        var popup_5db5d58c3a7867f83e39052d377cc8b2 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_8ee2d6bc307daf555d86cf26f13fd4e0 = $(`<div id="html_8ee2d6bc307daf555d86cf26f13fd4e0" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">172895</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:38:57                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sol faz sıkıbağ kopuk</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42107268,30.4540062" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.421073, 30.454006</span>                         </div>                     </div>                     </div>`)[0];
-                popup_e1e324e3f626ba9d8d8aae9ff49e76bc.setContent(html_8ee2d6bc307daf555d86cf26f13fd4e0);
+                var html_1b8cf4efe780394f402d54f779c2dd59 = $(`<div id="html_1b8cf4efe780394f402d54f779c2dd59" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">172895</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:38:57                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sol faz sıkıbağ kopuk</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42107268,30.4540062" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.421073, 30.454006</span>                         </div>                     </div>                     </div>`)[0];
+                popup_5db5d58c3a7867f83e39052d377cc8b2.setContent(html_1b8cf4efe780394f402d54f779c2dd59);
             
         
 
-        marker_198750abefafd27e3421415f45260856.bindPopup(popup_e1e324e3f626ba9d8d8aae9ff49e76bc)
+        marker_475775f424040913efbc7d7f7c799232.bindPopup(popup_5db5d58c3a7867f83e39052d377cc8b2)
         ;
 
         
     
     
-                marker_198750abefafd27e3421415f45260856.setIcon(icon_fa3e6eac14623083f850cc693c347667);
+                marker_475775f424040913efbc7d7f7c799232.setIcon(icon_b0b5076a24573dc45f6c609a55f7c60a);
             
     
-            var marker_e3527f43e2f3dc7789029458c0948807 = L.marker(
+            var marker_93037ff1d82db59ba464f52ad7a8a70f = L.marker(
                 [36.43601218, 30.43266737],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_bbcf0c78c8ea3f6b0df4f638fdd20d63 = L.AwesomeMarkers.icon(
+            var icon_00a04dacc631529faf5429348ee4f8a6 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -537,34 +529,34 @@
             );
         
     
-        var popup_ef294ad0eff1da7c842df18b8b248f4f = L.popup({
+        var popup_71c7679411884be92ff02c3bc1affeda = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_56d8517111ab5c17cadc978e6320e605 = $(`<div id="html_56d8517111ab5c17cadc978e6320e605" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">195073</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:15:31                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43601218,30.43266737" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.436012, 30.432667</span>                         </div>                     </div>                     </div>`)[0];
-                popup_ef294ad0eff1da7c842df18b8b248f4f.setContent(html_56d8517111ab5c17cadc978e6320e605);
+                var html_b275d9421213190adcbcfaa51d3f6a6b = $(`<div id="html_b275d9421213190adcbcfaa51d3f6a6b" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">195073</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:15:31                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43601218,30.43266737" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.436012, 30.432667</span>                         </div>                     </div>                     </div>`)[0];
+                popup_71c7679411884be92ff02c3bc1affeda.setContent(html_b275d9421213190adcbcfaa51d3f6a6b);
             
         
 
-        marker_e3527f43e2f3dc7789029458c0948807.bindPopup(popup_ef294ad0eff1da7c842df18b8b248f4f)
+        marker_93037ff1d82db59ba464f52ad7a8a70f.bindPopup(popup_71c7679411884be92ff02c3bc1affeda)
         ;
 
         
     
     
-                marker_e3527f43e2f3dc7789029458c0948807.setIcon(icon_bbcf0c78c8ea3f6b0df4f638fdd20d63);
+                marker_93037ff1d82db59ba464f52ad7a8a70f.setIcon(icon_00a04dacc631529faf5429348ee4f8a6);
             
     
-            var marker_ed50bcfe90825ec211fa57ce3c7a3332 = L.marker(
+            var marker_457d70296eb3477f63d0625930488cf6 = L.marker(
                 [36.43532563, 30.4333658],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_9f5d227d9de60c0db32ab2fdf3955da1 = L.AwesomeMarkers.icon(
+            var icon_46635828211ce6149d8b518ff1a02dd9 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -575,34 +567,34 @@
             );
         
     
-        var popup_a384b1395f21195095197adc4b9652c8 = L.popup({
+        var popup_91defd2e0735ac814eaa32aae825cfca = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_63b29a2749c754d6842608094b451ece = $(`<div id="html_63b29a2749c754d6842608094b451ece" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">195074</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:16:48                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43532563,30.4333658" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.435326, 30.433366</span>                         </div>                     </div>                     </div>`)[0];
-                popup_a384b1395f21195095197adc4b9652c8.setContent(html_63b29a2749c754d6842608094b451ece);
+                var html_5249049ce8264c451357b8a1d00d9e1c = $(`<div id="html_5249049ce8264c451357b8a1d00d9e1c" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">195074</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:16:48                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43532563,30.4333658" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.435326, 30.433366</span>                         </div>                     </div>                     </div>`)[0];
+                popup_91defd2e0735ac814eaa32aae825cfca.setContent(html_5249049ce8264c451357b8a1d00d9e1c);
             
         
 
-        marker_ed50bcfe90825ec211fa57ce3c7a3332.bindPopup(popup_a384b1395f21195095197adc4b9652c8)
+        marker_457d70296eb3477f63d0625930488cf6.bindPopup(popup_91defd2e0735ac814eaa32aae825cfca)
         ;
 
         
     
     
-                marker_ed50bcfe90825ec211fa57ce3c7a3332.setIcon(icon_9f5d227d9de60c0db32ab2fdf3955da1);
+                marker_457d70296eb3477f63d0625930488cf6.setIcon(icon_46635828211ce6149d8b518ff1a02dd9);
             
     
-            var marker_f6a518e1fee355c31db00eb35e9939f0 = L.marker(
+            var marker_561a19f58178386dd2811669ab5a53c0 = L.marker(
                 [36.4188105, 30.45656717],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_7085dd917a7f6d92e973613f58c9e7d5 = L.AwesomeMarkers.icon(
+            var icon_161d4cc8abef3df5fa7a5e1a3115641d = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -613,34 +605,34 @@
             );
         
     
-        var popup_eab82391c1c783b55672248c555ba0e4 = L.popup({
+        var popup_3c7010a5fde6bcda86b30edef65160bd = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_0559d0caa883871d7e87f09777caaebe = $(`<div id="html_0559d0caa883871d7e87f09777caaebe" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">195075</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:50:25                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4188105,30.45656717" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.418810, 30.456567</span>                         </div>                     </div>                     </div>`)[0];
-                popup_eab82391c1c783b55672248c555ba0e4.setContent(html_0559d0caa883871d7e87f09777caaebe);
+                var html_022cf25ccfdaedde5e9bc2d6bdc1d702 = $(`<div id="html_022cf25ccfdaedde5e9bc2d6bdc1d702" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">195075</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:50:25                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4188105,30.45656717" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.418810, 30.456567</span>                         </div>                     </div>                     </div>`)[0];
+                popup_3c7010a5fde6bcda86b30edef65160bd.setContent(html_022cf25ccfdaedde5e9bc2d6bdc1d702);
             
         
 
-        marker_f6a518e1fee355c31db00eb35e9939f0.bindPopup(popup_eab82391c1c783b55672248c555ba0e4)
+        marker_561a19f58178386dd2811669ab5a53c0.bindPopup(popup_3c7010a5fde6bcda86b30edef65160bd)
         ;
 
         
     
     
-                marker_f6a518e1fee355c31db00eb35e9939f0.setIcon(icon_7085dd917a7f6d92e973613f58c9e7d5);
+                marker_561a19f58178386dd2811669ab5a53c0.setIcon(icon_161d4cc8abef3df5fa7a5e1a3115641d);
             
     
-            var marker_956f7271c2f74b4ede351427f36d15e0 = L.marker(
+            var marker_38b47b2cfd2ad14190415278f9f3863b = L.marker(
                 [36.42192332, 30.45304957],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_7466f573340e3ce2566e23c48eedb2cc = L.AwesomeMarkers.icon(
+            var icon_e2383384c6d747b7275f0dc61c7ad6b9 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -651,34 +643,34 @@
             );
         
     
-        var popup_04d04daf66b03bf616a66097178facc5 = L.popup({
+        var popup_769f8eb3a46274c9b0648cc254e0688e = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_a85e8595b30a773a01c326b14a3d8cb3 = $(`<div id="html_a85e8595b30a773a01c326b14a3d8cb3" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">201595</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:37:41                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">orta faz sıkıvağ kopuk</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42192332,30.45304957" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.421923, 30.453050</span>                         </div>                     </div>                     </div>`)[0];
-                popup_04d04daf66b03bf616a66097178facc5.setContent(html_a85e8595b30a773a01c326b14a3d8cb3);
+                var html_8f639aaeea09206a3d31f1d928922c18 = $(`<div id="html_8f639aaeea09206a3d31f1d928922c18" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">201595</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:37:41                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">orta faz sıkıvağ kopuk</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42192332,30.45304957" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.421923, 30.453050</span>                         </div>                     </div>                     </div>`)[0];
+                popup_769f8eb3a46274c9b0648cc254e0688e.setContent(html_8f639aaeea09206a3d31f1d928922c18);
             
         
 
-        marker_956f7271c2f74b4ede351427f36d15e0.bindPopup(popup_04d04daf66b03bf616a66097178facc5)
+        marker_38b47b2cfd2ad14190415278f9f3863b.bindPopup(popup_769f8eb3a46274c9b0648cc254e0688e)
         ;
 
         
     
     
-                marker_956f7271c2f74b4ede351427f36d15e0.setIcon(icon_7466f573340e3ce2566e23c48eedb2cc);
+                marker_38b47b2cfd2ad14190415278f9f3863b.setIcon(icon_e2383384c6d747b7275f0dc61c7ad6b9);
             
     
-            var marker_ee4cdbe1ec748a9eccf0005fa76eead6 = L.marker(
+            var marker_36c8c76ab9b3840ce4bd0e18c6392e88 = L.marker(
                 [36.42263435, 30.45222025],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_9a31b1cd8bcdf03baaf9f31cfeb3dd94 = L.AwesomeMarkers.icon(
+            var icon_89860853a5ca417d05572fc477159be1 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "green",
   "iconColor": "white",
@@ -689,34 +681,34 @@
             );
         
     
-        var popup_531a3e7ab8e8ab24f527dcbcd6b1ecc4 = L.popup({
+        var popup_c9c07f3035e8c6652e59b28805ce0b69 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_fdc5f91630c7e3f9e5a68b2ab886e033 = $(`<div id="html_fdc5f91630c7e3f9e5a68b2ab886e033" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">216169</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:36:23                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#27ae60;">🟢 Bekleyebilir</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Durdurucu Baka izolatör takımı iptaledilmiş.Orta faz</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42263435,30.45222025" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.422634, 30.452220</span>                         </div>                     </div>                     </div>`)[0];
-                popup_531a3e7ab8e8ab24f527dcbcd6b1ecc4.setContent(html_fdc5f91630c7e3f9e5a68b2ab886e033);
+                var html_5e6738e83f8e391100f1422408790cd3 = $(`<div id="html_5e6738e83f8e391100f1422408790cd3" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">216169</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:36:23                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#27ae60;">🟢 Bekleyebilir</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Durdurucu Baka izolatör takımı iptaledilmiş.Orta faz</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42263435,30.45222025" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.422634, 30.452220</span>                         </div>                     </div>                     </div>`)[0];
+                popup_c9c07f3035e8c6652e59b28805ce0b69.setContent(html_5e6738e83f8e391100f1422408790cd3);
             
         
 
-        marker_ee4cdbe1ec748a9eccf0005fa76eead6.bindPopup(popup_531a3e7ab8e8ab24f527dcbcd6b1ecc4)
+        marker_36c8c76ab9b3840ce4bd0e18c6392e88.bindPopup(popup_c9c07f3035e8c6652e59b28805ce0b69)
         ;
 
         
     
     
-                marker_ee4cdbe1ec748a9eccf0005fa76eead6.setIcon(icon_9a31b1cd8bcdf03baaf9f31cfeb3dd94);
+                marker_36c8c76ab9b3840ce4bd0e18c6392e88.setIcon(icon_89860853a5ca417d05572fc477159be1);
             
     
-            var marker_d0784a285062fe1da78dc1a0fec9656e = L.marker(
+            var marker_40f102c4f31f728925b65efe695b5690 = L.marker(
                 [36.41979993, 30.4554233],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_96846633d27dc5488ff52ee70a7d1baf = L.AwesomeMarkers.icon(
+            var icon_72abb0db4cd24a7f5642c00f1b368877 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -727,34 +719,34 @@
             );
         
     
-        var popup_ccde5e5f6d11ed6afef9dea0b9a299cc = L.popup({
+        var popup_685a9d6b10567991869c8fa1fe27d39a = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_a1b3737caccd5129d364947c46997930 = $(`<div id="html_a1b3737caccd5129d364947c46997930" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">216175</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(2 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:48:00                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                                                          <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 2:</b>                                     <div>                                         <span style="color:#3498db;">🔵 Normal</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sol faz og izolatör kırık</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41979993,30.4554233" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.419800, 30.455423</span>                         </div>                     </div>                     </div>`)[0];
-                popup_ccde5e5f6d11ed6afef9dea0b9a299cc.setContent(html_a1b3737caccd5129d364947c46997930);
+                var html_1bfc9a3b07bc6ea2996357c2ecbe614d = $(`<div id="html_1bfc9a3b07bc6ea2996357c2ecbe614d" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">216175</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(2 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:48:00                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. Emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                                                          <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 2:</b>                                     <div>                                         <span style="color:#3498db;">🔵 Normal</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sol faz og izolatör kırık</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.41979993,30.4554233" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.419800, 30.455423</span>                         </div>                     </div>                     </div>`)[0];
+                popup_685a9d6b10567991869c8fa1fe27d39a.setContent(html_1bfc9a3b07bc6ea2996357c2ecbe614d);
             
         
 
-        marker_d0784a285062fe1da78dc1a0fec9656e.bindPopup(popup_ccde5e5f6d11ed6afef9dea0b9a299cc)
+        marker_40f102c4f31f728925b65efe695b5690.bindPopup(popup_685a9d6b10567991869c8fa1fe27d39a)
         ;
 
         
     
     
-                marker_d0784a285062fe1da78dc1a0fec9656e.setIcon(icon_96846633d27dc5488ff52ee70a7d1baf);
+                marker_40f102c4f31f728925b65efe695b5690.setIcon(icon_72abb0db4cd24a7f5642c00f1b368877);
             
     
-            var marker_d089b60a3201aa5b9fb858c48260aa48 = L.marker(
+            var marker_578801b50017bc8af01ff587fe46069b = L.marker(
                 [36.43675828, 30.43196402],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_a198a6d110c17160f5127b909b5adb5a = L.AwesomeMarkers.icon(
+            var icon_166c7fbcca2d2e0e21c1331ae22ae58c = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -765,34 +757,34 @@
             );
         
     
-        var popup_5583406de0ef985277098aeb700607bc = L.popup({
+        var popup_bfd33cd8bc0bbfaa0306335ea5303d56 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_6fe8e01373b2321985213693f1e595aa = $(`<div id="html_6fe8e01373b2321985213693f1e595aa" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">224644</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:11:11                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#3498db;">🔵 Normal</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">K izolatör takımı direğe bağlantısının düzeltilmesi. iletken ile bağlanmış.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43675828,30.43196402" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.436758, 30.431964</span>                         </div>                     </div>                     </div>`)[0];
-                popup_5583406de0ef985277098aeb700607bc.setContent(html_6fe8e01373b2321985213693f1e595aa);
+                var html_9bee3cadad51ef945b931bbc9af05751 = $(`<div id="html_9bee3cadad51ef945b931bbc9af05751" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">224644</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 11:11:11                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#3498db;">🔵 Normal</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">K izolatör takımı direğe bağlantısının düzeltilmesi. iletken ile bağlanmış.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.43675828,30.43196402" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.436758, 30.431964</span>                         </div>                     </div>                     </div>`)[0];
+                popup_bfd33cd8bc0bbfaa0306335ea5303d56.setContent(html_9bee3cadad51ef945b931bbc9af05751);
             
         
 
-        marker_d089b60a3201aa5b9fb858c48260aa48.bindPopup(popup_5583406de0ef985277098aeb700607bc)
+        marker_578801b50017bc8af01ff587fe46069b.bindPopup(popup_bfd33cd8bc0bbfaa0306335ea5303d56)
         ;
 
         
     
     
-                marker_d089b60a3201aa5b9fb858c48260aa48.setIcon(icon_a198a6d110c17160f5127b909b5adb5a);
+                marker_578801b50017bc8af01ff587fe46069b.setIcon(icon_166c7fbcca2d2e0e21c1331ae22ae58c);
             
     
-            var marker_b4ec383a1e380bc18034ac5e96b6a8a2 = L.marker(
+            var marker_0d5a08592ff88afe0d73c839f9ba164b = L.marker(
                 [36.4245988, 30.44695808],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_7445083a1203ccc0026b1261ab13d926 = L.AwesomeMarkers.icon(
+            var icon_ea12f608511ca72b97bab96c87319e66 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -803,34 +795,34 @@
             );
         
     
-        var popup_44aad28f2ee898197b46b4061ff5eaf3 = L.popup({
+        var popup_7cf10a0d78649d812ca4efc1f994ee9d = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_3b17e4e6b9507475f14d82e9db461222 = $(`<div id="html_3b17e4e6b9507475f14d82e9db461222" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">230509</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(2 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:20:50                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                                                          <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 2:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4245988,30.44695808" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.424599, 30.446958</span>                         </div>                     </div>                     </div>`)[0];
-                popup_44aad28f2ee898197b46b4061ff5eaf3.setContent(html_3b17e4e6b9507475f14d82e9db461222);
+                var html_1c685c1aa049ce282c3db26145badf96 = $(`<div id="html_1c685c1aa049ce282c3db26145badf96" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">230509</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(2 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:20:50                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                                                          <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 2:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gerekiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4245988,30.44695808" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.424599, 30.446958</span>                         </div>                     </div>                     </div>`)[0];
+                popup_7cf10a0d78649d812ca4efc1f994ee9d.setContent(html_1c685c1aa049ce282c3db26145badf96);
             
         
 
-        marker_b4ec383a1e380bc18034ac5e96b6a8a2.bindPopup(popup_44aad28f2ee898197b46b4061ff5eaf3)
+        marker_0d5a08592ff88afe0d73c839f9ba164b.bindPopup(popup_7cf10a0d78649d812ca4efc1f994ee9d)
         ;
 
         
     
     
-                marker_b4ec383a1e380bc18034ac5e96b6a8a2.setIcon(icon_7445083a1203ccc0026b1261ab13d926);
+                marker_0d5a08592ff88afe0d73c839f9ba164b.setIcon(icon_ea12f608511ca72b97bab96c87319e66);
             
     
-            var marker_bfb689a329b18a96ffb2ea331ff917bd = L.marker(
+            var marker_2bfde22b49f29ad7e62ab04681b3854b = L.marker(
                 [36.42713213, 30.43546195],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_1a41b07a675efcb419ed98e1de67ccb5 = L.AwesomeMarkers.icon(
+            var icon_584416c5f51c2d72e48c1896a31d6dd9 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -841,34 +833,34 @@
             );
         
     
-        var popup_84e61999d5920f200052cd3412aee4f0 = L.popup({
+        var popup_a54272f9efd6d4801accbd47e9393c32 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_074a2c14ff60bf755bee688113a1ecb3 = $(`<div id="html_074a2c14ff60bf755bee688113a1ecb3" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">265368</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:40:16                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. hattın altındaki kavak ağacı</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42713213,30.43546195" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427132, 30.435462</span>                         </div>                     </div>                     </div>`)[0];
-                popup_84e61999d5920f200052cd3412aee4f0.setContent(html_074a2c14ff60bf755bee688113a1ecb3);
+                var html_b7025f7fe520074e640a5afaa3c789c5 = $(`<div id="html_b7025f7fe520074e640a5afaa3c789c5" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">265368</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:40:16                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. hattın altındaki kavak ağacı</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42713213,30.43546195" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427132, 30.435462</span>                         </div>                     </div>                     </div>`)[0];
+                popup_a54272f9efd6d4801accbd47e9393c32.setContent(html_b7025f7fe520074e640a5afaa3c789c5);
             
         
 
-        marker_bfb689a329b18a96ffb2ea331ff917bd.bindPopup(popup_84e61999d5920f200052cd3412aee4f0)
+        marker_2bfde22b49f29ad7e62ab04681b3854b.bindPopup(popup_a54272f9efd6d4801accbd47e9393c32)
         ;
 
         
     
     
-                marker_bfb689a329b18a96ffb2ea331ff917bd.setIcon(icon_1a41b07a675efcb419ed98e1de67ccb5);
+                marker_2bfde22b49f29ad7e62ab04681b3854b.setIcon(icon_584416c5f51c2d72e48c1896a31d6dd9);
             
     
-            var marker_4184f5fc42504fbbb5c0d25ae51225b2 = L.marker(
+            var marker_8733d3438377fba7d5970cc647210319 = L.marker(
                 [36.42720187, 30.43598652],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_f11baeb6c926054711a557bbe5dddea9 = L.AwesomeMarkers.icon(
+            var icon_721454ccbb758a6e74836d099aad7999 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -879,34 +871,34 @@
             );
         
     
-        var popup_bf095ca45efe97cb5fcaa1d7b90ea3b0 = L.popup({
+        var popup_4d4fecb30b456ad2d31c5773741256c6 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_786947727a9317d22366140038055e15 = $(`<div id="html_786947727a9317d22366140038055e15" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">265369</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:42:38                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. dut ağacı</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42720187,30.43598652" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427202, 30.435987</span>                         </div>                     </div>                     </div>`)[0];
-                popup_bf095ca45efe97cb5fcaa1d7b90ea3b0.setContent(html_786947727a9317d22366140038055e15);
+                var html_867f8773ca706d15d5592becabdbf769 = $(`<div id="html_867f8773ca706d15d5592becabdbf769" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">265369</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:42:38                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. dut ağacı</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42720187,30.43598652" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427202, 30.435987</span>                         </div>                     </div>                     </div>`)[0];
+                popup_4d4fecb30b456ad2d31c5773741256c6.setContent(html_867f8773ca706d15d5592becabdbf769);
             
         
 
-        marker_4184f5fc42504fbbb5c0d25ae51225b2.bindPopup(popup_bf095ca45efe97cb5fcaa1d7b90ea3b0)
+        marker_8733d3438377fba7d5970cc647210319.bindPopup(popup_4d4fecb30b456ad2d31c5773741256c6)
         ;
 
         
     
     
-                marker_4184f5fc42504fbbb5c0d25ae51225b2.setIcon(icon_f11baeb6c926054711a557bbe5dddea9);
+                marker_8733d3438377fba7d5970cc647210319.setIcon(icon_721454ccbb758a6e74836d099aad7999);
             
     
-            var marker_de53ada30df3156f157464fe3e70f010 = L.marker(
+            var marker_ff0aa9ad41215c61693b75736ab75d92 = L.marker(
                 [36.42864802, 30.43415103],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_38827500604a4af929aca8efb9bfad0e = L.AwesomeMarkers.icon(
+            var icon_63d1dacb8dc48c7528810e2bba47f718 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -917,34 +909,34 @@
             );
         
     
-        var popup_89628a81bd345ee611c70ac3c65c5f21 = L.popup({
+        var popup_2d32a429fc3f92edefb6ca3f966a8b67 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_be32837ca74376df983f1cd80a9932f8 = $(`<div id="html_be32837ca74376df983f1cd80a9932f8" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">265375</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:31:40                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42864802,30.43415103" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.428648, 30.434151</span>                         </div>                     </div>                     </div>`)[0];
-                popup_89628a81bd345ee611c70ac3c65c5f21.setContent(html_be32837ca74376df983f1cd80a9932f8);
+                var html_2b0d7db56244cddebfcb82d54a476d28 = $(`<div id="html_2b0d7db56244cddebfcb82d54a476d28" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">265375</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:31:40                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42864802,30.43415103" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.428648, 30.434151</span>                         </div>                     </div>                     </div>`)[0];
+                popup_2d32a429fc3f92edefb6ca3f966a8b67.setContent(html_2b0d7db56244cddebfcb82d54a476d28);
             
         
 
-        marker_de53ada30df3156f157464fe3e70f010.bindPopup(popup_89628a81bd345ee611c70ac3c65c5f21)
+        marker_ff0aa9ad41215c61693b75736ab75d92.bindPopup(popup_2d32a429fc3f92edefb6ca3f966a8b67)
         ;
 
         
     
     
-                marker_de53ada30df3156f157464fe3e70f010.setIcon(icon_38827500604a4af929aca8efb9bfad0e);
+                marker_ff0aa9ad41215c61693b75736ab75d92.setIcon(icon_63d1dacb8dc48c7528810e2bba47f718);
             
     
-            var marker_cff37c26a0c1c03fcb0fcc19cc551d58 = L.marker(
+            var marker_b466cb9288504dcf59de3fd72d63fce0 = L.marker(
                 [36.42965707, 30.43408203],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_e83dac2e00cac539d2ef46c117f548f2 = L.AwesomeMarkers.icon(
+            var icon_75842f8009098c801d9ef1eb6e8e9190 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -955,34 +947,34 @@
             );
         
     
-        var popup_28410fe5d12e77d7f3fc45c3d8312c84 = L.popup({
+        var popup_200ad344770c221ca2ad75b983afa516 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_9e67b9fc890e2a5dc8652f952c157ae4 = $(`<div id="html_9e67b9fc890e2a5dc8652f952c157ae4" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">277257</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:24:43                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42965707,30.43408203" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.429657, 30.434082</span>                         </div>                     </div>                     </div>`)[0];
-                popup_28410fe5d12e77d7f3fc45c3d8312c84.setContent(html_9e67b9fc890e2a5dc8652f952c157ae4);
+                var html_6375aea8714539bc4ae08997e39a1a4c = $(`<div id="html_6375aea8714539bc4ae08997e39a1a4c" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">277257</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:24:43                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42965707,30.43408203" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.429657, 30.434082</span>                         </div>                     </div>                     </div>`)[0];
+                popup_200ad344770c221ca2ad75b983afa516.setContent(html_6375aea8714539bc4ae08997e39a1a4c);
             
         
 
-        marker_cff37c26a0c1c03fcb0fcc19cc551d58.bindPopup(popup_28410fe5d12e77d7f3fc45c3d8312c84)
+        marker_b466cb9288504dcf59de3fd72d63fce0.bindPopup(popup_200ad344770c221ca2ad75b983afa516)
         ;
 
         
     
     
-                marker_cff37c26a0c1c03fcb0fcc19cc551d58.setIcon(icon_e83dac2e00cac539d2ef46c117f548f2);
+                marker_b466cb9288504dcf59de3fd72d63fce0.setIcon(icon_75842f8009098c801d9ef1eb6e8e9190);
             
     
-            var marker_2dc99d0eb7418ca3dcdee9819d45d9ce = L.marker(
+            var marker_ccee2634a59eefd21d38cd54c8e775ed = L.marker(
                 [36.426077, 30.43728048],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_4fd045ac336dc6afedcd1f0e5983bd3b = L.AwesomeMarkers.icon(
+            var icon_cd569983f6cf7119216491d7d778f426 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -993,34 +985,34 @@
             );
         
     
-        var popup_1e635ea799be6670e1b3c6ca56963fe7 = L.popup({
+        var popup_990f2cc06f68f14861035ec92768cf1a = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_65f9d6fe5dfd390234bb5f0be2c205c9 = $(`<div id="html_65f9d6fe5dfd390234bb5f0be2c205c9" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">277262</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:48:29                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. hattın altındaki dut ve yaklaşan  çam dalları</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.426077,30.43728048" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.426077, 30.437280</span>                         </div>                     </div>                     </div>`)[0];
-                popup_1e635ea799be6670e1b3c6ca56963fe7.setContent(html_65f9d6fe5dfd390234bb5f0be2c205c9);
+                var html_e3afd927d61f129434173fdc9787555a = $(`<div id="html_e3afd927d61f129434173fdc9787555a" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">277262</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:48:29                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. hattın altındaki dut ve yaklaşan  çam dalları</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.426077,30.43728048" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.426077, 30.437280</span>                         </div>                     </div>                     </div>`)[0];
+                popup_990f2cc06f68f14861035ec92768cf1a.setContent(html_e3afd927d61f129434173fdc9787555a);
             
         
 
-        marker_2dc99d0eb7418ca3dcdee9819d45d9ce.bindPopup(popup_1e635ea799be6670e1b3c6ca56963fe7)
+        marker_ccee2634a59eefd21d38cd54c8e775ed.bindPopup(popup_990f2cc06f68f14861035ec92768cf1a)
         ;
 
         
     
     
-                marker_2dc99d0eb7418ca3dcdee9819d45d9ce.setIcon(icon_4fd045ac336dc6afedcd1f0e5983bd3b);
+                marker_ccee2634a59eefd21d38cd54c8e775ed.setIcon(icon_cd569983f6cf7119216491d7d778f426);
             
     
-            var marker_afad90d45336169795c4466840907c10 = L.marker(
+            var marker_c33e3cc167e2a87268a25a0239db55b8 = L.marker(
                 [36.42786037, 30.4340861],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_a607a36db3c0b6e788491cc3dc7c8aab = L.AwesomeMarkers.icon(
+            var icon_a8159d5a2b8767925520d489c454a421 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -1031,34 +1023,34 @@
             );
         
     
-        var popup_e2243f95fd10fa22c3e27d0470cbbc00 = L.popup({
+        var popup_e635246be23b9ac767ed55cb36602b6e = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_fc3db760c0725f45593b7dd3419736b1 = $(`<div id="html_fc3db760c0725f45593b7dd3419736b1" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">289289</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:35:09                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ark nedeniyle izolatör kırılmış ve sıkıbağ kopmuş.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42786037,30.4340861" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427860, 30.434086</span>                         </div>                     </div>                     </div>`)[0];
-                popup_e2243f95fd10fa22c3e27d0470cbbc00.setContent(html_fc3db760c0725f45593b7dd3419736b1);
+                var html_53b42859acfd93d7abfcd5f13162c77e = $(`<div id="html_53b42859acfd93d7abfcd5f13162c77e" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">289289</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:35:09                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#e74c3c;">🔴 Çok Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ark nedeniyle izolatör kırılmış ve sıkıbağ kopmuş.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42786037,30.4340861" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427860, 30.434086</span>                         </div>                     </div>                     </div>`)[0];
+                popup_e635246be23b9ac767ed55cb36602b6e.setContent(html_53b42859acfd93d7abfcd5f13162c77e);
             
         
 
-        marker_afad90d45336169795c4466840907c10.bindPopup(popup_e2243f95fd10fa22c3e27d0470cbbc00)
+        marker_c33e3cc167e2a87268a25a0239db55b8.bindPopup(popup_e635246be23b9ac767ed55cb36602b6e)
         ;
 
         
     
     
-                marker_afad90d45336169795c4466840907c10.setIcon(icon_a607a36db3c0b6e788491cc3dc7c8aab);
+                marker_c33e3cc167e2a87268a25a0239db55b8.setIcon(icon_a8159d5a2b8767925520d489c454a421);
             
     
-            var marker_fcf80d6506064d17181666c3ef007c99 = L.marker(
+            var marker_9030650d085cfddf108f57deb8ad2f06 = L.marker(
                 [36.42619048, 30.4368648],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_969853c7e2cf89a29866ff99fb54523e = L.AwesomeMarkers.icon(
+            var icon_055478349bded734429c5ef3ba619e5b = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -1069,34 +1061,34 @@
             );
         
     
-        var popup_13835204c390ae009e9926ef6c0c0432 = L.popup({
+        var popup_5a0977ffa956f61abef1cb009624a981 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_dfdf13dce513a02c8e39cc861941cba1 = $(`<div id="html_dfdf13dce513a02c8e39cc861941cba1" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">301043</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:47:35                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ag izoltör kırık. 1 adet. nötr</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42619048,30.4368648" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.426190, 30.436865</span>                         </div>                     </div>                     </div>`)[0];
-                popup_13835204c390ae009e9926ef6c0c0432.setContent(html_dfdf13dce513a02c8e39cc861941cba1);
+                var html_572f3ad79795f9440c294fc21f982076 = $(`<div id="html_572f3ad79795f9440c294fc21f982076" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">301043</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:47:35                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ag izoltör kırık. 1 adet. nötr</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42619048,30.4368648" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.426190, 30.436865</span>                         </div>                     </div>                     </div>`)[0];
+                popup_5a0977ffa956f61abef1cb009624a981.setContent(html_572f3ad79795f9440c294fc21f982076);
             
         
 
-        marker_fcf80d6506064d17181666c3ef007c99.bindPopup(popup_13835204c390ae009e9926ef6c0c0432)
+        marker_9030650d085cfddf108f57deb8ad2f06.bindPopup(popup_5a0977ffa956f61abef1cb009624a981)
         ;
 
         
     
     
-                marker_fcf80d6506064d17181666c3ef007c99.setIcon(icon_969853c7e2cf89a29866ff99fb54523e);
+                marker_9030650d085cfddf108f57deb8ad2f06.setIcon(icon_055478349bded734429c5ef3ba619e5b);
             
     
-            var marker_285321c3a8d25f63e1149b9ad6120180 = L.marker(
+            var marker_0e7d735b10ddfc1e364ea6fec55d4478 = L.marker(
                 [36.42508073, 30.44163333],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_16dfcdc2ae2db6eef608656ddabc23dc = L.AwesomeMarkers.icon(
+            var icon_8c9bfecf846eade8c3597c469feac42a = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -1107,34 +1099,34 @@
             );
         
     
-        var popup_9674debdd69ef0146b43be99476ba392 = L.popup({
+        var popup_00c77f3cffe95b3fb26b8b76731afc58 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_3a54d14f2385cf0a623040e9f8c80d94 = $(`<div id="html_3a54d14f2385cf0a623040e9f8c80d94" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">309365</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:03:46                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#3498db;">🔵 Normal</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sıkıbağ kopuk orta faz</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42508073,30.44163333" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.425081, 30.441633</span>                         </div>                     </div>                     </div>`)[0];
-                popup_9674debdd69ef0146b43be99476ba392.setContent(html_3a54d14f2385cf0a623040e9f8c80d94);
+                var html_95e8e6e129dfab4b248d450e624d33a5 = $(`<div id="html_95e8e6e129dfab4b248d450e624d33a5" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">309365</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:03:46                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#3498db;">🔵 Normal</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">sıkıbağ kopuk orta faz</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42508073,30.44163333" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.425081, 30.441633</span>                         </div>                     </div>                     </div>`)[0];
+                popup_00c77f3cffe95b3fb26b8b76731afc58.setContent(html_95e8e6e129dfab4b248d450e624d33a5);
             
         
 
-        marker_285321c3a8d25f63e1149b9ad6120180.bindPopup(popup_9674debdd69ef0146b43be99476ba392)
+        marker_0e7d735b10ddfc1e364ea6fec55d4478.bindPopup(popup_00c77f3cffe95b3fb26b8b76731afc58)
         ;
 
         
     
     
-                marker_285321c3a8d25f63e1149b9ad6120180.setIcon(icon_16dfcdc2ae2db6eef608656ddabc23dc);
+                marker_0e7d735b10ddfc1e364ea6fec55d4478.setIcon(icon_8c9bfecf846eade8c3597c469feac42a);
             
     
-            var marker_3bedc0fac40a0c687d4453d114d6b64e = L.marker(
+            var marker_93e22c3cc92191e3966e4820097b17b4 = L.marker(
                 [36.4250585, 30.44084287],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_da28827ddafcd97aec22c988b1ad47f2 = L.AwesomeMarkers.icon(
+            var icon_2f60986995c49f3a63560d5f229341ba = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -1145,34 +1137,34 @@
             );
         
     
-        var popup_20ccf2b68725f0e779dc448491086079 = L.popup({
+        var popup_07411a8c566d25c3a3ed8b319bd05ca8 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_b8c3bea546adbeb765931cd47000fda6 = $(`<div id="html_b8c3bea546adbeb765931cd47000fda6" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">313044</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:01:43                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. yaklaşan çam dalları</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4250585,30.44084287" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.425058, 30.440843</span>                         </div>                     </div>                     </div>`)[0];
-                popup_20ccf2b68725f0e779dc448491086079.setContent(html_b8c3bea546adbeb765931cd47000fda6);
+                var html_8579b8af75d2ec464cacaa8f43ef8cd9 = $(`<div id="html_8579b8af75d2ec464cacaa8f43ef8cd9" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">313044</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 14:01:43                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor. yaklaşan çam dalları</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4250585,30.44084287" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.425058, 30.440843</span>                         </div>                     </div>                     </div>`)[0];
+                popup_07411a8c566d25c3a3ed8b319bd05ca8.setContent(html_8579b8af75d2ec464cacaa8f43ef8cd9);
             
         
 
-        marker_3bedc0fac40a0c687d4453d114d6b64e.bindPopup(popup_20ccf2b68725f0e779dc448491086079)
+        marker_93e22c3cc92191e3966e4820097b17b4.bindPopup(popup_07411a8c566d25c3a3ed8b319bd05ca8)
         ;
 
         
     
     
-                marker_3bedc0fac40a0c687d4453d114d6b64e.setIcon(icon_da28827ddafcd97aec22c988b1ad47f2);
+                marker_93e22c3cc92191e3966e4820097b17b4.setIcon(icon_2f60986995c49f3a63560d5f229341ba);
             
     
-            var marker_2aef872f5fdb7deccde3e265f240d87f = L.marker(
+            var marker_5218abe9fc9c9321b6ee0c2602748545 = L.marker(
                 [36.42771205, 30.43441472],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_503332885dc7579d789f63bcdaf4728f = L.AwesomeMarkers.icon(
+            var icon_aa41123941cd93a196f2d189f14ed9ae = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -1183,34 +1175,34 @@
             );
         
     
-        var popup_2469dac61530b5183055a1195a1aeb2b = L.popup({
+        var popup_06ecc798c4a5b603c16553b4be510dbb = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_83d1ba4aceb3cf3a3929574a772beb79 = $(`<div id="html_83d1ba4aceb3cf3a3929574a772beb79" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">324941</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:35:59                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42771205,30.43441472" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427712, 30.434415</span>                         </div>                     </div>                     </div>`)[0];
-                popup_2469dac61530b5183055a1195a1aeb2b.setContent(html_83d1ba4aceb3cf3a3929574a772beb79);
+                var html_2357edfd2a19b87fcb85811ba04cb1e0 = $(`<div id="html_2357edfd2a19b87fcb85811ba04cb1e0" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">324941</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:35:59                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.42771205,30.43441472" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.427712, 30.434415</span>                         </div>                     </div>                     </div>`)[0];
+                popup_06ecc798c4a5b603c16553b4be510dbb.setContent(html_2357edfd2a19b87fcb85811ba04cb1e0);
             
         
 
-        marker_2aef872f5fdb7deccde3e265f240d87f.bindPopup(popup_2469dac61530b5183055a1195a1aeb2b)
+        marker_5218abe9fc9c9321b6ee0c2602748545.bindPopup(popup_06ecc798c4a5b603c16553b4be510dbb)
         ;
 
         
     
     
-                marker_2aef872f5fdb7deccde3e265f240d87f.setIcon(icon_503332885dc7579d789f63bcdaf4728f);
+                marker_5218abe9fc9c9321b6ee0c2602748545.setIcon(icon_aa41123941cd93a196f2d189f14ed9ae);
             
     
-            var marker_1abe6c3c8290bfdaaf5c2362b1670e30 = L.marker(
+            var marker_bf4d058be42c71e9a8e310e61e4cd941 = L.marker(
                 [36.4293323, 30.43416323],
                 {
 }
-            ).addTo(marker_cluster_f86d393d897df9aed4c3aa81d5548c4e);
+            ).addTo(feature_group_ab3024ef72df85edcdd9d1554401d0c6);
         
     
-            var icon_436857716e2307eb41889482ecfc3e01 = L.AwesomeMarkers.icon(
+            var icon_fdb334cda733ba8793276d52bf155c8c = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -1221,47 +1213,47 @@
             );
         
     
-        var popup_81eb333ae04442fe9d897b947dfb20af = L.popup({
+        var popup_38c431d2dc8000a557060e4d800d6c23 = L.popup({
   "maxWidth": 350,
 });
 
         
             
-                var html_8de2633580dcaae435d8d3aa69a47a90 = $(`<div id="html_8de2633580dcaae435d8d3aa69a47a90" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">324942</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:26:31                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4293323,30.43416323" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.429332, 30.434163</span>                         </div>                     </div>                     </div>`)[0];
-                popup_81eb333ae04442fe9d897b947dfb20af.setContent(html_8de2633580dcaae435d8d3aa69a47a90);
+                var html_4d2a7adad20d31d35f12ac17de833708 = $(`<div id="html_4d2a7adad20d31d35f12ac17de833708" style="width: 100.0%; height: 100.0%;">                     <div style="font-family: Arial, sans-serif; width: 320px; max-height: 450px; overflow-y: auto; padding:5px;">                         <div style="font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:8px; border-bottom:2px solid #3498db; padding-bottom:5px;">                             KEMER - 2026.05.20_773019_H14_Ortak Paket Çıralı çıkışı                         </div>                         <div style="background:#ecf0f1; padding:8px; border-radius:5px; margin-bottom:10px;">                             <b>🏷️ Direk No:</b> <span style="color:#3498db; font-weight:bold;">324942</span>                             <span style="margin-left:8px; font-size:10px; color:#7f8c8d;">(1 kayıt)</span><br>                             <b>📅 Tespit Tarihi:</b> 20/05/2026 13:26:31                         </div>                         <div style="margin-top:10px;"><div style="font-weight:bold; margin-bottom:5px;">🔍 TESPİTLER:</div>                             <div style="margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:5px; border-left:3px solid #e74c3c;">                                 <div style="display:flex; justify-content:space-between; align-items:center;">                                     <b>Tespit 1:</b>                                     <div>                                         <span style="color:#f39c12;">🟠 Acil</span>                                         <span style="margin-left:8px;">❌ Yapılmadı</span>                                     </div>                                 </div>                                 <div style="font-size:11px; margin-top:6px; color:#34495e;">Ağaç teması veya tehlikesi var. emniyet mesafesini kurtarmayan ağaçların kesilmesi gereiyor.</div>                             </div>                             </div>                         <div style="margin-top:12px;">                             <a href="https://www.google.com/maps/dir/?api=1&destination=36.4293323,30.43416323" target="_blank"                                 style="display:block; text-align:center; background:#3498db; color:white; padding:8px; border-radius:5px; text-decoration:none; font-weight:bold;">                                 🚗 Yol Tarifi Al                             </a>                         </div>                         <div style="margin-top:8px; font-size:9px; color:#7f8c8d; text-align:center; padding-top:5px; border-top:1px solid #ecf0f1;">                             📍 Koordinat: <span style="font-family:monospace; background:#ecf0f1; padding:2px 4px; border-radius:3px;">36.429332, 30.434163</span>                         </div>                     </div>                     </div>`)[0];
+                popup_38c431d2dc8000a557060e4d800d6c23.setContent(html_4d2a7adad20d31d35f12ac17de833708);
             
         
 
-        marker_1abe6c3c8290bfdaaf5c2362b1670e30.bindPopup(popup_81eb333ae04442fe9d897b947dfb20af)
+        marker_bf4d058be42c71e9a8e310e61e4cd941.bindPopup(popup_38c431d2dc8000a557060e4d800d6c23)
         ;
 
         
     
     
-                marker_1abe6c3c8290bfdaaf5c2362b1670e30.setIcon(icon_436857716e2307eb41889482ecfc3e01);
+                marker_bf4d058be42c71e9a8e310e61e4cd941.setIcon(icon_fdb334cda733ba8793276d52bf155c8c);
             
     
-            marker_cluster_f86d393d897df9aed4c3aa81d5548c4e.addTo(map_e8c717a0866aaf2f8e2a78c26161e065);
+            feature_group_ab3024ef72df85edcdd9d1554401d0c6.addTo(map_50cd4996fe6f68e58e9e93d274e03890);
         
     
-            var layer_control_540a0d3dd2aa4d631a6f0ca5edf3681c_layers = {
+            var layer_control_29dcac56306611ff5f34a176814717f2_layers = {
                 base_layers : {
-                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_758ee0f044d8f8c9ee9bf30db651ec69,
-                    "\ud83d\udef0\ufe0f Uydu + Etiketler" : tile_layer_7328e692e7023941c0d2aa7ee23d4426,
+                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_436261105b7d7e5f6725d63722e2a6f7,
+                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_b756d9240e886abe944411f9ec2bdb23,
                 },
                 overlays :  {
-                    "\ud83d\udccd 2026.05.20_773019_H14_Ortak Paket \u00c7\u0131ral\u0131 \u00e7\u0131k\u0131\u015f\u0131" : marker_cluster_f86d393d897df9aed4c3aa81d5548c4e,
+                    "\ud83d\udccd T\u00fcm Direkler" : feature_group_ab3024ef72df85edcdd9d1554401d0c6,
                 },
             };
-            let layer_control_540a0d3dd2aa4d631a6f0ca5edf3681c = L.control.layers(
-                layer_control_540a0d3dd2aa4d631a6f0ca5edf3681c_layers.base_layers,
-                layer_control_540a0d3dd2aa4d631a6f0ca5edf3681c_layers.overlays,
+            let layer_control_29dcac56306611ff5f34a176814717f2 = L.control.layers(
+                layer_control_29dcac56306611ff5f34a176814717f2_layers.base_layers,
+                layer_control_29dcac56306611ff5f34a176814717f2_layers.overlays,
                 {
   "position": "topright",
   "collapsed": false,
   "autoZIndex": true,
 }
-            ).addTo(map_e8c717a0866aaf2f8e2a78c26161e065);
+            ).addTo(map_50cd4996fe6f68e58e9e93d274e03890);
 
         
 </script>
