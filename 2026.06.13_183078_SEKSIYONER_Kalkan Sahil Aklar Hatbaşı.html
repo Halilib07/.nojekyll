@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8302ff896b91416c8c562866b1d7499e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_8302ff896b91416c8c562866b1d7499e" ></div>
+        
+
+    <script>
+    var userLocationMarker = null;
+    var userLocationCircle = null;
+    var watchId = null;
+    var map = null;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        for (var key in window) {
+            if (key.startsWith("map_") && window[key] instanceof L.Map) {
+                map = window[key];
+                console.log("Folium haritası bulundu:", key);
+                createLocationButton();
+                return;
+            }
+        }
+        console.error("Folium haritası bulunamadı!");
+    });
+
+    function createLocationButton() {
+        var LocationControl = L.Control.extend({
+            options: { position: 'topleft' },
+
+            onAdd: function () {
+                var container = L.DomUtil.create('div', 'leaflet-bar');
+                container.style.background = 'white';
+
+                var btn = L.DomUtil.create('a', '', container);
+                btn.innerHTML = '📍';
+                btn.style.width = '36px';
+                btn.style.height = '36px';
+                btn.style.lineHeight = '36px';
+                btn.style.textAlign = 'center';
+                btn.style.cursor = 'pointer';
+                btn.title = 'Konumumu Göster';
+
+                btn.onclick = function (e) {
+                    e.preventDefault();
+                    getUserLocation();
+                };
+                return container;
+            }
+        });
+
+        map.addControl(new LocationControl());
+    }
+
+    function getUserLocation() {
+        if (!navigator.geolocation) {
+            alert("Tarayıcı konum desteklemiyor");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            function (pos) {
+                showUserLocation(
+                    pos.coords.latitude,
+                    pos.coords.longitude,
+                    pos.coords.accuracy
+                );
+                startTracking();
+            },
+            function (err) {
+                alert("Konum alınamadı: " + err.message);
+            },
+            { enableHighAccuracy: true }
+        );
+    }
+
+    function showUserLocation(lat, lng, acc) {
+        if (userLocationMarker) map.removeLayer(userLocationMarker);
+        if (userLocationCircle) map.removeLayer(userLocationCircle);
+
+        userLocationMarker = L.circleMarker([lat, lng], {
+            radius: 8,
+            color: '#4285F4',
+            fillColor: '#4285F4',
+            fillOpacity: 1
+        }).addTo(map);
+
+        userLocationCircle = L.circle([lat, lng], {
+            radius: acc,
+            color: '#4285F4',
+            fillOpacity: 0.15
+        }).addTo(map);
+
+        map.setView([lat, lng], 16);
+    }
+
+    function startTracking() {
+        watchId = navigator.geolocation.watchPosition(function (pos) {
+            var lat = pos.coords.latitude;
+            var lng = pos.coords.longitude;
+            var acc = pos.coords.accuracy;
+
+            userLocationMarker.setLatLng([lat, lng]);
+            userLocationCircle.setLatLng([lat, lng]);
+            userLocationCircle.setRadius(acc);
+        });
+    }
+    </script>
+    </body>
+<script>
+    
+    
+            var map_8302ff896b91416c8c562866b1d7499e = L.map(
+                "map_8302ff896b91416c8c562866b1d7499e",
+                {
+                    center: [36.39754978911461, 29.370807179980318],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_8302ff896b91416c8c562866b1d7499e);
+
+            
+
+        
+    
+            var tile_layer_87bc7371b5c9def0977e6ee40b19759e = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_87bc7371b5c9def0977e6ee40b19759e.addTo(map_8302ff896b91416c8c562866b1d7499e);
+        
+    
+            var tile_layer_9c064f38c64415e624e9e0a94d400d55 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 22,
+  "maxNativeZoom": 22,
+  "noWrap": false,
+  "attribution": "Google Hybrid",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_9c064f38c64415e624e9e0a94d400d55.addTo(map_8302ff896b91416c8c562866b1d7499e);
+        
+    
+            var feature_group_4d3b393da02147b83cf730d5a6472106 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_63a335e78548025cd5aa15ed37694d71 = L.marker(
+                [36.39989288406205, 29.36430931091309],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_b7cd6c85a4240ae87cd10b97020f0521 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f9cc471d3081f843cb228decdd74946a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_60e973a630a0d32f877d146485eb4eb0 = $(`<div id="html_60e973a630a0d32f877d146485eb4eb0" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>129748</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 10:38:05                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🔵 Normal                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Değişimi gereken İzolatör var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR---KIRIK- CATLAK- SIRSIZ IZOLATOR</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Miktar:</b> 1.0</div>                                     <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> Orta faz izolatör kırık . beyaz vks</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39989288406205,29.36430931091309' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.399893, 29.364309")'>                                 36.399893, 29.364309                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_f9cc471d3081f843cb228decdd74946a.setContent(html_60e973a630a0d32f877d146485eb4eb0);
+            
+        
+
+        marker_63a335e78548025cd5aa15ed37694d71.bindPopup(popup_f9cc471d3081f843cb228decdd74946a)
+        ;
+
+        
+    
+    
+                marker_63a335e78548025cd5aa15ed37694d71.setIcon(icon_b7cd6c85a4240ae87cd10b97020f0521);
+            
+    
+            var marker_616610cd2fc2a0ef15bc92c6002dd986 = L.marker(
+                [36.4003354565587, 29.3634295463562],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_7a8d69d09cfdfa8708845ea817e1ee91 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "list",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d6b29c206071df42281ea64f936d5755 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d13f8fd64289b9d95cb0ab5fdbc6dd36 = $(`<div id="html_d13f8fd64289b9d95cb0ab5fdbc6dd36" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>140131</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (2 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 10:37:02                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 2 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🔴 Çok Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Sıkı bağlarda sorun var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> sağ faz sıkıbağ kopuk . acil müdehae edilmesi gerekiyor</div>                                 </div>                             </div>                                                          <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 2:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🔴 Çok Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Ağaç teması var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR---AGAC TEMASI TEHLIKESI VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> Emniyet mesafesini kurtarmayan ağaçların kesilmesi. hattın altındaki çam ağacı tehlike arz ediyor</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.4003354565587,29.3634295463562' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.400335, 29.363430")'>                                 36.400335, 29.363430                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_d6b29c206071df42281ea64f936d5755.setContent(html_d13f8fd64289b9d95cb0ab5fdbc6dd36);
+            
+        
+
+        marker_616610cd2fc2a0ef15bc92c6002dd986.bindPopup(popup_d6b29c206071df42281ea64f936d5755)
+        ;
+
+        
+    
+    
+                marker_616610cd2fc2a0ef15bc92c6002dd986.setIcon(icon_7a8d69d09cfdfa8708845ea817e1ee91);
+            
+    
+            var marker_92f21f0eda0103caec3005dfa019b65c = L.marker(
+                [36.39652493274178, 29.37948256731034],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_3886b4eed8faf6e43e5d54041196f2c6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2e351409486344cd3e9b68c841236800 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b7bb504a6514100a5673337bd141f6e0 = $(`<div id="html_b7bb504a6514100a5673337bd141f6e0" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>168878</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 13:41:47                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🟠 Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Ağaç teması var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR---AGAC TEMASI TEHLIKESI VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> Emniyet mesafesini kurtarmayan ağaçların kesilmesi. zeytin ağaçları</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39652493274178,29.37948256731034' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.396525, 29.379483")'>                                 36.396525, 29.379483                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_2e351409486344cd3e9b68c841236800.setContent(html_b7bb504a6514100a5673337bd141f6e0);
+            
+        
+
+        marker_92f21f0eda0103caec3005dfa019b65c.bindPopup(popup_2e351409486344cd3e9b68c841236800)
+        ;
+
+        
+    
+    
+                marker_92f21f0eda0103caec3005dfa019b65c.setIcon(icon_3886b4eed8faf6e43e5d54041196f2c6);
+            
+    
+            var marker_14e337766dee89f3748af3bed16ba541 = L.marker(
+                [36.39730432419962, 29.36941623687744],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_63a9514b583fb94c3e8aaf9fe85000ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6be61338673cadfb1052d8b93738561e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6ffb701db1b70441ad462102355d2281 = $(`<div id="html_6ffb701db1b70441ad462102355d2281" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>174123</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 11:01:45                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🔴 Çok Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Değişimi gereken İzolatör var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR---KIRIK- CATLAK- SIRSIZ IZOLATOR</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Miktar:</b> 1.0</div>                                     <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> Beyaz Vks kırık ve iletken izolatör boğumunda olduğundan atlama mesafesi kısalmış durumda</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39730432419962,29.36941623687744' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.397304, 29.369416")'>                                 36.397304, 29.369416                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_6be61338673cadfb1052d8b93738561e.setContent(html_6ffb701db1b70441ad462102355d2281);
+            
+        
+
+        marker_14e337766dee89f3748af3bed16ba541.bindPopup(popup_6be61338673cadfb1052d8b93738561e)
+        ;
+
+        
+    
+    
+                marker_14e337766dee89f3748af3bed16ba541.setIcon(icon_63a9514b583fb94c3e8aaf9fe85000ee);
+            
+    
+            var marker_9f72c1aacc3275693aab66375b98db6a = L.marker(
+                [36.39746947, 29.38107573],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_7b07aae844a39f38a47d5057e99fc107 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8b756e8465c996441bce65a828e2a749 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d45ea7eeef8ace4be63bda39983094ae = $(`<div id="html_d45ea7eeef8ace4be63bda39983094ae" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>187294</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 13:43:48                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🟠 Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Sıkı bağlarda sorun var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> sağ faz sıkıbağ kopuk</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39746947,29.38107573' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.397469, 29.381076")'>                                 36.397469, 29.381076                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_8b756e8465c996441bce65a828e2a749.setContent(html_d45ea7eeef8ace4be63bda39983094ae);
+            
+        
+
+        marker_9f72c1aacc3275693aab66375b98db6a.bindPopup(popup_8b756e8465c996441bce65a828e2a749)
+        ;
+
+        
+    
+    
+                marker_9f72c1aacc3275693aab66375b98db6a.setIcon(icon_7b07aae844a39f38a47d5057e99fc107);
+            
+    
+            var marker_ac27fb66c7f69383d6886d0cef4b9557 = L.marker(
+                [36.39850038342492, 29.36703443527222],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_5332cc0bdc2524e88919099bac2b8bc4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_97b20344c574f9829bd90894237f2ab5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_20eadaed31ffde2033cd6f1fd580c8f2 = $(`<div id="html_20eadaed31ffde2033cd6f1fd580c8f2" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>188502</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 10:41:07                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🟠 Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Değişimi gereken İzolatör var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR---KIRIK- CATLAK- SIRSIZ IZOLATOR</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Miktar:</b> 1.0</div>                                     <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> Orta faz Durdurucu , Beyaz Vhd</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39850038342492,29.36703443527222' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.398500, 29.367034")'>                                 36.398500, 29.367034                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_97b20344c574f9829bd90894237f2ab5.setContent(html_20eadaed31ffde2033cd6f1fd580c8f2);
+            
+        
+
+        marker_ac27fb66c7f69383d6886d0cef4b9557.bindPopup(popup_97b20344c574f9829bd90894237f2ab5)
+        ;
+
+        
+    
+    
+                marker_ac27fb66c7f69383d6886d0cef4b9557.setIcon(icon_5332cc0bdc2524e88919099bac2b8bc4);
+            
+    
+            var marker_bcf12f305fbbf1882f2f33fb974d99bc = L.marker(
+                [36.39826721808893, 29.3675172328949],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_838827bc94421a79e48fccad90053aeb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a1a3017b4ce8d7b538ebfe529a79060d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6d290512e08c703885fcbe18db8c0b9a = $(`<div id="html_6d290512e08c703885fcbe18db8c0b9a" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>217383</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 10:42:08                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🔵 Normal                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Değişimi gereken İzolatör var mı?</div>                                                                          <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Miktar:</b> 3.0</div>                                     <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> Beyaz 3 adet Vks kırık</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39826721808893,29.3675172328949' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.398267, 29.367517")'>                                 36.398267, 29.367517                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_a1a3017b4ce8d7b538ebfe529a79060d.setContent(html_6d290512e08c703885fcbe18db8c0b9a);
+            
+        
+
+        marker_bcf12f305fbbf1882f2f33fb974d99bc.bindPopup(popup_a1a3017b4ce8d7b538ebfe529a79060d)
+        ;
+
+        
+    
+    
+                marker_bcf12f305fbbf1882f2f33fb974d99bc.setIcon(icon_838827bc94421a79e48fccad90053aeb);
+            
+    
+            var marker_f600204849710509a585b52b1af8561b = L.marker(
+                [36.39797791938481, 29.36806976795197],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_efc9507dab0ff4b9b35887ed5fdfcca0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_031dca4d0a74f8c055c11ba991f7837a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_14ba593ef76fa0a5bf15f1ece3ef57c9 = $(`<div id="html_14ba593ef76fa0a5bf15f1ece3ef57c9" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>231696</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 10:43:56                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🟠 Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Sıkı bağlarda sorun var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> sol faz sıkıbağ kopuk</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39797791938481,29.36806976795197' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.397978, 29.368070")'>                                 36.397978, 29.368070                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_031dca4d0a74f8c055c11ba991f7837a.setContent(html_14ba593ef76fa0a5bf15f1ece3ef57c9);
+            
+        
+
+        marker_f600204849710509a585b52b1af8561b.bindPopup(popup_031dca4d0a74f8c055c11ba991f7837a)
+        ;
+
+        
+    
+    
+                marker_f600204849710509a585b52b1af8561b.setIcon(icon_efc9507dab0ff4b9b35887ed5fdfcca0);
+            
+    
+            var marker_1ae56658f2caad40a8ca9e8823576a1d = L.marker(
+                [36.39464011167777, 29.37471628189087],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_39736076aea0cca494c14954d9696e67 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "list",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_79e9e0a9c1cd4f771b41060c2dfbd95a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8b6369eaca68d4fc596bc45f9ec7d6f2 = $(`<div id="html_8b6369eaca68d4fc596bc45f9ec7d6f2" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>232888</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (2 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 11:09:23                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 2 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🟢 Bekleyebilir                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Değişimi gereken İzolatör var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR---KIRIK- CATLAK- SIRSIZ IZOLATOR</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Miktar:</b> 2.0</div>                                     <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> sağ iki izolatör kırık . beyaz Vks</div>                                 </div>                             </div>                                                          <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 2:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🟠 Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Sıkı bağlarda sorun var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> sol faz sıkıbağ kopuk</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39464011167777,29.37471628189087' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.394640, 29.374716")'>                                 36.394640, 29.374716                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_79e9e0a9c1cd4f771b41060c2dfbd95a.setContent(html_8b6369eaca68d4fc596bc45f9ec7d6f2);
+            
+        
+
+        marker_1ae56658f2caad40a8ca9e8823576a1d.bindPopup(popup_79e9e0a9c1cd4f771b41060c2dfbd95a)
+        ;
+
+        
+    
+    
+                marker_1ae56658f2caad40a8ca9e8823576a1d.setIcon(icon_39736076aea0cca494c14954d9696e67);
+            
+    
+            var marker_920f89ad10e95481f7a19b6332befe4f = L.marker(
+                [36.39470920100026, 29.37648922204972],
+                {
+}
+            ).addTo(feature_group_4d3b393da02147b83cf730d5a6472106);
+        
+    
+            var icon_d72938a81d56041d21356d136d99bec6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8dfd829fb168aa011c2f0dddee8051bc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ce90d13ee03ab70c4062a5d56902c6c4 = $(`<div id="html_ce90d13ee03ab70c4062a5d56902c6c4" style="width: 100.0%; height: 100.0%;">                     <div style='font-family: Arial; width: 300px; max-height: 400px; overflow-y: auto; font-size: 12px; padding:5px;'>                                              <div style='margin-bottom:10px;'>                         <div style='font-weight:bold; color:#2c3e50; font-size:14px; margin-bottom:3px;'>                             KALKAN - 2026.06.13_183078_SEKSIYONER_Kalkan Sahil Aklar Hatbaşı                         </div>                     </div>                                                                   <div style='background:#ecf0f1; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #bdc3c7;'>                         <div style='font-size:11px; color:#34495e;'>                             <div style='margin-bottom:3px;'>                                 <strong>Direk No:</strong> <span style='color:#3498db; font-weight:bold;'>232895</span>                                 <span style='margin-left:8px; font-size:10px; color:#95a5a6;'>                                     (1 kayıt)                                 </span>                             </div>                             <div>                                 <strong>Tespit Tarihi:</strong> 12/06/2026 13:38:20                             </div>                         </div>                     </div>                                                                       <div style='margin-top:10px;'>                             <div style='font-weight:bold; color:#333; margin-bottom:8px; padding-bottom:3px; border-bottom:2px solid #3498db; font-size:12px;'>                                 🔍 1 TESPİT BULUNDU:                             </div>                             <div style='max-height:220px; overflow-y:auto; padding-right:3px;'>                                                      <div style='margin-bottom:10px; padding:8px; background:#f8f9fa; border-radius:4px; border-left:3px solid #e74c3c;'>                                 <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;'>                                     <div style='display:flex; align-items:center; gap:5px;'>                                         <span style='font-weight:bold; color:#2c3e50; font-size:11px;'>                                             Tespit 1:                                         </span>                                         <span style='font-size:10px; color:#e74c3c; font-weight:bold;'>                                             ❌ Yapılmadı                                         </span>                                     </div>                                     <div style='font-size:10px; color:#7f8c8d;'>                                         🔴 Çok Acil                                     </div>                                 </div>                                 <div style='padding-left:5px;'>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Soru:</b> Sıkı bağlarda sorun var mı?</div>                                     <div style="font-size:10px; color:#34495e; margin-bottom:3px;"><b>Cevap:</b> SORUN VAR</div>                                                                          <div style="font-size:10px; color:#7f8c8d; margin-top:3px; padding-top:3px; border-top:1px dashed #ecf0f1;"><b>Not:</b> 3 faz sıkıbağ yenilenmesi. özellikle sağ faz sıkıbağı aciliyeti var.</div>                                 </div>                             </div>                             </div></div>                          <div style='margin-top:15px;'>                             <a href='https://www.google.com/maps/dir/?api=1&destination=36.39470920100026,29.37648922204972' target='_blank'                                 style='display:flex; align-items:center; justify-content:center;                                       background:#3498db; color:white; text-decoration:none;                                        padding:8px 15px; border-radius:5px; font-weight:bold;                                       transition:all 0.2s; font-size:11px; border:none;'>                                 <span style='margin-right:6px; font-size:14px;'>🚗</span>                                 Yol Tarifi Al                             </a>                         </div>                          <div style='margin-top:10px; font-size:10px; color:#7f8c8d; text-align:center; padding-top:8px; border-top:1px dashed #bdc3c7;'>                             Koordinat:                              <span style='font-family:monospace; background:#f8f9fa; padding:3px 6px;                                           border-radius:3px; cursor:pointer; font-size:9px; border:1px solid #ecf0f1;'                                   onclick='navigator.clipboard.writeText("36.394709, 29.376489")'>                                 36.394709, 29.376489                             </span>                         </div>                     </div>                     </div>`)[0];
+                popup_8dfd829fb168aa011c2f0dddee8051bc.setContent(html_ce90d13ee03ab70c4062a5d56902c6c4);
+            
+        
+
+        marker_920f89ad10e95481f7a19b6332befe4f.bindPopup(popup_8dfd829fb168aa011c2f0dddee8051bc)
+        ;
+
+        
+    
+    
+                marker_920f89ad10e95481f7a19b6332befe4f.setIcon(icon_d72938a81d56041d21356d136d99bec6);
+            
+    
+            feature_group_4d3b393da02147b83cf730d5a6472106.addTo(map_8302ff896b91416c8c562866b1d7499e);
+        
+    
+            var layer_control_5a3d1a849a9b3055c028c5fc249a95cf_layers = {
+                base_layers : {
+                    "\ud83d\uddfa\ufe0f Normal Harita" : tile_layer_87bc7371b5c9def0977e6ee40b19759e,
+                    "\ud83d\udef0\ufe0f\ud83d\udd24 Uydu + Etiketler" : tile_layer_9c064f38c64415e624e9e0a94d400d55,
+                },
+                overlays :  {
+                    "\ud83d\udea8 \u00d6ncelikli Direkler" : feature_group_4d3b393da02147b83cf730d5a6472106,
+                },
+            };
+            let layer_control_5a3d1a849a9b3055c028c5fc249a95cf = L.control.layers(
+                layer_control_5a3d1a849a9b3055c028c5fc249a95cf_layers.base_layers,
+                layer_control_5a3d1a849a9b3055c028c5fc249a95cf_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_8302ff896b91416c8c562866b1d7499e);
+
+        
+</script>
+</html>
